@@ -10,6 +10,7 @@ import { useWinBasicStore } from "../stores/basicInfo";
 import WebAppBtnTab from "./FocusBarUtils/WebAppBtnTab.vue";
 import { ref } from "vue";
 import { useWebAppStore } from "../stores/WebAppsStores";
+import FocusBarMind from "./FocusBarUtils/FocusBarMind.vue";
 
 
 
@@ -54,7 +55,7 @@ window.electron.ipcRenderer.on("read-db-reply-WebApps", (e, r) => {
 
     <div id="focus-tools">
       <FocusBarToolsDotBtn />
-      
+      <FocusBarMind/>
       <FocusBarToolsTerminal />
       <FocusBarToolsSideBar />
     </div>
