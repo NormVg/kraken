@@ -1,0 +1,55 @@
+#pre-box {
+  width: 345px;
+  height: 45px;
+  background-color: #0a0d18;
+  border-radius: 10px;
+  border: 1px solid #71738e;
+  padding: 5px;
+}
+
+#boxof-pre {
+  display: flex;
+  flex-wrap: wrap;
+  width: 750px;
+  flex-direction: row;
+  gap: 10px 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+#pre-line {
+  border-bottom: 1px solid #71738e;
+  width: 800px;
+  height: 1px;
+  margin-bottom: 40px;
+}
+
+#pre-box-path{
+  color: #71738E;
+  font-size: 12px;
+  margin-top: 5px;
+  width: 97%;
+  overflow: hidden;
+  
+}
+
+
+
+#fol-box {
+  width: 345px;
+  height: 45px;
+  background-color: #0a0d18;
+  border-radius: 10px;
+  border: 1px solid #71738e;
+  padding: 5px;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+#fol-box img{
+  width: 20px;
+}

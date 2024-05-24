@@ -1,38 +1,38 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+
+
+
+body .App {
+  background-color: #1c1c2a;
+  color: whitesmoke;
+  font-family: "JetBrains Mono", monospace;
+  border: 5px solid black;
+  border-radius: 10px;
+  min-height: calc(100vh - 10px) ;
+  /* width: 100vw; */
+  user-select: none;
+}
+* {
+  /* color: #F3F3F3 !important; */
+  font-family: "JetBrains Mono", monospace;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 100px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

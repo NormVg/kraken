@@ -1,0 +1,50 @@
+#h-left {
+  background-color: #0a0d18;
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  padding: 0px 5px;
+  width: 120px;
+  height: 30px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-app-region: drag;
+}
+
+#h-right {
+  background-color: #0a0d18;
+
+  position: fixed;
+  right: 0%;
+  top: 0%;
+
+  padding: 0px 5px;
+
+  
+  height: 30px;
+
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  -webkit-app-region: drag;
+}
+
+#h-right button {
+  background: none;
+  border: none;
+  padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-app-region: no-drag;
+}
+
+#h-right img {
+  width: 16px;
+}

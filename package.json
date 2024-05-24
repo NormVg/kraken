@@ -3,19 +3,36 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@codemirror/lang-javascript": "^6.2.2",
+    "@codemirror/lang-python": "^6.1.6",
+    "@electron/remote": "^2.1.2",
+    "@lezer/highlight": "^1.2.0",
+    "@monaco-editor/react": "^4.6.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@uiw/codemirror-themes": "^4.22.1",
+    "@uiw/react-codemirror": "^4.22.1",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron": "^30.0.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-monaco-editor": "^0.55.0",
     "react-scripts": "5.0.1",
+    "wait-on": "^7.2.0",
     "web-vitals": "^2.1.4"
   },
+  "main": "public/main.js",
+  "homepage": "./",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "e:start": "concurrently -k \"cross-env BROWSER=none npm start\" \"npm run e:s\"",
+    "e:build": "",
+    "e:s": "wait-on tcp:3000 && electron ."
   },
   "eslintConfig": {
     "extends": [
