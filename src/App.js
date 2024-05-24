@@ -1,21 +1,21 @@
 
 import './App.css';
-import { useState } from 'react';
 import MyEditor from './components/MyEditor';
 import HomePage from './components/HomePage';
 import HeaderBar from './components/HeaderBar';
+import { useEditorContext } from './context/EditorContext';
 
 
 
 
 function App() {
+  const { isEditorOpen } = useEditorContext();
 
   return (
     <div className="App" >
-      
-      <HeaderBar/>
-      <HomePage/>
-      
+      <HeaderBar />
+      {isEditorOpen && <MyEditor />}
+      {!isEditorOpen && <HomePage />}
     </div>
   );
 }
