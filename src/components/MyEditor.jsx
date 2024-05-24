@@ -47,12 +47,12 @@ const MyEditor = () => {
   };
 //   const [value, setValue] = React.useState("console.log('hello world!');");
   return (
-    <div>
+    <div className="myeditor">
       <CodeMirror
         // value={value}
         height="200px"
         theme={myTheme}
-        extensions={[ python({ jsx: true })]}
+        extensions={[ javascript({ jsx: true })]}
         onChange={handleEditorChange}
       />
       

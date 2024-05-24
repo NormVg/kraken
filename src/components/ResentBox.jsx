@@ -6,7 +6,7 @@ import folderIcon from "../assets/image 70.png"
 const { ipcRenderer } = window.require('electron');
 
 function openEditorInFolder(path){
-  alert("opening editor in ",path)
+  alert("opening editor in "+path)
 }
 
 function ResentBoxIn() {
@@ -37,6 +37,7 @@ export default function ResentBox() {
   return (
     <div id="boxof-pre">
       <FolderBoxIn/>
+      
       <ResentBoxIn/>
       <ResentBoxIn/>
       <ResentBoxIn/>

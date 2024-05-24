@@ -18,12 +18,13 @@ const createWindow = () => {
       nodeIntegration:true,
       contextIsolation:false,
       preload: path.join(__dirname, 'preload.js'),
-
+      webviewTag:true,
     },
     
     titleBarStyle: 'hidden',
     transparent: true,
-    frame:false
+    frame:false,
+    
   });
 
   mainWindow.setIcon(path.join(__dirname, 'icon.png'))
