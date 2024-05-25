@@ -1,12 +1,13 @@
 import React from "react";
 import "../css/ResentBoxStyle.css"
-
+import { redirect,redirectDocument } from "react-router-dom";
 import folderIcon from "../assets/image 70.png"
 
 const { ipcRenderer } = window.require('electron');
 
 function openEditorInFolder(path){
-  alert("opening editor in "+path)
+  
+  window.location.replace("/kraken?path="+path);
 }
 
 function ResentBoxIn() {

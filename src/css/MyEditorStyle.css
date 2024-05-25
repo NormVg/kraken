@@ -13,4 +13,9 @@
 
 .myeditor{
   margin-top: 30px;
+  
+  position: fixed;
+  width: 99%;
+  
 }
+

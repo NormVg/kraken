@@ -50,7 +50,8 @@ const MyEditor = () => {
     <div className="myeditor">
       <CodeMirror
         // value={value}
-        height="200px"
+        height="94vh"
+        width="100%"
         theme={myTheme}
         extensions={[ javascript({ jsx: true })]}
         onChange={handleEditorChange}

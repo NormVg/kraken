@@ -48,3 +48,8 @@
 #h-right img {
   width: 16px;
 }
+
+#header {
+  position:sticky;
+  z-index: 11;
+}
