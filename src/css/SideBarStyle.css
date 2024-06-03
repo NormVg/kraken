@@ -1,0 +1,9 @@
+#editor-side-bar{
+    background-color: #0A0D18;
+    /* width: 35%; */
+    height: calc(99vh - 2px);
+    z-index: 10;
+    position: fixed;
+    right: 0%;
+    border-radius: 10px;
+}

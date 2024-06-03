@@ -5,6 +5,7 @@ import HomePage from './components/HomePage';
 import HeaderBar from './components/HeaderBar';
 import { createBrowserRouter,RouterProvider } from 'react-router-dom';
 import EditorPage from './components/EditorPage';
+import TerminalPage from './components/TerminalPage';
 
 
 

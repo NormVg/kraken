@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from '@codemirror/lang-javascript';
 
@@ -7,6 +7,11 @@ import { createTheme } from '@uiw/codemirror-themes';
 import { tags as t } from '@lezer/highlight';
 
 import "../css/MyEditorStyle.css"
+
+import {EditorSidebarToggleContext} from "../context/EditorContext"
+
+
+
 
 const myTheme = createTheme({
     theme: 'dark',
@@ -45,9 +50,13 @@ const MyEditor = () => {
   const handleEditorChange = (value, event) => {
     console.log("Editor content:", value);
   };
+
+  const Estc = useContext(EditorSidebarToggleContext)
+  // console.log(Estc.EstValue.edtior.mywidth)
+
 //   const [value, setValue] = React.useState("console.log('hello world!');");
   return (
-    <div className="myeditor">
+    <div className="myeditor" id="myeditor" style={{width:Estc.EstValue.edtior.mywidth}} >
       <CodeMirror
         // value={value}
         height="94vh"

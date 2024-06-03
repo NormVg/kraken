@@ -1,5 +1,5 @@
 #focus-bar{
-    width: calc( 100% - 50px);
+    /* width: calc( 100% - 50px ); */
     height: 30px;
     border-radius: 7px;
     background-color: #0A0D18;
@@ -19,6 +19,13 @@
     flex-direction: row;
     padding: 0px 10px;
     gap: 10px;
+
+    z-index: 15;
+
+    margin-left: 25px;
+    /* margin-right: calc(35% + 25px ) ; */
+    /* width: calc( 100% - 50px - 35%); */
+    /* margin-right: 25px;     */
 }
 
 #focus-bar-tab{
@@ -95,8 +102,21 @@
 #focus-apps{
     
     margin-left: auto;
+    
 }
 
 #focus-tools{
     border: none;
+}
+
+
+
+#focus-tabs{
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+#focus-tabs::-webkit-scrollbar{
+    height: 1px;
+    width: 1px;
 }

@@ -1,56 +1,39 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../css/FocusBarStyle.css";
-import glassApps from "../assets/glassapp.png";
+
 import gmeet from "../assets/icons/gmeet.png";
 import chatgpt from "../assets/icons/chatgpt.png";
 import figma from "../assets/icons/figma.png";
 import spotify from "../assets/icons/spotify.png";
 import youtube from "../assets/icons/youtube.png";
-import winSwitech from "../assets/winSwitch.png";
 
-import Folder from "../assets/icons/folder.png"
-import DotIcon from "../assets/icons/DotIcon.png"
-import terminal from "../assets/icons/terminal.png"
 
-function FocusBarScroolShift() {
-  return (
-    <div id="focus-bar-scroll-shift">
-      <img src={winSwitech} alt="" />
-    </div>
-  );
-}
 
-function FocusBarTab() {
-  return <div id="focus-bar-tab">FocusBar</div>;
-}
+import FocusBarToolsSideBar from "./FocusBarTools/FocusBarToolsSideBar";
+import FocusBarToolsTerminal from "./FocusBarTools/FocusBarToolsTerminal";
+import FocusBarToolsFolder from "./FocusBarTools/FocusBarToolsFolder";
+import FocusBarToolsDotBtn from "./FocusBarTools/FocusBarToolsDotBtn";
+import FocusBarScroolShift from "./FocusBarTools/FocusBarScroolShift";
+import FocusBarApps from "./FocusBarTools/FocusBarApps";
+import FocusBarTab from "./FocusBarTools/FocusBarTab";
 
-function FocusBarApps(props) {
-  return (
-    <div id="focus-bar-apps" style={{ backgroundImage: `url(${glassApps})` }}>
-      <img src={props.icon} />
-    </div>
-  );
-}
 
-function FocusBarToolsFolder() {
-  return <div id="focus-bar-tools"><img src={Folder}/></div>;
-}
+import {EditorSidebarToggleContext} from "../context/EditorContext"
 
-function FocusBarToolsTerminal() {
-  return <div id="focus-bar-tools"><img src={terminal}/></div>;
-}
 
-function FocusBarToolsDotBtn() {
-  return <div id="focus-bar-tools"><img src={DotIcon}/></div>;
-}
 
 
 const FocusBar = () => {
+
+  const Estc = useContext(EditorSidebarToggleContext)
+  
   return (
-    <div id="focus-bar">
+    <div id="focus-bar" style={{width:Estc.EstValue.focusbar.mywidth,marginRight:Estc.EstValue.focusbar.marginright}}>
+      
       <div id="focus-win-scroll-switch">
         <FocusBarScroolShift />
       </div>
+
       <div id="focus-tabs">
         <FocusBarTab />
         <FocusBarTab />
@@ -59,6 +42,7 @@ const FocusBar = () => {
         <FocusBarTab />
         <FocusBarTab />
       </div>
+
       <div id="focus-apps">
         <FocusBarApps icon={gmeet} />
         <FocusBarApps icon={chatgpt} />
@@ -66,11 +50,14 @@ const FocusBar = () => {
         <FocusBarApps icon={youtube} />
         <FocusBarApps icon={spotify} />
       </div>
+
       <div id="focus-tools">
         <FocusBarToolsDotBtn/>
         <FocusBarToolsTerminal/>
         <FocusBarToolsFolder/>
+        <FocusBarToolsSideBar/>
       </div>
+
     </div>
   );
 };

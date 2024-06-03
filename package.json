@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@uiw/codemirror-themes": "^4.22.1",
     "@uiw/react-codemirror": "^4.22.1",
+    "@xterm/xterm": "^5.5.0",
     "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",
     "electron": "^30.0.6",
