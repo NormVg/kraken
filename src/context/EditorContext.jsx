@@ -4,36 +4,33 @@ export const EditorSidebarToggleContext = createContext(null);
 
 export const EditorSidebarToggleProvider = (props) => {
   const [Est, SetEst] = useState(false);
-  const [EstValue, SetEstValue] = useState(
-    {
-        edtior: {
-          mywidth: "99%",
-        },
-        sidebar:{
-          mywidth:"0"
-        },
-        focusbar:{
-          mywidth:"calc( 100% - 50px )",
-          marginright:"25px"
-        }
-      }
-  );
+  const [EstValue, SetEstValue] = useState({
+    edtior: {
+      mywidth: "99%",
+    },
+    sidebar: {
+      mywidth: "0",
+    },
+    focusbar: {
+      mywidth: "calc( 100% - 50px )",
+      marginright: "25px",
+    },
+  });
 
   function EstToggle() {
-    
     if (Est == false) {
       SetEst(true);
       SetEstValue({
         edtior: {
           mywidth: "calc(99% - 35%)",
         },
-        sidebar:{
-          mywidth:"35%"
+        sidebar: {
+          mywidth: "35%",
         },
-        focusbar:{
-          mywidth:"calc( 100% - 50px - 35%)",
-          marginright:"calc(25px + 35%)"
-        }
+        focusbar: {
+          mywidth: "calc( 100% - 50px - 35%)",
+          marginright: "calc(25px + 35%)",
+        },
       });
       return;
     }
@@ -43,13 +40,13 @@ export const EditorSidebarToggleProvider = (props) => {
         edtior: {
           mywidth: "99%",
         },
-        sidebar:{
-          mywidth:"0"
+        sidebar: {
+          mywidth: "0",
         },
-        focusbar:{
-          mywidth:"calc( 100% - 50px )",
-          marginright:"25px"
-        }
+        focusbar: {
+          mywidth: "calc( 100% - 50px )",
+          marginright: "25px",
+        },
       });
       return;
     }
@@ -58,5 +55,54 @@ export const EditorSidebarToggleProvider = (props) => {
     <EditorSidebarToggleContext.Provider value={{ Est, EstToggle, EstValue }}>
       {props.children}
     </EditorSidebarToggleContext.Provider>
+  );
+};
+
+
+
+
+export const EditorWorkSpaceDisplayContext = createContext(null);
+
+export const EditorWorkSpaceDisplayProvider = (props) => {
+  const [Ewd,SetEwd] = useState(
+    {
+      main:{
+        myclassOn:"main-on",
+        myclassOff:"main-off",
+        state:true
+      },
+      term:{
+        myclassOn:"term-on",
+        myclassOff:"term-off",
+        state:false
+      }
+    }
+  );
+
+  function ToggleWorkSpace(mytype) {
+    var temp = {...Ewd}
+    
+    Object.keys(temp).forEach(element => {
+      console.log(element,"hehe")
+      if (element == mytype){
+        
+        temp[element].state = true
+      }else{
+        temp[element].state = false
+        
+      }
+
+    })
+    console.log(temp)
+    SetEwd(temp)
+
+  }
+
+  
+
+  return (
+    <EditorWorkSpaceDisplayContext.Provider value={{Ewd,ToggleWorkSpace}}>
+      {props.children}
+    </EditorWorkSpaceDisplayContext.Provider>
   );
 };

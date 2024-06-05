@@ -1,0 +1,17 @@
+
+.main-on{
+    display: block;
+}
+
+.main-off{
+    display: none;
+}
+
+.term-on{
+    display: flex;
+    justify-content: center;
+}
+
+.term-off{
+    display: none;
+}

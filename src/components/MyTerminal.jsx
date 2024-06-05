@@ -1,59 +1,96 @@
-import { Terminal ,ITerminalOptions} from '@xterm/xterm'
+import { Terminal, ITerminalOptions } from "@xterm/xterm";
 
-import React, { useEffect, useRef } from 'react'
-import "@xterm/xterm/css/xterm.css"
+import { FitAddon } from "@xterm/addon-fit";
+import { WebLinksAddon } from '@xterm/addon-web-links';
+import { ClipboardAddon } from '@xterm/addon-clipboard';
+import { CanvasAddon } from '@xterm/addon-canvas';
+
+import React, { useEffect, useRef } from "react";
+import "@xterm/xterm/css/xterm.css";
+import "../css/MyTerminalStyle.css"
+
+const { ipcRenderer } = window.require('electron');
+
+
+
+
 
 const xtermjsTheme = {
-  foreground: '#F8F8F8',
-  background: '#0A0D18',
-  selectionBackground: '#5DA5D533',
-  selectionInactiveBackground: '#555555AA',
-  black: '#45475A',
-  brightBlack: '#585B70',
-  red: '#F38BA8',
-  brightRed: '#FF7272',
-  green: '#5BCC5B',
-  brightGreen: '#72FF72',
-  yellow: '#CCCC5B',
-  brightYellow: '#FFFF72',
-  blue: '#5D5DD3',
-  brightBlue: '#7279FF',
-  magenta: '#BC5ED1',
-  brightMagenta: '#E572FF',
-  cyan: '#5DA5D5',
-  brightCyan: '#72F0FF',
-  white: '#F8F8F8',
-  brightWhite: '#FFFFFF'
+  foreground: "#CDD6F4",
+  background: "#0A0D18",
+  selectionBackground: "#5DA5D533",
+  selectionInactiveBackground: "#555555AA",
+  black: "#45475A",
+  brightBlack: "#585B70",
+  red: "#F38BA8",
+  brightRed: "#D31F6B",
+  green: "#A6E3A1",
+  brightGreen: "#A6E3A1",
+  yellow: "#F9E2AF",
+  brightYellow: "#F9E2AF",
+  blue: "#89B4FA",
+  brightBlue: "#89B4FA",
+  magenta: "#F5C2E7",
+  brightMagenta: "#F5C2E7",
+  cyan: "#94E2D5",
+  brightCyan: "#94E2D5",
+  white: "#BAC2DE",
+  brightWhite: "#A6ADC8",
 };
 
+const terminal = new Terminal({
+  theme: xtermjsTheme,
+  convertEol: true,
+  allowProposedApi: true,
+  backend: 'conpty',
+  buildNumber: 22621
+});
 
-const terminal = new Terminal(
-  {
-    theme: xtermjsTheme
-  }
-)
+const fitAddon = new FitAddon();
+terminal.loadAddon(fitAddon);
+
+const clipboardAddon = new ClipboardAddon();
+terminal.loadAddon(clipboardAddon);
+
+terminal.loadAddon(new WebLinksAddon());
+
+terminal.loadAddon(new CanvasAddon());
 
 
+terminal.onKey((e) => {
+  console.log(e.key)
+  ipcRenderer.send("terminal-into", e.key);
+  fitAddon.fit();
+});
+
+
+
+ipcRenderer.on("terminal-incData", (event, data) => {
+  console.log(data)
+  terminal.write(data);
+  fitAddon.fit();
+});
+
+terminal.writeln("welcome to 🐙  terminal")
 function MyTerminal() {
   
-  terminal.onData((e)=>{
-    // terminal.write(e)
-    console.log(e)
-  })
-  const terminalRef = useRef()
-  
-  useEffect(()=>{
-    if (!terminalRef.current){
-      return
+
+
+
+  const terminalRef = useRef();
+
+  useEffect(() => {
+    if (!terminalRef.current) {
+      return;
     }
     terminal.open(terminalRef.current);
-    // terminal.write('$ ')
-  },[terminalRef])
-
-
-  return (
-    <div ref={terminalRef}>MyTerminal</div>
-  )
+    
+    fitAddon.fit();
+    
+  }, [terminalRef]);
+  
+  
+  return <div id="myterminal" ref={terminalRef}></div>;
 }
 
-export default MyTerminal
+export default MyTerminal;

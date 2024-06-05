@@ -1,7 +1,8 @@
 const { app, BrowserWindow,ipcMain,dialog } = require('electron');
 const path = require('node:path');
 
-
+const os = require('os');
+const pty = require('node-pty');
 
 require('@electron/remote/main').initialize()
 
@@ -27,7 +28,7 @@ const createWindow = () => {
     
   });
 
-  mainWindow.setIcon(path.join(__dirname, 'icon.png'))
+  mainWindow.setIcon(path.join(__dirname, './icon.png'))
   mainWindow.loadURL("http://localhost:3000")
   mainWindow.reload()
   require('@electron/remote/main').enable(mainWindow.webContents)
@@ -65,6 +66,26 @@ const createWindow = () => {
     }
     
   })
+
+  var shell = os.platform() === "win32" ? "powershell.exe" : "bash";
+  var ptyProcess = pty.spawn(shell, [], {
+          name: 'xterm-color',
+          cols: 80,
+          rows: 24,
+          cwd: process.env.HOME,
+          env: process.env
+      });
+
+      mainWindow.webContents.send("terminal-incData", "neofetch");
+      ptyProcess.on("data", (data) => {
+        mainWindow.webContents.send("terminal-incData", data);
+      });
+  
+      ipcMain.on("terminal-into", (event, data)=> {
+        ptyProcess.write(data);
+      })
+
+
 
 };
 

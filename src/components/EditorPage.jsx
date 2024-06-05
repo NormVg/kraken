@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import MyEditor from './MyEditor'
-import { useSearchParams } from 'react-router-dom'
+import { json, useSearchParams } from 'react-router-dom'
 import FocusBar from './FocusBar'
 import SideBar from './SideBar'
-import {EditorSidebarToggleProvider} from "../context/EditorContext"
+
+import MyTerminal from './MyTerminal'
+import { EditorWorkSpaceDisplayContext } from '../context/EditorContext'
+
+import  '../css/EditorPageStyle.css'
 
 const EditorPage = () => {
     const [prams,setPrams] = useSearchParams()
@@ -11,14 +15,26 @@ const EditorPage = () => {
     const [sidebarState,setSidebarState] = useState("close")
     const [sectionValue,SetsectionValue] = useState({})
 
+    const Ewdc = useContext(EditorWorkSpaceDisplayContext)
+
+    
+    // Ewdc.ToggleWorkSpace("term")
+    
+    
   return (
     <>
-    <EditorSidebarToggleProvider>
+    
         <FocusBar />
-        <MyEditor />
+        <div id='main' className={Ewdc.Ewd.main.state ? Ewdc.Ewd.main.myclassOn : Ewdc.Ewd.main.myclassOff} >
+          <MyEditor />
+        </div>
+        <div id="term"  className={Ewdc.Ewd.term.state ? Ewdc.Ewd.term.myclassOn : Ewdc.Ewd.term.myclassOff}>
+          <MyTerminal/>
+        </div>
+
         <SideBar  />
     
-    </EditorSidebarToggleProvider>
+    
     </>
   )
 }

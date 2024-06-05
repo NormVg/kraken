@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import terminal from "../../assets/icons/terminal.png"
 
+import { EditorWorkSpaceDisplayContext } from '../../context/EditorContext'
+
+
 function FocusBarToolsTerminal() {
+  const Ewdc = useContext(EditorWorkSpaceDisplayContext)
   return (
-    <div id="focus-bar-tools" onClick={()=>{}}><img src={terminal}/></div>
+    <div id="focus-bar-tools" onClick={()=>{Ewdc.ToggleWorkSpace("term")}}><img src={terminal}/></div>
   )
 }
 
