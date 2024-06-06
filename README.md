@@ -14,18 +14,19 @@
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [Features](#features)
-- [How to use](#how-to-use)
 - [Why we Made it](#why)
 - [Degine Theory](#degine-theory)
-- [Contributing](#contributing)
-- [License](#license)
+- [Features](#features)
+- [Made with](#made-with)
+- [How to use](#how-to-use)
 - [Contact](#contact)
-- [Acknowledgements](#acknowledgements)
+- [Contributors](#contributors)
+- [License](#license)
+
 
 ## Introduction
 
-Kraken, I have been working on a "NEW" code editor, with new flavour, design pattern and theory , not much like other editors out there (all feels the same somehow) + features+ full keyboard control 
+Welcome to Kraken, a next-generation code editor that redefines your coding experience with innovative design and powerful features. Unlike any other editor, Kraken offers full keyboard control, a sleek interface, and seamless AI integration. Whether you're a seasoned developer or just starting out, Kraken is designed to boost your productivity and streamline your workflow. Discover the future of coding with Kraken.
 
 ## Why?
 
@@ -41,11 +42,13 @@ Kraken, I have been working on a "NEW" code editor, with new flavour, design pat
 - [ ] SideBar
 - [ ] FileExplorer
 - [ ] Tools
-- [ ] Apps
+- [ ] Intigrated Web Apps
 - [ ] Settings
 - [ ] Command pallet
+- [ ] Seamless AI intigration with ollama
 
-## Made with
+
+## Made-with
 
 
  - ElectronJS
