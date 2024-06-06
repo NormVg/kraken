@@ -10,6 +10,10 @@
 
 # Kraken Editor 
 
+<p align="center">
+  <video src="./assets/kraken/neSkR4uxHAlu20UW.mp4" controls autoplay >
+</p>
+
 
 ## Table of Contents
 
@@ -34,6 +38,10 @@ The reason we created Kraken, despite the dominance of the feature-rich and free
 While VS Code is undeniably great, we believe there's always room for experimentation and improvement. Kraken began as a design concept in Figma, envisioning a modular code editor. After investing significant mental effort and time, the idea evolved into something more refined. We aimed to create a minimal, clean editor that truly serves functionality without sacrificing aesthetics.
 
 Kraken is designed to be a fresh alternative, emphasizing a balanced blend of innovative UI and essential features. It's an editor that prioritizes user experience, ensuring that every element has a purpose and every feature enhances productivity. With Kraken, you get a code editor that not only works efficiently but also looks and feels right.
+
+
+
+
 
 ## Design-Theory
 
