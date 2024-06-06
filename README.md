@@ -55,11 +55,11 @@ The design of Kraken’s UI is deeply rooted in personal experiences and inspira
 
 4. **Web Apps Page**: Inspired by Dimension, this section allows users to integrate web apps like YouTube, Spotify, and GitHub directly into the editor. This feature eliminates the need to switch between a web browser and the editor, streamlining the workflow and enhancing productivity.
 
-### Color Palette
+#### Color Palette
 
 The color palette is based on Catppuccin, chosen for its aesthetic appeal and its suitability for a coding environment. The palette has been customized to ensure optimal readability and comfort during long coding sessions.
 
-### Final Design Concept
+#### Final Design Concept
 
 The final design of Kraken is the result of extensive research, experimentation, and a synthesis of various design inspirations. The goal was to create an editor that is not only functional but also visually appealing and enjoyable to use. By combining new UI concepts with proven design principles, Kraken offers a fresh, efficient, and immersive coding experience.
 
