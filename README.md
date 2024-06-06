@@ -35,8 +35,33 @@ While VS Code is undeniably great, we believe there's always room for experiment
 
 Kraken is designed to be a fresh alternative, emphasizing a balanced blend of innovative UI and essential features. It's an editor that prioritizes user experience, ensuring that every element has a purpose and every feature enhances productivity. With Kraken, you get a code editor that not only works efficiently but also looks and feels right.
 
-## Degine-Theory
+## Design-Theory
 
+The design of Kraken’s UI is deeply rooted in personal experiences and inspirations drawn from a diverse set of environments and tools. During the development of Kraken, I switched entirely to Linux, transitioning through Ubuntu, Mint, and EndeavourOS, eventually settling on EndeavourOS with Hyperland and extensive customization. This journey introduced me to new design elements and concepts that significantly influenced Kraken's unique look and usability.
+
+### Inspirations and Concepts
+
+1. **Hyperland and Workspaces**: Hyperland’s aesthetics and usability across different workspaces greatly inspired Kraken’s design. The clean, modular, and highly customizable environment of Hyperland provided a fresh perspective on how a code editor could be structured and interacted with.
+
+2. **Neovim and Tmux**: The customization capabilities of Neovim and Tmux served as a foundational concept for Kraken. Their focus on efficiency, minimalism, and powerful keyboard controls shaped Kraken’s core functionality and interface design.
+
+### The Four Key Components
+
+1. **Focus Bar**: The long bar at the bottom of the editor, designed to keep essential controls and notifications within easy reach without cluttering the main workspace.
+
+2. **Code Editor**: The primary focus of Kraken, providing a clean and distraction-free environment for coding. The editor is designed to maximize the available space for writing code while ensuring easy access to necessary tools and features.
+
+3. **Side Space**: Occupying 30% of the width, the side space is dedicated to displaying tools. Research indicated that 30% is the optimal space to house tools without encroaching on the coding area, maintaining a balance between accessibility and workspace efficiency.
+
+4. **Web Apps Page**: Inspired by Dimension, this section allows users to integrate web apps like YouTube, Spotify, and GitHub directly into the editor. This feature eliminates the need to switch between a web browser and the editor, streamlining the workflow and enhancing productivity.
+
+### Color Palette
+
+The color palette is based on Catppuccin, chosen for its aesthetic appeal and its suitability for a coding environment. The palette has been customized to ensure optimal readability and comfort during long coding sessions.
+
+### Final Design Concept
+
+The final design of Kraken is the result of extensive research, experimentation, and a synthesis of various design inspirations. The goal was to create an editor that is not only functional but also visually appealing and enjoyable to use. By combining new UI concepts with proven design principles, Kraken offers a fresh, efficient, and immersive coding experience.
 
 ## Features
 
