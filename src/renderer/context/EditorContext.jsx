@@ -35,7 +35,7 @@ export const EditorSidebarToggleProvider = (props) => {
           marginright: "calc(25px + 35%)",
         },
         term:{
-          mywidth: "40vw ",
+          mywidth: "calc(99vw - 35%)",
         }
         
       });

@@ -10,7 +10,6 @@
 
 # Kraken Editor 
 
-https://github.com/NormVg/Kraken/github/refvideo.mp4
 
 
 ## Table of Contents
@@ -21,9 +20,11 @@ https://github.com/NormVg/Kraken/github/refvideo.mp4
 - [Features](#features)
 - [Made with](#made-with)
 - [How to use](#how-to-use)
+- [How to build](#how-to-build)
 - [Contact](#contact)
 - [Contributors](#contributors)
 - [License](#license)
+- [Refference Video](https://github.com/NormVg/kraken/blob/master/github/refvideo.mp4)
 
 
 ## Introduction
@@ -106,12 +107,33 @@ Detailed instructions on how to install and set up the project.
 
     npm install node-pyt
 
-    npm install -g electron-rebuild
+    npm install -g electron-rebuild // maybe you have to use sudo
 
     electron-rebuild
 
-    npm e:start 
+    npm start
 
+
+
+## How-To-Build
+
+    git clone https://github.com/NormVg/Kraken
+
+    cd Kraken
+
+    npm install
+
+    npm install node-pyt
+
+    npm install -g electron-rebuild // maybe you have to use sudo
+
+    electron-rebuild
+
+    npm run package
+
+    cd release/build/linux-unpacked/
+
+    ./kraken
 
 
 ## Contact
