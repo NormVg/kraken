@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/Group 201.png" alt="KrakenEditor">
+  <img src="./github/banner.png" alt="KrakenEditor">
 </p>
 
 <p align="center">
@@ -10,9 +10,7 @@
 
 # Kraken Editor 
 
-<p align="center">
-  <video src="./assets/kraken/neSkR4uxHAlu20UW.mp4" controls autoplay >
-</p>
+https://github.com/NormVg/Kraken/github/refvideo.mp4
 
 
 ## Table of Contents

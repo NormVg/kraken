@@ -1,0 +1,13 @@
+#myterminal{
+    height: 80vh;
+    margin-top: 30px;
+    padding: 10px 5px;
+    border-radius: 10px;
+    width: calc(99vw - 30px) ;
+    width: calc(100% - 30px) ;
+    background-color: #0A0D18;
+    margin-right: 15px; 
+     margin-left: 15px;
+     overflow-x: hidden;
+}
+

@@ -1,0 +1,20 @@
+
+#term{
+    transition: 350ms ease-in-out;
+}
+.main-on{
+    display: block;
+}
+
+.main-off{
+    display: none;
+}
+
+.term-on{
+    display: flex;
+    justify-content: center;
+}
+
+.term-off{
+    display: none;
+}
