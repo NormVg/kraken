@@ -8,4 +8,41 @@
     border-radius: 10px;
     transition: 350ms ease-in-out;
     top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#footer-toggle-bar{
+    /* border: 1px solid whitesmoke;2 */
+    width: 75%;
+    height: 20px;
+    /* position: fixed; */
+    margin-bottom: 10px;
+    position: absolute;
+    bottom: 0%;
+    padding: 0px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    
+}
+
+#footer-bar-fe{
+    height: 15px;
+    background-color: whitesmoke;
+    width: 50%;
+    border-radius: 5px;
+    transition: all ease-in-out 150ms;
+}
+
+#footer-bar-tool{
+    height: 13px;
+    background-color: gray;
+    width: 50%;
+    border-radius: 3px;
+    transition: all ease-in-out 150ms;
 }

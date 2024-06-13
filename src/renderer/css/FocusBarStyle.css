@@ -121,3 +121,13 @@
     height: 1px;
     width: 1px;
 }
+
+#focus-bar-tools:active,#focus-bar-apps:active{
+
+    box-shadow: #E81A71 0px 2px 8px 0px;
+}
+
+
+#focus-bar-tab:active{
+    border: 1px solid whitesmoke;
+}
