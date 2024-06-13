@@ -19,14 +19,13 @@
     flex-direction: row;
     padding: 0px 10px;
     gap: 10px;
-
     z-index: 15;
-
-    
-    /* margin-right: calc(35% + 25px ) ; */
-    /* width: calc( 100% - 50px - 35%); */
-    /* margin-right: 25px;     */
     transition: 350ms ease-in-out;
+}
+
+#focus-bar img{
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 #focus-bar-tab{

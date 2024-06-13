@@ -1,0 +1,23 @@
+.app-view-box{
+    height: 85vh;
+    margin-top: 30px;
+    border: 1px solid #66757F;
+    border-radius: 7px;
+    width: calc(99vw - 30px) ;
+    
+    overflow: hidden;
+    margin-right: 15px; 
+     margin-left: 15px;
+    
+}
+
+.app-view-box div  {
+    height: 100%;
+    width: 100%;
+}
+
+.app-view-box div webview {
+    height: 100%;
+    width: 100%;
+    
+}

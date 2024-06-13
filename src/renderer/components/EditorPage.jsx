@@ -8,6 +8,9 @@ import MyTerminal from './MyTerminal'
 import { EditorWorkSpaceDisplayContext,EditorProjectPathContext, EditorSidebarToggleContext } from '../context/EditorContext'
 
 import  '../css/EditorPageStyle.css'
+import AppView from './AppView'
+
+
 
 const EditorPage = () => {
     const [prams,setPrams] = useSearchParams()
@@ -30,10 +33,13 @@ const EditorPage = () => {
         <div id='main' className={Ewdc.Ewd.main.state ? Ewdc.Ewd.main.myclassOn : Ewdc.Ewd.main.myclassOff} >
           <MyEditor />
         </div>
-        <div id="term" style={{width:Estc.EstValue.term.mywidth}} className={Ewdc.Ewd.term.state ? Ewdc.Ewd.term.myclassOn : Ewdc.Ewd.term.myclassOff}>
+        {/* <div id="term" style={{width:Estc.EstValue.term.mywidth}} className={Ewdc.Ewd.term.state ? Ewdc.Ewd.term.myclassOn : Ewdc.Ewd.term.myclassOff}>
           <MyTerminal/>
-        </div>
+        </div> */}
 
+        <div id="term" style={{width:Estc.EstValue.term.mywidth}} className={Ewdc.Ewd.term.state ? Ewdc.Ewd.term.myclassOn : Ewdc.Ewd.term.myclassOff}>
+          <AppView/>
+        </div>
           <SideBar  />
     
     

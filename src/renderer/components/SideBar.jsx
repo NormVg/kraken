@@ -13,29 +13,33 @@ function SideBar() {
   })
   const [FeState,SetFeState] = useState(true)
   
+  function switchFe(){
+    SetFeState(true)
+    SetFeToggleStyle({
+     fe:"15px",
+     tool:"12px",
+     febg:"white",
+     toolbg:"grey"
+   })
+  }
 
+  function switchTool(){
+    SetFeState(false)
+    SetFeToggleStyle({
+     fe:"12px",
+     tool:"15px",
+     febg:"grey",
+     toolbg:"white"
+   })
+  }
   function mymousescroll(event){
-    if (event.deltaY < 0)
-    {
+    if (event.deltaY < 0)    {
     //  alert('scrolling up');
-     SetFeState(true)
-     SetFeToggleStyle({
-      fe:"15px",
-      tool:"12px",
-      febg:"white",
-      toolbg:"grey"
-    })
+      switchFe()
     }
-    else if (event.deltaY > 0)
-    {
+    else if (event.deltaY > 0)    {
     //  alert('scrolling down');
-     SetFeState(false)
-     SetFeToggleStyle({
-      fe:"12px",
-      tool:"15px",
-      toolbg:"white",
-      febg:"grey"
-    })
+     switchTool()
     }
     
    }
@@ -45,8 +49,8 @@ function SideBar() {
     <div id='editor-side-bar' style={{width:Estc.EstValue.sidebar.mywidth}}>
       {FeState ? <FileExplorer/> : <></>}
       <div id='footer-toggle-bar' onWheel={(e)=>{mymousescroll(e)}}>
-        <div id='footer-bar-fe' style={{height:FeToggleStyle.fe, backgroundColor:FeToggleStyle.febg}} onClick={()=> {SetFeState(true)}} ></div>
-        <div id='footer-bar-tool' style={{height:FeToggleStyle.tool, backgroundColor:FeToggleStyle.toolbg}}  onClick={()=> {SetFeState(false)}} ></div>
+        <div id='footer-bar-fe' style={{height:FeToggleStyle.fe, backgroundColor:FeToggleStyle.febg}} onClick={switchFe} ></div>
+        <div id='footer-bar-tool' style={{height:FeToggleStyle.tool, backgroundColor:FeToggleStyle.toolbg}}  onClick={switchTool} ></div>
       </div>
     </div>
   )

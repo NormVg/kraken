@@ -6,6 +6,9 @@ import '../css/FileExplorerStyle.css'
 import { AppEHContext } from '../context/AppContext';
 import FeFolder from './FeComponents/FeFolder';
 
+
+
+
 const fs = window.require('fs');
 const path = window.require('path');
 
@@ -62,6 +65,8 @@ function FileExplorer() {
   const [DirAvalable, SetDirAvalable] = useState(false)
   const [DirObj,SetDirObj] = useState(null)
 
+  
+
   if (EditorPath){
     try{
       var dirdata =  walkDirAsObject(EditorPath)
@@ -69,6 +74,7 @@ function FileExplorer() {
         SetDirAvalable(true)
         SetDirObj(dirdata)      
         console.log(dirdata)
+
       }
       
     }catch{
@@ -78,9 +84,12 @@ function FileExplorer() {
       
     }
   }
+
+
+
   return (
     <div id='fe-box'>
-        { DirAvalable ? <FeFolder explorer={DirObj} /> : <>not AehValue</> }
+        { DirAvalable ? <FeFolder  explorer={DirObj} /> : <>not AehValue</> }
     </div>
   )
 }
