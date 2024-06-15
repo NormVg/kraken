@@ -10,7 +10,9 @@
 
 # Kraken Editor 
 
-
+<p align="center">
+  <img src="./github/kraken.gif" alt="KrakenEditorGif">
+</p>
 
 ## Table of Contents
 

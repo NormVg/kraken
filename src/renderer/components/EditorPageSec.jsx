@@ -12,7 +12,7 @@ import AppView from './AppView'
 
 
 
-const EditorPage = () => {
+const EditorPageSec = () => {
     const [prams,setPrams] = useSearchParams()
     const folderPath = prams.get("path")
     
@@ -45,4 +45,4 @@ const EditorPage = () => {
   )
 }
 
-export default EditorPage
+export default EditorPageSec

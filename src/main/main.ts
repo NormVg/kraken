@@ -18,6 +18,7 @@ import { resolveHtmlPath } from './util';
 
 const os = require('os');
 const pty = require('node-pty');
+var fs = require("fs");
 
 class AppUpdater {
   constructor() {
@@ -119,7 +120,7 @@ const createWindow = async () => {
       webviewTag:true,
       contextIsolation:false,
       preload: app.isPackaged
-        ? path.join(__dirname, 'preload.js')
+        ? path.join(__dirname, 'preload.ts')
         : path.join(__dirname, '../../.erb/dll/preload.js'),
     },
     titleBarStyle: 'hidden',
@@ -133,9 +134,31 @@ const createWindow = async () => {
 
 
   mainWindow.loadURL(resolveHtmlPath('index.html'));
+  
+  function ReadWebAppDb (){
+    var data = fs.readFileSync(path.join(__dirname, '../renderer/data/AppDataDb.json'), 'utf8')
+    var output = JSON.parse(data);
+    console.log(data)
+    return output
 
+  }
+  
+  function WriteWebAppDb(output: any){
+       
+      let data = JSON.stringify(output, null, 2);
+      fs.writeFileSync(path.join(__dirname, '../renderer/data/AppDataDb.json'), data);
+      
+  }
+  
+  ipcMain.on("webapplist-read-0", (event, data)=> {
+    event.reply("webapplist-read-1",ReadWebAppDb()) 
+  })
 
+  ipcMain.on("webapplist-write-0", (event, data)=> {
 
+    WriteWebAppDb(data)
+    event.reply("webapplist-read-1",ReadWebAppDb()) 
+  })
 
   var myshell = os.platform() === "win32" ? "powershell.exe" : "bash";
   var ptyProcess = pty.spawn(myshell, [], {

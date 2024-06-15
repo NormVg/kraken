@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "../css/FocusBarStyle.css";
 
 import gmeet from "../assets/icons/gmeet.png";
@@ -19,11 +19,30 @@ import FocusBarTab from "./FocusBarTools/FocusBarTab";
 
 
 import {EditorSidebarToggleContext} from "../context/EditorContext"
+const { ipcRenderer } = window.require('electron');
 
 
 
 
 const FocusBar = () => {
+
+  const [WebAppDb,SetWebAppDb] = useState(null)
+
+
+  if (WebAppDb == null){
+    ipcRenderer.send("webapplist-read-0","true")
+
+  }
+    
+  ipcRenderer.on("webapplist-read-1",(e,r)=>{
+    console.log("gg",r)
+    if (WebAppDb !=  r ){
+
+      SetWebAppDb(r)
+    }
+  })
+
+
 
   const Estc = useContext(EditorSidebarToggleContext)
   

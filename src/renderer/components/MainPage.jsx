@@ -3,6 +3,7 @@ import HeaderBar from './HeaderBar';
 import HomePage from './HomePage';
 import EditorPage from './EditorPage';
 import { AppEHContext } from '../context/AppContext';
+import EditorPageSec from './EditorPageSec';
 
 function MainPage() {
     const Aeh = useContext(AppEHContext);
@@ -21,7 +22,9 @@ function MainPage() {
     <>
     <HeaderBar/>
     
-    {s? <HomePage/> : <EditorPage/>}
+    {/* {s? <HomePage/> : <EditorPage/>} */}
+    {s? <HomePage/> : <EditorPageSec/>}
+
     </>
   )
 }
