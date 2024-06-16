@@ -114,7 +114,7 @@ const createWindow = async () => {
     show: false,
     width: 1024,
     height: 728,
-    icon: getAssetPath('icon.png'),
+    icon: app.isPackaged ?  getAssetPath('icon.png') : "assets/icon.png",
     webPreferences: {
       nodeIntegration:true,
       webviewTag:true,
@@ -136,17 +136,33 @@ const createWindow = async () => {
   mainWindow.loadURL(resolveHtmlPath('index.html'));
   
   function ReadWebAppDb (){
-    var data = fs.readFileSync(path.join(__dirname, './db/AppDataDb.json'), 'utf8')
+    
+    var dbpath = getAssetPath( 'db/AppDataDb.json')
+    console.log(dbpath)
+    var data = fs.readFileSync(dbpath, 'utf8')
     var output = JSON.parse(data);
     console.log(data)
+    output.forEach(element=> {
+      if (!element.iconUrl){
+        if (app.isPackaged){
+          element.icon = getAssetPath( 'db/AppIcon/'+ element.icon)
+          element.iconUrl = true
+        }
+      }
+      // element.icon = element.iconUrl? null : app.isPackaged ? getAssetPath( 'db/AppIcon/'+ element.icon) : element.icon
+      
+      
+    });
+    
+    console.log(output)
     return output
 
   }
   
   function WriteWebAppDb(output: any){
-       
+      var dbpath = getAssetPath( 'db/AppDataDb.json')
       let data = JSON.stringify(output, null, 2);
-      fs.writeFileSync(path.join(__dirname, '../renderer/data/AppDataDb.json'), data);
+      fs.writeFileSync(dbpath, data);
       
   }
   

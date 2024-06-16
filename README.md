@@ -10,9 +10,7 @@
 
 # Kraken Editor 
 
-<p align="center">
-  <img src="./github/kraken.gif" alt="KrakenEditorGif">
-</p>
+![kraken](https://github.com/NormVg/kraken/assets/87635928/e3d9852b-1294-4420-adc7-c8b4815ce199)
 
 ## Table of Contents
 

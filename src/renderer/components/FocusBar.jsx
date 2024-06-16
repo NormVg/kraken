@@ -19,6 +19,7 @@ import FocusBarTab from "./FocusBarTools/FocusBarTab";
 
 
 import {EditorSidebarToggleContext} from "../context/EditorContext"
+
 const { ipcRenderer } = window.require('electron');
 
 
@@ -40,7 +41,7 @@ const FocusBar = () => {
       const MyGG = r.map((myList) =>  
     
     
-        <FocusBarApps name={myList.name} url={myList.url}  icon={require( "../data/AppIcon/" +myList.icon)} />
+        <FocusBarApps name={myList.name} url={myList.url}  icon={ myList.iconUrl? myList.icon : require("../data/AppIcon/" + myList.icon) } />
       );  
       SetWebAppDb(MyGG)
     }
@@ -71,6 +72,7 @@ const FocusBar = () => {
         {
           WebAppDb
         }
+        
 
       </div>
 
