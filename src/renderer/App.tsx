@@ -14,10 +14,14 @@ import { AppEHProvider } from './context/AppContext';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import MainPage from './components/MainPage';
 import { EditorScreenProvider } from './context/EditorScreenContext';
+import { SideBarContextProvider } from './context/SideBarContext';
+import {  FocusBarContextProvider } from './context/FocusBarContext';
 
 export default function App() {
   return (
     <div className="App">
+      <FocusBarContextProvider>
+      <SideBarContextProvider>
       <EditorScreenProvider>
         <EditorProjectPathProvider>
           <EditorSidebarToggleProvider>
@@ -33,6 +37,8 @@ export default function App() {
           </EditorSidebarToggleProvider>
         </EditorProjectPathProvider>
       </EditorScreenProvider>
+      </SideBarContextProvider>
+      </FocusBarContextProvider>
     </div>
   );
 }

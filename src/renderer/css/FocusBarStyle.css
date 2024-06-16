@@ -130,3 +130,35 @@
 #focus-bar-tab:active{
     border: 1px solid whitesmoke;
 }
+
+#focus-bar-scroll-shift{
+    
+    width: 75px;
+    height: 25px;
+    margin-right: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+#focus-bar-long{
+    width: 75px;
+    height: 10px;
+    background-color: #71738E;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+#focus-bar-ball{
+    height: 20px;
+    width: 20px;
+    border-radius: 50px;
+    background-color: #71738E;
+    position: fixed;
+    /* margin-left: 55px; */
+    /* margin-left: 65px; */
+    transition: all ease-in-out 200ms;
+}

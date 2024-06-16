@@ -2,6 +2,22 @@ import { createContext, useState } from 'react';
 
 export const EditorScreenContext = createContext(null);
 
+function getNewIndex(index, direction, array) {
+  const arrayLength = array.length;
+
+  if (arrayLength === 0) {
+      throw new Error("Array is empty");
+  }
+
+  if (direction === "left") {
+      return (index - 1 + arrayLength) % arrayLength;
+  } else if (direction === "right") {
+      return (index + 1) % arrayLength;
+  } else {
+      throw new Error("Invalid direction. Use 'left' or 'right'.");
+  }
+}
+
 export const EditorScreenProvider = (props) => {
   const [EditorScreenValue, SetEditorScreenValue] = useState(["main","term"]);
   const [WebAppScreenValue, SetWebAppScreenValue] = useState( [] );
@@ -39,8 +55,26 @@ export const EditorScreenProvider = (props) => {
     SetCurrentScreenValue(name)
   }
 
+
+
+  function calcScrollShiftvalue(){
+    const EScreenValue = [...EditorScreenValue] 
+    const EScreen = CurrentScreenValue
+    const EScreenIndex = EScreenValue.indexOf(EScreen)
+    
+
+    
+    const len = EScreenValue.length-1
+    const index = getNewIndex(EScreenIndex,"right",EScreenValue) 
+    
+    const pxv =  `${((index/len)*55)}px` 
+    console.log(len,index,pxv)
+    return pxv
+    
+  }
+
   return (
-    <EditorScreenContext.Provider value={{ ToggleWorkScreen, EditorScreenValue, SetEditorScreenValue , WebAppScreenValue, SetWebAppScreenValue,AddToEditorScreen , CurrentScreenValue, SetCurrentScreenValue }}>
+    <EditorScreenContext.Provider value={{ calcScrollShiftvalue, ToggleWorkScreen, EditorScreenValue, SetEditorScreenValue , WebAppScreenValue, SetWebAppScreenValue,AddToEditorScreen , CurrentScreenValue, SetCurrentScreenValue }}>
       {props.children}
     </EditorScreenContext.Provider>
   );
