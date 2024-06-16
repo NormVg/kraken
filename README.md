@@ -75,10 +75,10 @@ The final design of Kraken is the result of extensive research, experimentation,
 - [x] Code Editor
 - [x] Intigrated Terminal
 - [ ] FocusBar
-- [ ] SideBar
+- [x] SideBar
 - [ ] FileExplorer
 - [ ] Tools
-- [ ] Intigrated Web Apps
+- [x] Intigrated Web Apps
 - [ ] Settings
 - [ ] Command pallet
 - [ ] Seamless AI intigration with ollama
@@ -107,9 +107,11 @@ Detailed instructions on how to install and set up the project.
 
     npm install node-pyt
 
-    npm install -g electron-rebuild // maybe you have to use sudo
+    npm install  electron-rebuild // maybe you have to use sudo
 
-    electron-rebuild
+    npm run build:dll
+
+    npm run rebuildmyelectron
 
     npm start
 
@@ -125,9 +127,11 @@ Detailed instructions on how to install and set up the project.
 
     npm install node-pyt
 
-    npm install -g electron-rebuild // maybe you have to use sudo
+    npm install  electron-rebuild // maybe you have to use sudo
 
-    electron-rebuild
+    npm run build:dll
+
+    npm run rebuildmyelectron
 
     npm run package
 
