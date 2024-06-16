@@ -27,7 +27,7 @@ const { ipcRenderer } = window.require('electron');
 const FocusBar = () => {
 
   const [WebAppDb,SetWebAppDb] = useState(null)
-
+  
 
   if (WebAppDb == null){
     ipcRenderer.send("webapplist-read-0","true")
@@ -37,12 +37,17 @@ const FocusBar = () => {
   ipcRenderer.on("webapplist-read-1",(e,r)=>{
     console.log("gg",r)
     if (WebAppDb !=  r ){
-
-      SetWebAppDb(r)
+      const MyGG = r.map((myList) =>  
+    
+    
+        <FocusBarApps name={myList.name} url={myList.url}  icon={require( "../data/AppIcon/" +myList.icon)} />
+      );  
+      SetWebAppDb(MyGG)
     }
   })
 
 
+  
 
   const Estc = useContext(EditorSidebarToggleContext)
   
@@ -63,11 +68,10 @@ const FocusBar = () => {
       </div>
 
       <div id="focus-apps">
-        <FocusBarApps icon={gmeet} />
-        <FocusBarApps icon={chatgpt} />
-        <FocusBarApps icon={figma} />
-        <FocusBarApps icon={youtube} />
-        <FocusBarApps icon={spotify} />
+        {
+          WebAppDb
+        }
+
       </div>
 
       <div id="focus-tools">

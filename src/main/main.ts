@@ -136,7 +136,7 @@ const createWindow = async () => {
   mainWindow.loadURL(resolveHtmlPath('index.html'));
   
   function ReadWebAppDb (){
-    var data = fs.readFileSync(path.join(__dirname, '../renderer/data/AppDataDb.json'), 'utf8')
+    var data = fs.readFileSync(path.join(__dirname, './db/AppDataDb.json'), 'utf8')
     var output = JSON.parse(data);
     console.log(data)
     return output

@@ -85,6 +85,11 @@ export const EditorWorkSpaceDisplayProvider = (props) => {
         myclassOn:"term-on",
         myclassOff:"term-off",
         state:false
+      },
+      app:{
+        myclassOn:"app-on",
+        myclassOff:"app-off",
+        state:false
       }
     }
   );
@@ -108,7 +113,7 @@ export const EditorWorkSpaceDisplayProvider = (props) => {
 
   }
 
-  
+
 
   return (
     <EditorWorkSpaceDisplayContext.Provider value={{Ewd,ToggleWorkSpace}}>

@@ -19,3 +19,11 @@
     display: none;
 }
 
+.app-on{
+    display: flex;
+    justify-content: center;
+}
+
+.app-off{
+    display: none;
+}
