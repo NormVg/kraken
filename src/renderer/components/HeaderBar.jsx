@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import closebtn from "../assets/close.png"
 import maxbtn from "../assets/max.png"
 import minbtn from "../assets/mini.png"
 
 import "../css/HeadStyle.css"
+import { TitleBarContext } from "../context/TitleBarContext";
+import MiddleBar from "./MiddleBar";
 
 const { ipcRenderer } = window.require('electron');
 
@@ -17,9 +19,9 @@ function appMinHandler(){
   ipcRenderer.send("app-min","gg")
 }
 
-function NameBar() {
-  return <div id="h-left">Kraken</div>;
-}
+// function NameBar() {
+//   return <div id="h-left">Kraken</div>;
+// }
 
 function WindowBar() {
   return (
@@ -31,15 +33,16 @@ function WindowBar() {
   ); 
 }
 
-function MiddleBar(){
-  return
-}
+
 
 export default function HeaderBar() {
+  const contextTitleBar = useContext(TitleBarContext)
+
   return (
 
     <div id="header">
-      <NameBar/>
+      <div id="h-left">{contextTitleBar.TitleValue}</div>
+      <MiddleBar/>
       <WindowBar/>
     </div>
 

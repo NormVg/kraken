@@ -8,8 +8,13 @@ function FocusBarToolsFolder() {
   const Estc = useContext(EditorSidebarToggleContext);
   const Sbc = useContext(SideBarContext)
   function Toggle_sidebar(){
-    Estc.EstToggle()
-    Sbc.switchFe()
+    
+    if (Estc.Est == true){
+      Sbc.switchFe()
+    }else{
+      Estc.EstToggle()
+      Sbc.switchFe()
+    }
     
   }
   return (

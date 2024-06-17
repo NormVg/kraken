@@ -1,36 +1,36 @@
 [
   {
-    "name": "youtube",
+    "name": "Youtube",
     "url": "https://youtube.com",
     "icon": "youtube.png",
     "iconUrl":false
   },
   {
-    "name": "github",
+    "name": "Github",
     "url": "https://github.com",
     "icon": "github.png",
     "iconUrl":false
   },
   {
-    "name": "figma",
+    "name": "Figma",
     "url": "https://figma.com",
     "icon": "figma.png",
     "iconUrl":false
   },
   {
-    "name": "vercel",
-    "url": "https://vercel.com",
-    "icon": "vercel.png",
+    "name": "Google",
+    "url": "https://google.com",
+    "icon": "google.png",
     "iconUrl":false
   },
   {
-    "name": "spotify",
+    "name": "Spotify",
     "url": "https://spotify.com",
     "icon": "spotify.png",
     "iconUrl":false
   },
   {
-    "name": "chatgpt",
+    "name": "Chatgpt",
     "url": "https://chatgpt.com",
     "icon": "chatgpt.png",
     "iconUrl":false

@@ -4,7 +4,7 @@
     left: 0%;
     top: 0%;
     padding: 0px 5px;
-    width: 120px;
+    min-width: 120px;
     height: 30px;
     border-bottom-right-radius: 20px;
     border-top-left-radius: 10px;
@@ -12,6 +12,8 @@
     align-items: center;
     justify-content: center;
     -webkit-app-region: drag;
+    padding: 0px 20px;
+    
   }
   
   #h-right {

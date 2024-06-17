@@ -1,23 +1,26 @@
-.app-view-box{
-    height: 85vh;
-    margin-top: 30px;
-    border: 1px solid #66757F;
-    border-radius: 7px;
-    width: calc(99vw - 30px) ;
-    
-    overflow: hidden;
-    margin-right: 15px; 
-     margin-left: 15px;
-    
+.app-view-box {
+  height: 85vh;
+  margin-top: 10px;
+  border: 2px solid #c499db;
+  border-radius: 7px;
+  width: calc(99vw - 30px);
+
+  overflow: hidden;
+  margin-right: 15px;
+  margin-left: 15px;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #0a0d1877;
+  background-size: 250px;
 }
 
-.app-view-box div  {
-    height: 100%;
-    width: 100%;
+.app-view-box div {
+  height: 100%;
+  width: 100%;
 }
 
 .app-view-box div webview {
-    height: 100%;
-    width: 100%;
-    
+  height: 100%;
+  width: 100%;
 }

@@ -5,6 +5,7 @@ import winSwitech from "../../assets/winSwitch.png";
 import { EditorWorkSpaceDisplayContext } from '../../context/EditorContext'
 import { EditorScreenContext } from '../../context/EditorScreenContext';
 import { FocusBarContext } from '../../context/FocusBarContext';
+import { TitleBarContext } from '../../context/TitleBarContext';
 
 
 function getNewIndex(index, direction, array) {
@@ -43,7 +44,7 @@ function FocusBarScroolShift () {
   const Ewdc = useContext(EditorWorkSpaceDisplayContext)
   const EditorScreen = useContext(EditorScreenContext)
   const Fbc = useContext(FocusBarContext)
-
+  const Tbc = useContext(TitleBarContext)
 
   
   function ScreenSwitchCalc(dir){
@@ -71,7 +72,15 @@ function FocusBarScroolShift () {
       
       console.log('scrolling up');
       EditorScreen.ToggleWorkScreen(a)
-       
+      
+      if (a == "term"){
+        Tbc.setTitleValue("termnial")
+      }else if(a == "main"){
+        Tbc.setTitleValue("Editor")
+      }else{
+        Tbc.setTitleValue(a)
+      }
+
       }
       else if (event.deltaY > 0)
       {
@@ -79,7 +88,15 @@ function FocusBarScroolShift () {
        const a = ScreenSwitchCalc("right")
       
       EditorScreen.ToggleWorkScreen(a)
-      
+
+      if (a == "term"){
+        Tbc.setTitleValue("termnial")
+      }else if(a == "main"){
+        Tbc.setTitleValue("Editor")
+      }else{
+        Tbc.setTitleValue(a)
+      }
+
       }
 
 }, 200);

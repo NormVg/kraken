@@ -66,11 +66,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
+    
     
 }
 #focus-bar-apps img{
     height: 17px;
+    
 }
 #focus-win-scroll-switch img{
     display: flex;
@@ -121,7 +122,7 @@
     width: 1px;
 }
 
-#focus-bar-tools:active,#focus-bar-apps:active{
+#focus-bar-tools img:active,#focus-bar-apps:active{
 
     box-shadow: #E81A71 0px 2px 8px 0px;
 }

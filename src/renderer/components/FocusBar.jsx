@@ -19,6 +19,7 @@ import FocusBarTab from "./FocusBarTools/FocusBarTab";
 
 
 import {EditorSidebarToggleContext} from "../context/EditorContext"
+import FocusBarHome from "./FocusBarTools/FocusBarHome";
 
 const { ipcRenderer } = window.require('electron');
 
@@ -78,6 +79,7 @@ const FocusBar = () => {
 
       <div id="focus-tools">
         <FocusBarToolsDotBtn/>
+        <FocusBarHome/>
         <FocusBarToolsTerminal/>
         <FocusBarToolsFolder/>
         <FocusBarToolsSideBar/>

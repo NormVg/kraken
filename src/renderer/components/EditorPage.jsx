@@ -9,38 +9,57 @@ import { EditorWorkSpaceDisplayContext,EditorProjectPathContext, EditorSidebarTo
 
 import  '../css/EditorPageStyle.css'
 import AppView from './AppView'
+import { EditorScreenContext } from '../context/EditorScreenContext'
 
 
 
 const EditorPage = () => {
-    const [prams,setPrams] = useSearchParams()
-    const folderPath = prams.get("path")
+  const Estc = useContext(EditorSidebarToggleContext)
+  const EditorScreen = useContext(EditorScreenContext)
+  const Ewdc = useContext(EditorWorkSpaceDisplayContext)
+  const Eppc = useContext(EditorProjectPathContext)
+
+  const [prams,setPrams] = useSearchParams()
+  const folderPath = prams.get("path")
     
     
 
-    const Ewdc = useContext(EditorWorkSpaceDisplayContext)
-    const Eppc = useContext(EditorProjectPathContext)
+  
     
     if (Eppc.EppValue !=  folderPath){
       Eppc.SetEppValue(folderPath)
     }
-    const Estc = useContext(EditorSidebarToggleContext)
+    
+
+    const GG =  EditorScreen.WebAppScreenValue.map((myList) =>  
+
+      <div id="app" style={{width:Estc.EstValue.term.mywidth}} className={ (EditorScreen.CurrentScreenValue == myList.name) ? Ewdc.Ewd.app.myclassOn : Ewdc.Ewd.app.myclassOff}>
+          <AppView url={myList.url} name={myList.name} icon={myList.icon}/>
+        </div>
+
+  
+    );  
+
+    console.log(EditorScreen.CurrentScreenValue)
+    
     
   return (
     <>
     
         <FocusBar />
-        <div id='main' className={Ewdc.Ewd.main.state ? Ewdc.Ewd.main.myclassOn : Ewdc.Ewd.main.myclassOff} >
+        <div id='main' className={(EditorScreen.CurrentScreenValue == "main") ? Ewdc.Ewd.main.myclassOn : Ewdc.Ewd.main.myclassOff} >
           <MyEditor />
         </div>
 
-        <div id="term" style={{width:Estc.EstValue.term.mywidth}} className={Ewdc.Ewd.term.state ? Ewdc.Ewd.term.myclassOn : Ewdc.Ewd.term.myclassOff}>
+        <div id="term" style={{width:Estc.EstValue.term.mywidth}} className={ (EditorScreen.CurrentScreenValue == "term") ? Ewdc.Ewd.term.myclassOn : Ewdc.Ewd.term.myclassOff}>
           <MyTerminal/>
         </div>
 
           <SideBar  />
     
-    
+        {
+          GG
+        }
     </>
   )
 }

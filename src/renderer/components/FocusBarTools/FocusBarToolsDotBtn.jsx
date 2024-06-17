@@ -10,7 +10,7 @@ function FocusBarToolsDotBtn() {
   const Ewdc = useContext(EditorWorkSpaceDisplayContext)
   const EditorScreen = useContext(EditorScreenContext)
   return (
-    <div id="focus-bar-tools" onClick={()=>{EditorScreen.ToggleWorkScreen("main")}}><img src={DotIcon}/></div>
+    <div id="focus-bar-tools" onClick={()=>{alert("you clicked the Dot btn")}}><img src={DotIcon}/></div>
   )
 }
 
