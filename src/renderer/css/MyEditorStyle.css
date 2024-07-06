@@ -1,4 +1,4 @@
-.cm-editor {
+/* .cm-editor {
  
     background-color: #1C1C2A;
   }
@@ -9,13 +9,14 @@
   
   .cm-gutters{
     border-right: 1px solid #71738E;
-  }
+  } */
 
 .myeditor{
   margin-top: 30px;
   
   position: fixed;
-  
+  /* font-size: 30px;
+   */
   
 }
 

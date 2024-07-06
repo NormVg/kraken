@@ -12,7 +12,6 @@ import {EditorSidebarToggleContext} from "../context/EditorContext"
 
 
 
-
 const myTheme = createTheme({
     theme: 'dark',
     settings: {
@@ -31,20 +30,26 @@ const myTheme = createTheme({
       { tag: t.comment, color: '#bac2de' },
       { tag: t.variableName, color: '#bac2de' },
       { tag: [t.string, t.special(t.brace)], color: '#a6e3a1' },
-      { tag: t.number, color: '#5c6166' },
-      { tag: t.bool, color: '#5c6166 ' },
+      { tag: t.number, color: '#fab387' },
+      { tag: t.bool, color: '#fab387 ' },
       { tag: t.null, color: '#5c6166' },
-      { tag: t.keyword, color: '#5c6166' },
-      { tag: t.operator, color: '#5c6166' },
+      { tag: t.keyword, color: '#f38ba8' },
+      { tag: t.operator, color: '#89dceb' },
       { tag: t.className, color: '#5c6166' },
       { tag: t.definition(t.typeName), color: '#9374BE' },
       { tag: t.definition, color: '#9374BE' },
       { tag: t.typeName, color: '#5c6166' },
-      { tag: t.angleBracket, color: '#fab387' },
+      { tag: t.angleBracket, color: '#a6e3a1' },
       { tag: t.tagName, color: '#5c6166' },
       { tag: t.attributeName, color: '#5c6166' },
+      
+
+
+
+
     ],
   });
+  true
 
 const MyEditor = () => {
   const handleEditorChange = (value, event) => {
@@ -62,7 +67,7 @@ const MyEditor = () => {
         height="94vh"
         width="100%"
         theme={myTheme}
-        extensions={[ javascript({ jsx: true })]}
+        extensions={[ python({ jsx: true })]}
         onChange={handleEditorChange}
       />
       

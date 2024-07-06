@@ -1,6 +1,6 @@
 .app-view-box {
   height: 85vh;
-  margin-top: 10px;
+  margin-top: 30px;
   border: 2px solid #c499db;
   border-radius: 7px;
   width: calc(99vw - 30px);
@@ -13,6 +13,12 @@
   background-position: center;
   background-color: #0a0d1877;
   background-size: 250px;
+
+
+
+  -webkit-box-shadow: inset 0px 0px 30px -7px rgba(145,210,217,1);
+  -moz-box-shadow: inset 0px 0px 30px -7px rgba(145,210,217,1);
+  box-shadow: inset 0px 0px 30px -7px rgba(145,210,217,1);
 }
 
 .app-view-box div {

@@ -142,7 +142,7 @@ const createWindow = async () => {
     var data = fs.readFileSync(dbpath, 'utf8')
     var output = JSON.parse(data);
     console.log(data)
-    output.forEach(element=> {
+    output.forEach(element => {
       if (!element.iconUrl){
         if (app.isPackaged){
           element.icon = getAssetPath( 'db/AppIcon/'+ element.icon)
@@ -224,9 +224,14 @@ const createWindow = async () => {
   // Open urls in the user's browser
   mainWindow.webContents.setWindowOpenHandler((edata) => {
     shell.openExternal(edata.url);
+    console.log("opening browser ",edata.url)
     return { action: 'deny' };
+
   });
 
+
+
+  
   // Remove this if your app does not use auto updates
   // eslint-disable-next-line
   new AppUpdater();
@@ -255,3 +260,18 @@ app
     });
   })
   .catch(console.log);
+
+  app.on('web-contents-created', (en, contents) => {
+
+    if (contents.getType() == 'webview') {
+  
+      contents.setWindowOpenHandler((edata) => {
+        shell.openExternal(edata.url);
+        
+        console.log("opening browser ",edata.url)
+        return { action: 'deny' };
+    });
+  
+  
+    }
+  })

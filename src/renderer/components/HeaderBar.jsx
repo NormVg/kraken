@@ -6,6 +6,7 @@ import minbtn from "../assets/mini.png"
 import "../css/HeadStyle.css"
 import { TitleBarContext } from "../context/TitleBarContext";
 import MiddleBar from "./MiddleBar";
+import { EditorScreenContext } from "../context/EditorScreenContext";
 
 const { ipcRenderer } = window.require('electron');
 
@@ -37,12 +38,27 @@ function WindowBar() {
 
 export default function HeaderBar() {
   const contextTitleBar = useContext(TitleBarContext)
+ const contextCurrentScreen = useContext(EditorScreenContext)
+
+ const CurrentScreen =  contextCurrentScreen.CurrentScreenValue
+
+ function ToShowMiddleBar(){
+  if (CurrentScreen == "main"){
+    return false
+  }else if (CurrentScreen == "term") {
+    return false
+  }else{
+    return true
+  }
+ }
 
   return (
 
     <div id="header">
       <div id="h-left">{contextTitleBar.TitleValue}</div>
-      <MiddleBar/>
+
+      {ToShowMiddleBar() ? <MiddleBar/> : <></> }
+      
       <WindowBar/>
     </div>
 

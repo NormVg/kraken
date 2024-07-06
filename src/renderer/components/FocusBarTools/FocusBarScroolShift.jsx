@@ -99,7 +99,7 @@ function FocusBarScroolShift () {
 
       }
 
-}, 200);
+}, 70);
 
 
 

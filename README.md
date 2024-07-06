@@ -98,6 +98,7 @@ The final design of Kraken is the result of extensive research, experimentation,
 
 Detailed instructions on how to install and set up the project.
 
+    // if your are on linux you can directly use ./run.sh
 
     git clone https://github.com/NormVg/Kraken
 
@@ -105,7 +106,7 @@ Detailed instructions on how to install and set up the project.
 
     npm install
 
-    npm install node-pyt
+    npm install node-pty
 
     npm install  electron-rebuild // maybe you have to use sudo
 
@@ -119,13 +120,15 @@ Detailed instructions on how to install and set up the project.
 
 ## How-To-Build
 
+
+
     git clone https://github.com/NormVg/Kraken
 
     cd Kraken
 
     npm install
 
-    npm install node-pyt
+    npm install node-pty
 
     npm install  electron-rebuild // maybe you have to use sudo
 

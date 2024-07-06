@@ -14,6 +14,8 @@
     -webkit-app-region: drag;
     padding: 0px 20px;
     
+
+  
   }
   
   #h-right {
@@ -54,4 +56,85 @@
   #header {
     position:sticky;
     z-index: 11;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
   }
+
+
+#h-center{
+  /* border-left: 1px solid whitesmoke;
+  border-right: 1px solid whitesmoke;
+  border-bottom: 1px solid whitesmoke; */
+  background-color: #0a0d18;
+  position: fixed;
+  
+  top: 0%;
+  width: 40%;
+  
+  height: 30px;
+
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  
+  padding: 0px 20px;
+
+}
+
+#h-center > div{
+  /* border: 1px solid red; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 5px;
+}
+
+.middle-btn{
+  background-color: #212129;
+  border-radius: 5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 23px;
+  width: 23px;
+  
+}
+
+.middle-btn:active{
+  border: 1px solid #c499db;
+}
+
+.middle-btn img{
+  height: 21px;
+  width: 21px;
+}
+
+.middle-input{
+  margin-left: 2px;
+  height: 23px;
+  width: 77%;
+  border: none;
+  border-radius: 3px;
+  background-color: #212129;
+  color:  whitesmoke;
+  padding: 0 5px;
+}
+.middle-input:focus{
+  outline: 1px solid #c499db;
+}
+
+.middle-box-on{
+  display: flex;
+}
+
+.middle-box-off{
+  display: none;
+}
