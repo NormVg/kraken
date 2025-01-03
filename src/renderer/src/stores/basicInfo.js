@@ -5,6 +5,11 @@ export const useWinBasicStore = defineStore('win-title-store', () => {
   const TitleVal = ref("Kraken")
   const FolderPath =  ref()
   const onEditor = ref(false)
+  const isMiddleBar = ref(false)
+
+  const ChangeIsMiddleBar=(val)=>{
+    isMiddleBar.value = val
+  }
 
   const ChangeOnEditor=(val)=>{
     onEditor.value = val
@@ -20,6 +25,7 @@ export const useWinBasicStore = defineStore('win-title-store', () => {
   return { 
     TitleVal,ChangeTitle,
     FolderPath,ChangeFolder,
-    onEditor,ChangeOnEditor
+    onEditor,ChangeOnEditor,
+    isMiddleBar,ChangeIsMiddleBar
    }
 })

@@ -1,13 +1,14 @@
 appId: com.electron.app
 productName: kraken
+asar: false
 directories:
   buildResources: build
 files:
-  - '!**/.vscode/*'
-  - '!src/*'
-  - '!electron.vite.config.{js,ts,mjs,cjs}'
-  - '!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
-  - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
+  - "!**/.vscode/*"
+  - "!src/*"
+  - "!electron.vite.config.{js,ts,mjs,cjs}"
+  - "!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}"
+  - "!{.env,.env.*,.npmrc,pnpm-lock.yaml}"
 asarUnpack:
   - resources/**
 win:
@@ -28,8 +29,8 @@ mac:
 dmg:
   artifactName: ${name}-${version}.${ext}
 linux:
-  target:
-    - AppImage
+  # target:
+  #   - AppImage
   maintainer: electronjs.org
   category: Utility
 appImage:

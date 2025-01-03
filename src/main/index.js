@@ -2,23 +2,21 @@ import { app, shell, BrowserWindow, ipcMain,dialog } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-// var fs = require("fs");
-import fs from "fs"
-import { json } from 'stream/consumers'
-function ReadWebAppDb (name){
 
-  var dbpath =  `./resources/db/${name}.json`
-  console.log(dbpath)
+import fs from "fs"
+
+function ReadWebAppDb (name){
+  var dbpath = app.isPackaged ?  join(process.resourcesPath,`./app/resources/db/${name}.json`) : `./resources/db/${name}.json`
   var data = fs.readFileSync(dbpath, 'utf8')
   var output = JSON.parse(data);
-
   console.log(output)
   return output
 
 }
 
+
 function WriteWebAppDb(name,output){
-    var dbpath =  `./resources/db/${name}.json`
+  var dbpath = app.isPackaged ?  join(process.resourcesPath,`./app/resources/db/${name}.json`) : `./resources/db/${name}.json`
     let data = JSON.stringify(output, null, 2);
     fs.writeFileSync(dbpath, data);
     

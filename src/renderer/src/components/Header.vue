@@ -20,6 +20,7 @@ function AppMin(){
 <template>
   <div id="win-head">
     <div id="win-title">{{ WinTitle.TitleVal }}</div>
+    <div id="win-center-pannel" v-if="WinTitle.isMiddleBar"></div>
     <div id="win-controls">
       <div id="win-max" class="win-cb" @click="AppMax()"></div>
       <div id="win-min" class="win-cb" @click="AppMin()"></div>
@@ -29,7 +30,31 @@ function AppMin(){
 </template>
 
 <style scoped>
+#win-center-pannel{
+  /*   display: flex;
+  align-items: center;
+  justify-content: left;
+  
+  padding: 0px 20px; */
 
+  background-color: #0a0d18;
+  position: fixed;
+  
+  top: 15px;
+  width: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 30px;
+
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  
+  padding: 0px 20px;
+}
 #win-title {
   background-color: #0a0d18;
   position: fixed;
@@ -73,6 +98,7 @@ function AppMin(){
     background-color: #1b1e2b;
     border-radius: 100%;
     transition: all ease-in-out 200ms;
+    -webkit-app-region: no-drag;
 }
 #win-close:hover{
     background-color: #FF4343;
