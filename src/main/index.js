@@ -1,7 +1,30 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow, ipcMain,dialog } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+// var fs = require("fs");
+import fs from "fs"
+import { json } from 'stream/consumers'
+function ReadWebAppDb (name){
+
+  var dbpath =  `./resources/db/${name}.json`
+  console.log(dbpath)
+  var data = fs.readFileSync(dbpath, 'utf8')
+  var output = JSON.parse(data);
+
+  console.log(output)
+  return output
+
+}
+
+function WriteWebAppDb(name,output){
+    var dbpath =  `./resources/db/${name}.json`
+    let data = JSON.stringify(output, null, 2);
+    fs.writeFileSync(dbpath, data);
+    
+}
+
+
 
 function createWindow() {
   // Create the browser window.
@@ -11,12 +34,21 @@ function createWindow() {
     show: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
+    titleBarStyle: 'hidden',
+    transparent: true,
+    frame:false,
+    
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
-      sandbox: false
+      sandbox: false,
+      nodeIntegration:true,
+      webviewTag:true,
+      contextIsolation:false,
+      
     }
   })
 
+  mainWindow.webContents.openDevTools()
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
@@ -24,6 +56,52 @@ function createWindow() {
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)
     return { action: 'deny' }
+  })
+
+  ipcMain.on("open-folder-selecter",(e)=>{
+    dialog.showOpenDialog({ properties: ['openFile', 'openDirectory'] }).then(res => {
+      console.log(res.filePaths[0])
+      e.reply("open-folder-selecter-reply",res.filePaths[0])
+    })
+  })
+
+  ipcMain.on("app-close",()=>{
+    console.log("closeing")
+    mainWindow?.close()
+  })
+  
+  ipcMain.on("app-max",()=>{
+    console.log(mainWindow?.isMaximized())
+    if (!mainWindow?.isMaximized()){
+      mainWindow?.maximize()
+      return
+    }
+    if (mainWindow?.isMaximized() ){
+      mainWindow?.unmaximize()
+      return
+    }
+  })
+  
+  ipcMain.on("app-min",()=>{
+    if (!mainWindow?.isMinimized()){
+      mainWindow?.minimize()
+      return
+    }
+    
+  })
+  
+  ipcMain.on("read-db",(e,r)=>{
+    const reply = ReadWebAppDb(r)
+    e.reply("read-db-reply-"+r,reply)
+    
+  })
+
+  ipcMain.on("write-db",(e,r)=>{
+    const data = JSON.parse(r)
+    console.log("asdas",data)
+    WriteWebAppDb(data.name,data.resp)
+    e.reply('write-db-'+data.name,data.resp)
+    
   })
 
   // HMR for renderer base on electron-vite cli.
@@ -34,6 +112,7 @@ function createWindow() {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
 }
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

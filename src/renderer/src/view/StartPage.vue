@@ -1,7 +1,52 @@
 <script setup>
+import { ref } from "vue";
 import banner from "../assets/banner.png"
 import folder from "../assets/icons/folder.png"
 import RecentFolder from "../components/RecentFolder.vue";
+
+import { useWinBasicStore } from "../stores/basicInfo";
+import {updateRecentFolderDB} from "../utils/WinBasicUtils"
+
+
+const Win = useWinBasicStore()
+const recentFolderList = ref([])
+
+
+const SetEditor = (val)=>{
+    Win.ChangeFolder(val)
+    Win.ChangeOnEditor(true)
+}
+
+
+const getFolder = ()=>{
+    window.electron.ipcRenderer.send("open-folder-selecter")  
+}
+window.electron.ipcRenderer.on("open-folder-selecter-reply",(e,r)=>{
+    
+    const reply = updateRecentFolderDB(r,recentFolderList.value)
+    console.log(reply)
+    if (reply !== recentFolderList.value){
+        console.log("asd")
+        const que = {
+            name:"recentfolder",
+            resp:reply
+        }
+        window.electron.ipcRenderer.send("write-db",JSON.stringify(que))
+        
+        console.log("asd 1")
+    }
+    SetEditor(r)
+})
+  
+window.electron.ipcRenderer.send("read-db","recentfolder")
+window.electron.ipcRenderer.on("read-db-reply-recentfolder",(e,r)=>{
+    
+    recentFolderList.value = r
+    
+})
+
+
+
 </script>
 
 
@@ -10,15 +55,11 @@ import RecentFolder from "../components/RecentFolder.vue";
     <div id="start-page-box">
         <div id="recent-box">
 
-            <div id="open-folder-btn"> <span><img :src="folder" alt=""></span> Open File or Folder</div>
+            <div id="open-folder-btn" @click="getFolder()"> <span><img :src="folder" alt=""></span> Open File or Folder</div>
             <div id="line-ele"></div>
             <div id="past-list-box">
-                <RecentFolder title="Flappuccino" path="/home/vishnu/house/Software/Flappuccino"/>
-                <RecentFolder title="Flappuccino" path="/home/vishnu/house/Software/Flappuccino"/>
-                <RecentFolder title="Flappuccino" path="/home/vishnu/house/Software/Flappuccino"/>
-                <RecentFolder title="Flappuccino" path="/home/vishnu/house/Software/Flappuccino"/>
-                <RecentFolder title="Flappuccino" path="/home/vishnu/house/Software/Flappuccino"/>
-                <RecentFolder title="Flappuccino" path="/home/vishnu/house/Software/Flappuccino"/>
+                <RecentFolder v-for="item in recentFolderList" :key="item" :title="item.name" :path="item.path" @click="SetEditor(item.path)"/>
+                
               
               
             </div>
@@ -40,7 +81,7 @@ import RecentFolder from "../components/RecentFolder.vue";
     display: flex;
     margin-top:15px;
     gap: 15px;
-    justify-content: center;
+    justify-content: start;
     flex-direction: column;
     align-items: flex-start;
     /* overflow-y: hidden; */

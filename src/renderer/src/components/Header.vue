@@ -1,0 +1,92 @@
+<script setup>
+
+import { useWinBasicStore } from "../stores/basicInfo";
+const WinTitle = useWinBasicStore();
+
+
+function AppClose(){
+    
+    window.electron.ipcRenderer.send("app-close")  
+}
+function AppMax(){
+    window.electron.ipcRenderer.send("app-max")  
+}
+function AppMin(){
+    window.electron.ipcRenderer.send("app-min")  
+}
+
+</script>
+
+<template>
+  <div id="win-head">
+    <div id="win-title">{{ WinTitle.TitleVal }}</div>
+    <div id="win-controls">
+      <div id="win-max" class="win-cb" @click="AppMax()"></div>
+      <div id="win-min" class="win-cb" @click="AppMin()"></div>
+      <div id="win-close" class="win-cb" @click="AppClose()"></div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+
+#win-title {
+  background-color: #0a0d18;
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  padding: 0px 5px;
+  min-width: 120px;
+  height: 30px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-app-region: drag;
+  padding: 0px 20px;
+}
+#win-controls {
+  background-color: #0a0d18;
+
+  position: fixed;
+  right: 0%;
+  top: 0%;
+
+  padding: 0px 5px;
+
+  height: 30px;
+  min-width: 120px;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  -webkit-app-region: drag;
+}
+
+.win-cb{
+    width: 16px;
+    height: 16px;
+    background-color: #1b1e2b;
+    border-radius: 100%;
+    transition: all ease-in-out 200ms;
+}
+#win-close:hover{
+    background-color: #FF4343;
+    border-radius: 10px;
+    width: 25px;
+}
+#win-max:hover{
+    background-color: #08C371;
+    border-radius: 10px;
+    width: 25px;
+}
+#win-min:hover{
+    background-color: #FED31D;
+    border-radius: 10px;
+    width: 25px;
+}
+</style>
