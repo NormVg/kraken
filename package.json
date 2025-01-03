@@ -20,11 +20,12 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^3.0.0",
+    "@guolao/vue-monaco-editor": "^1.5.4",
     "@vueuse/core": "^12.3.0",
     "idb-keyval": "^6.2.1",
+    "monaco-editor": "^0.52.2",
     "pinia": "^2.3.0"
   },
-
   "devDependencies": {
     "@electron-toolkit/eslint-config": "^1.0.2",
     "@rushstack/eslint-patch": "^1.10.3",

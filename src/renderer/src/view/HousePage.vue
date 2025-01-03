@@ -1,10 +1,10 @@
 <script setup> 
-
+import CodeEditor from '../components/CodeEditor.vue';
 </script>
 
 <template>
     <div id="screen">
-
+        <CodeEditor/>
     </div>
 </template>
 

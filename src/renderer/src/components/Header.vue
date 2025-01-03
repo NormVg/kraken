@@ -102,17 +102,17 @@ function AppMin(){
 }
 #win-close:hover{
     background-color: #FF4343;
-    border-radius: 10px;
+    border-radius: 5px;
     width: 25px;
 }
 #win-max:hover{
     background-color: #08C371;
-    border-radius: 10px;
+    border-radius: 5px;
     width: 25px;
 }
 #win-min:hover{
     background-color: #FED31D;
-    border-radius: 10px;
+    border-radius: 5px;
     width: 25px;
 }
 </style>

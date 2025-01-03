@@ -41,6 +41,7 @@ window.electron.ipcRenderer.on("read-db-reply-recentfolder", (e, r) => {
 </script>
 
 <template>
+
   <div id="start-page-box">
     <div id="recent-box">
       <div id="open-folder-btn" @click="getFolder()">
@@ -130,7 +131,7 @@ window.electron.ipcRenderer.on("read-db-reply-recentfolder", (e, r) => {
 #start-page-box {
   width: 99vw;
   height: calc(99.7vh - 1px);
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: grid;
   grid-template-columns: 35% 65%;
 }

@@ -41,7 +41,7 @@ function createWindow() {
       sandbox: false,
       nodeIntegration:true,
       webviewTag:true,
-      contextIsolation:false,
+      
       
     }
   })
@@ -106,6 +106,7 @@ function createWindow() {
   // Load the remote URL for development or the local html file for production.
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
     mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
+    // mainWindow.loadURL('http://localhost:5173/vs/editor/editor.main.js')
   } else {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }

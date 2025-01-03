@@ -36,5 +36,6 @@ const prop = defineProps({
     margin-top: 5px;
     /* width: 97%; */
     overflow: hidden;
+    
 }
 </style>
