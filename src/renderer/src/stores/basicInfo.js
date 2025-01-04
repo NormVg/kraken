@@ -19,7 +19,7 @@ export const useWinBasicStore = defineStore('win-title-store', () => {
     TitleVal.value = text
   }
   const ChangeFolder = (text) => {
-    confirm(text)
+    
     FolderPath.value = text
   }
   return { 
