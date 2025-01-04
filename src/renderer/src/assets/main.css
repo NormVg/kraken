@@ -6,7 +6,7 @@
   --font-color: #C6C6CA;
   --border-color:# 71738E;
   --bg-dark:#0A0D18;
-
+  
 }
 
 @font-face {
@@ -17,6 +17,7 @@
 }
 
 body {
+  color: #fab387;
   padding: 0%;
   margin: 0;
   color: var(--font-color);
@@ -27,4 +28,26 @@ body {
   background-color: var(--bg-color);
   user-select: none;
   /* width: 100vw; */
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #B3BAE350;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #6C7086;
 }

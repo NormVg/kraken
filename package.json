@@ -18,13 +18,26 @@
     "build:linux": "npm run build && electron-builder --linux "
   },
   "dependencies": {
+    "@codemirror/basic-setup": "^0.20.0",
+    "@codemirror/lang-css": "^6.3.1",
+    "@codemirror/lang-go": "^6.0.1",
+    "@codemirror/lang-html": "^6.4.9",
+    "@codemirror/lang-java": "^6.0.1",
+    "@codemirror/lang-javascript": "^6.2.2",
+    "@codemirror/lang-json": "^6.0.1",
+    "@codemirror/lang-markdown": "^6.3.1",
+    "@codemirror/lang-python": "^6.1.6",
+    "@codemirror/lang-rust": "^6.0.1",
+    "@codemirror/lang-xml": "^6.1.0",
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^3.0.0",
     "@guolao/vue-monaco-editor": "^1.5.4",
     "@vueuse/core": "^12.3.0",
+    "codemirror": "^6.0.1",
     "idb-keyval": "^6.2.1",
     "monaco-editor": "^0.52.2",
-    "pinia": "^2.3.0"
+    "pinia": "^2.3.0",
+    "vue-codemirror": "^6.1.1"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config": "^1.0.2",

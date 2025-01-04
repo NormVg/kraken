@@ -1,0 +1,1 @@
+npx monaco-vscode-textmate-theme-converter ./src/renderer/src/assets/mocha.json -i  -o ./src/renderer/src/assets/newmocha.json

@@ -1,10 +1,12 @@
 <script setup> 
 import CodeEditor from '../components/CodeEditor.vue';
+import TabCodeEditor from '../components/TabCodeEditor.vue';
 </script>
 
 <template>
     <div id="screen">
         <CodeEditor/>
+         
     </div>
 </template>
 
