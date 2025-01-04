@@ -75,7 +75,7 @@ export const ctpMochaTheme = EditorView.theme({
   },
 
   "&.cm-focused .cm-matchingBracket, &.cm-focused .cm-nonmatchingBracket": {
-    backgroundColor: gray
+    backgroundColor: selection
   },
 
   ".cm-gutters": {
