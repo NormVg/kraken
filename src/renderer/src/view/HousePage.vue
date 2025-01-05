@@ -20,8 +20,8 @@ const ScreenSideBarStyle = computed(()=>{
 <template>
     <div id="screen" :style="ScreenSideBarStyle">
 
-        <!-- <CodeEditorManager/> -->
-        <WebView/>
+        <CodeEditorManager/>
+        <!-- <WebView/> -->
         <FocusBar/> 
     </div>
     <SideBar/>
@@ -30,18 +30,16 @@ const ScreenSideBarStyle = computed(()=>{
 <style scoped>
 
 #screen{
-    /* border:1px solid red; */
-    /* width: calc(100vw - 2px); */
-    /* width: calc(100vw - 35% - 2px); */
+
 
     height: calc(100vh - 40px);
     position: fixed;
     left: 0%;
     top: calc(50% + 15px) ;
-    /* transform: translate(-50%, -50%); */
+
     transform: translateY(-50%);
     transition: 350ms ease-in-out;
-    /* overflow-x:hidden */
+
 }
 
 </style>

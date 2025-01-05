@@ -25,7 +25,12 @@ body {
   justify-content: center;
   background-color: var(--bg-color);
   user-select: none;
-  /* width: 100vw; */
+  background-image: url("../assets/banner.png");
+  background-repeat: no-repeat;
+  background-position-x: center ;
+  background-position-y:40vh;
+  background-size: 15%;  
+
 }
 
 /* width */
@@ -49,64 +54,24 @@ body {
   background: #6c7086;
 }
 
-/* Animations */
-@keyframes goInLeft {
-  0% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(-200%);
-    opacity: 0;
-  }
+/* Target your div by class or ID */
+
+
+/* WebKit-based browsers (Chrome, Edge, Safari) */
+.my-scrollable-div::-webkit-scrollbar {
+  /* width: 6px; Narrow scrollbar width */
+  height: 1px; /* For horizontal scrollbars, if applicable */
 }
 
-@keyframes goInRight {
-  0% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(200%);
-    opacity: 0;
-  }
+.my-scrollable-div::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2); /* Subtle thumb color */
+  border-radius: 3px; /* Rounded corners for smooth appearance */
 }
 
-@keyframes comeInLeft {
-  0% {
-    transform: translateX(-200%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
+.my-scrollable-div::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4); /* Darker on hover */
 }
 
-@keyframes comeInRight {
-  0% {
-    transform: translateX(200%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-/* Apply animations */
-.go-in-left {
-  animation-name: goInLeft;
-}
-
-.go-in-right {
-  animation-name: goInRight;
-}
-
-.come-in-left {
-  animation-name: comeInLeft;
-}
-
-.come-in-right {
-  animation-name: comeInRight;
+.my-scrollable-div::-webkit-scrollbar-track {
+  background: transparent; /* Transparent track to avoid extra space */
 }

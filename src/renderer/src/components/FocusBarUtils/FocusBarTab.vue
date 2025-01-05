@@ -1,20 +1,37 @@
 <template>
-  <div id="focus-bar-tab">
+  <div id="focus-bar-tab" @click="switchToTab">
     {{ prop.name }}
 
-    <span><img :src="closeBtn" /></span>
+    <span @click="closethisTab"><img :src="closeBtn" /></span>
   </div>
 </template>
 
 <script setup>
 import closeBtn from "../../assets/icons/close.png";
+import { useWinBasicStore } from "../../stores/basicInfo";
 
 const prop = defineProps({
   name: {
     typeof: String,
     default: "Tab UI Comp",
   },
+  path: {
+    typeof: String,
+    default: "Tab UI Comp",
+  },
 });
+
+const WinBasic = useWinBasicStore()
+
+const switchToTab = ()=>{
+  WinBasic.switchToCodeTab(prop)
+
+}
+
+const closethisTab=()=>{
+  WinBasic.closeCodeTab(prop)
+}
+
 </script>
 
 <style>
@@ -26,11 +43,11 @@ const prop = defineProps({
   transition: all ease-in-out 100ms;
 }
 #focus-bar-tab > span > img:hover {
-  /* border: 1px solid #272A29; */
   background-color: #272a29;
   border-radius: 3px;
 }
 #focus-bar-tab {
+  font-weight: 150;
   height: 22px;
   background-color: #272a29;
   border-radius: 5px;
@@ -40,21 +57,22 @@ const prop = defineProps({
   justify-content: start;
   transition: all ease-in-out 200ms;
   font-size: 14px;
+  /* text-overflow: ; */
+  max-width: fit-content;
+  white-space: nowrap;
 }
 
 #focus-bar-tab:hover {
-  
   background-color: #53556e;
 }
 
 #focus-tabs {
   display: flex;
   align-items: center;
-  /* border: 1px solid red; */
+
   gap: 5px;
   border-right: 1px solid #ffffff;
-  /* border-left: 1px solid #FFFFFF; */
-  /* padding-left: 5px ; */
+
   padding-right: 10px;
 }
 </style>

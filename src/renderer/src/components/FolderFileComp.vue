@@ -4,11 +4,12 @@ import FxFolder from "../assets/icons/fx-folder.png";
 import FxOpenFolder from "../assets/icons/fx-openfolder.png";
 import FxFile from "../assets/icons/fx-file.png";
 import FxImage from "../assets/icons/fx-image.png";
+import { useWinBasicStore } from "../stores/basicInfo";
 const prop = defineProps({
-  data: {
-    typeof: Boolean,
-  },
+  data: {},
 });
+
+const WinBasic = useWinBasicStore();
 
 const isFolderActive = ref(false);
 
@@ -40,6 +41,32 @@ const switchActiveFolder = () => {
     isFolderActive.value = true;
   }
 };
+
+const openFile = () => {
+  var winTab = WinBasic.CodeEditorTab;
+
+  const isTab = WinBasic.CodeEditorTab.some(
+    (item) => item.name === prop.data.name && item.path === prop.data.path
+  );
+
+  if (!isTab) {
+    winTab.push({
+      name: prop.data.name,
+      path: prop.data.path,
+    });
+
+    
+  } else {
+    // const index = winTab.findIndex(item => item.name === prop.data.name && item.path === prop.data.path)
+
+    // WinBasic.ChangeActiveCodeEditorTab(index)
+    console.log("file allredy exist", isTab);
+  }
+
+  WinBasic.ChangeCodeEditorTab(winTab);
+  
+  WinBasic.switchToCodeTab(prop.data)
+};
 </script>
 
 <template>
@@ -57,10 +84,16 @@ const switchActiveFolder = () => {
     </div>
   </div>
 
-  <div v-if="!isFolder" id="file-comp">
+  <div v-else-if="isImage" id="file-comp">
     <span>
       <img v-if="isImage" :src="FxImage" />
-      <img v-else :src="FxFile" />
+    </span>
+    {{ prop.data.name }}
+  </div>
+
+  <div v-else id="file-comp" @click="openFile">
+    <span>
+      <img :src="FxFile" />
     </span>
     {{ prop.data.name }}
   </div>
@@ -73,11 +106,14 @@ const switchActiveFolder = () => {
 
 #folder-comp-name {
   height: 20px;
-  max-width: 90%;
+  /* max-width: 90%; */
+  min-width:90%;
   display: flex;
   justify-content: flex-start;
   align-items: left;
   gap: 5px;
+  max-width: fit-content;
+  white-space: nowrap;
 }
 
 #folder-comp-name:hover {
@@ -102,7 +138,8 @@ const switchActiveFolder = () => {
   flex-direction: column;
   padding: 0px 10px;
   gap: 5px;
-  
+  /* max-width: fit-content;
+  white-space: nowrap; */
   margin-bottom: 5px;
 }
 
@@ -115,9 +152,8 @@ const switchActiveFolder = () => {
 }
 
 #file-comp {
-  
   height: 20px;
-  max-width: 90%;
+  min-width:100%;
   font-weight: 100;
   display: flex;
   justify-content: flex-start;
@@ -126,5 +162,7 @@ const switchActiveFolder = () => {
   padding: 0px 10px;
   gap: 5px;
   margin-bottom: 5px;
+  max-width: fit-content;
+  white-space: nowrap;
 }
 </style>

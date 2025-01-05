@@ -2,6 +2,12 @@
 import FocusBarTab from "./FocusBarUtils/FocusBarTab.vue";
 import FocusBarScroolShift from "./FocusBarUtils/FocusBarScroolShift.vue";
 import FocusBarToolsSideBar from "./FocusBarUtils/FocusBarToolsSideBar.vue";
+
+import { useWinBasicStore } from "../stores/basicInfo";
+
+
+const WinBasic = useWinBasicStore()
+
 </script>
 
 <template>
@@ -10,12 +16,12 @@ import FocusBarToolsSideBar from "./FocusBarUtils/FocusBarToolsSideBar.vue";
       <FocusBarScroolShift />
     </div>
 
-    <div id="focus-tabs">
+    <div id="focus-tabs" class="my-scrollable-div ">
+      <FocusBarTab v-for="win in WinBasic.CodeEditorTab" :key="win" :name="win.name" :path="win.path"/>
+      <!-- <FocusBarTab />
       <FocusBarTab />
       <FocusBarTab />
-      <FocusBarTab />
-      <FocusBarTab />
-      <FocusBarTab />
+      <FocusBarTab /> -->
     </div>
     <div id="focus-tools">
         <!-- <FocusBarToolsDotBtn/>
@@ -52,6 +58,13 @@ import FocusBarToolsSideBar from "./FocusBarUtils/FocusBarToolsSideBar.vue";
   transition: 350ms ease-in-out;
 }
 
+#focus-tabs{
+ max-width: 50%;
+ overflow-x: scroll;
+ overflow-y: hidden;
+ height: 22px;
+}
+
 #focus-tools{
     display: flex;
     align-items: center;
@@ -68,5 +81,11 @@ import FocusBarToolsSideBar from "./FocusBarUtils/FocusBarToolsSideBar.vue";
     border: none;
     /* border: 1px solid red; */
 }
+
+
+
+
+
+
 
 </style>
