@@ -15,11 +15,16 @@ const updateTabsAll = (val) => {
 <template>
   <!-- <input type="number" v-model="activeTab"> -->
   <TabManager :currentTab="activeTab" :updateTabsList="updateTabsAll">
+
     <Tab WinID="id-1" cstyle="height: 100%;width:100%;">
       <CodeEditor />
     </Tab>
 
     <Tab WinID="id-2" cstyle="height: 100%;width:100%;">
+      <CodeEditor />
+    </Tab>
+
+    <Tab WinID="id-3" cstyle="height: 100%;width:100%;">
       <CodeEditor />
     </Tab>
   </TabManager>
