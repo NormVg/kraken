@@ -15,6 +15,7 @@ function isImageFile(filePath) {
     ".webp",
     ".tiff",
     ".svg",
+"ico"
   ];
   const ext = extname(filePath).toLowerCase();
   return imageExtensions.includes(ext);

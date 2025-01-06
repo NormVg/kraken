@@ -2,14 +2,18 @@
     <div  className='app-view-box ' >
       
       <div>
-      <webview id="foo" src="https://google.com" allowpopups='true' ></webview>
+      <webview id="foo" :src="prop.url" allowpopups='true' ></webview>
       </div>
     
     </div>
 </template>
 
 <script setup> 
-
+const prop = defineProps({
+  url:{
+    typeof:String,
+    default:"https://google.com"}
+})
 import banner from "../assets/banner.png"
 </script>
 

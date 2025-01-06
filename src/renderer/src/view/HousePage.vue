@@ -1,45 +1,68 @@
-<script setup> 
-import CodeEditorManager from '../components/CodeEditorManager.vue';
-import FocusBar from '../components/FocusBar.vue';
-import WebView from '../components/WebView.vue';
-import SideBar from '../components/SideBar.vue';
+<script setup>
+import CodeEditorManager from "../components/CodeEditorManager.vue";
+import FocusBar from "../components/FocusBar.vue";
+import WebView from "../components/WebView.vue";
+import SideBar from "../components/SideBar.vue";
+import ScreenTab from "../components/ScreenManager/ScreenTab.vue"
+import ScreenTabManager from "../components/ScreenManager/ScreenTabManager.vue"
+import { useWinBasicStore } from "../stores/basicInfo";
 
-import { useWinBasicStore } from '../stores/basicInfo';
+import { computed, useCssVars } from "vue";
 
-import { computed } from 'vue';
+const WinBasic = useWinBasicStore();
 
-const WinBasic = useWinBasicStore()
+const ScreenSideBarStyle = computed(() => {
+  return WinBasic.isSidebar
+    ? "width:calc(100vw - 35% - 2px)"
+    : "width:calc(100vw - 2px);";
+});
 
-const ScreenSideBarStyle = computed(()=>{ 
-     return WinBasic.isSidebar ? 'width:calc(100vw - 35% - 2px)' :   'width:calc(100vw - 2px);'    
-})
 
 
+var aa = 0
 </script>
 
 <template>
-    <div id="screen" :style="ScreenSideBarStyle">
+  <div id="screen" :style="ScreenSideBarStyle">
+    <ScreenTabManager  :currentTab="WinBasic.CurrentScreenWindow" :updateTabsList="WinBasic.ChangeScreenWindowTabs"  >
 
-        <CodeEditorManager/>
-        <!-- <WebView/> -->
-        <FocusBar/> 
-    </div>
-    <SideBar/>
+
+      <ScreenTab WinID="code-editor-one">
+        <CodeEditorManager />
+      </ScreenTab>
+
+
+      <ScreenTab WinID="WebView-google">
+        <WebView/>
+      </ScreenTab>
+
+      <ScreenTab WinID="WebView-youtube">
+        <WebView url="https://youtube.com"/>
+      </ScreenTab>
+
+    </ScreenTabManager>
+    
+    <FocusBar />
+  </div>
+  <SideBar />
 </template>
 
 <style scoped>
+#screen {
+  height: calc(100vh - 40px);
+  position: fixed;
+  left: 0%;
+  top: calc(50% + 15px);
 
-#screen{
-
-
-    height: calc(100vh - 40px);
-    position: fixed;
-    left: 0%;
-    top: calc(50% + 15px) ;
-
-    transform: translateY(-50%);
-    transition: 350ms ease-in-out;
-
+  transform: translateY(-50%);
+  transition: 350ms ease-in-out;
 }
 
+body {
+  background-image: url("../assets/banner.png");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: 40vh;
+  background-size: 15%;
+}
 </style>

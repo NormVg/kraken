@@ -25,11 +25,7 @@ body {
   justify-content: center;
   background-color: var(--bg-color);
   user-select: none;
-  background-image: url("../assets/banner.png");
-  background-repeat: no-repeat;
-  background-position-x: center ;
-  background-position-y:40vh;
-  background-size: 15%;  
+
 
 }
 
