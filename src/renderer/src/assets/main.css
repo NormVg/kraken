@@ -28,7 +28,13 @@ body {
 
 
 }
-
+.with-banner{
+  background-image: url("../assets/banner.png");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: 40vh;
+  background-size: 15%;
+}
 /* width */
 ::-webkit-scrollbar {
   width: 5px;

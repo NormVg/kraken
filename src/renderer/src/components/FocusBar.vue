@@ -3,10 +3,29 @@ import FocusBarTab from "./FocusBarUtils/FocusBarTab.vue";
 import FocusBarScroolShift from "./FocusBarUtils/FocusBarScroolShift.vue";
 import FocusBarToolsSideBar from "./FocusBarUtils/FocusBarToolsSideBar.vue";
 
+import FocusBarToolsTerminal from "./FocusBarUtils/FocusBarToolsTerminal.vue";
+
+import FocusBarToolsDotBtn from "./FocusBarUtils/FocusBarToolsDotBtn.vue";
 import { useWinBasicStore } from "../stores/basicInfo";
+import WebAppBtnTab from "./FocusBarUtils/WebAppBtnTab.vue";
+import { ref } from "vue";
+import { useWebAppStore } from "../stores/WebAppsStores";
 
 
-const WinBasic = useWinBasicStore()
+
+
+const WinBasic = useWinBasicStore();
+const WebAppStore = useWebAppStore()
+
+// const WebAppList = ref([])
+
+window.electron.ipcRenderer.send("read-db", "WebApps");
+window.electron.ipcRenderer.on("read-db-reply-WebApps", (e, r) => {
+  // WebAppList.value = r;
+  WebAppStore.ChnageWebAppList(r)
+});
+
+
 
 </script>
 
@@ -16,20 +35,29 @@ const WinBasic = useWinBasicStore()
       <FocusBarScroolShift />
     </div>
 
-    <div id="focus-tabs" class="my-scrollable-div ">
-      <FocusBarTab v-for="win in WinBasic.CodeEditorTab" :key="win" :name="win.name" :path="win.path"/>
-      <!-- <FocusBarTab />
-      <FocusBarTab />
-      <FocusBarTab />
-      <FocusBarTab /> -->
+    <div id="focus-tabs" class="my-scrollable-div">
+      <FocusBarTab
+        v-for="win in WinBasic.CodeEditorTab"
+        :key="win"
+        :name="win.name"
+        :path="win.path"
+      />
+
     </div>
-    <div id="focus-tools">
-        <!-- <FocusBarToolsDotBtn/>
-        <FocusBarHome/>
-        <FocusBarToolsTerminal/>
-        <FocusBarToolsFolder/> -->
-        <FocusBarToolsSideBar/>
+
+    <div id="focus-apps">
+
+        <WebAppBtnTab v-for="item in WebAppStore.WebAppList" :key="item" :data="item" />
+
       </div>
+
+
+    <div id="focus-tools">
+      <FocusBarToolsDotBtn />
+      
+      <FocusBarToolsTerminal />
+      <FocusBarToolsSideBar />
+    </div>
   </div>
 </template>
 
@@ -58,34 +86,29 @@ const WinBasic = useWinBasicStore()
   transition: 350ms ease-in-out;
 }
 
-#focus-tabs{
- max-width: 50%;
- overflow-x: scroll;
- overflow-y: hidden;
- height: 22px;
+#focus-tabs {
+  max-width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height: 22px;
 }
 
-#focus-tools{
-    display: flex;
-    align-items: center;
-    /* border: 1px solid red; */
-    gap: 5px;
-    border-right: 1px solid #FFFFFF;
-    /* border-left: 1px solid #FFFFFF; */
-    /* padding-left: 5px ; */
-    padding-right: 10px;
-    margin-left: auto;
-
-}
-#focus-tools{
-    border: none;
-    /* border: 1px solid red; */
+#focus-tools {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-left: 5px;
+  /* margin-left: auto; */
+  border-left: 1px solid whitesmoke;
 }
 
 
-
-
-
-
-
+#focus-apps {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding-left: 10px;
+  margin-left: auto;
+  border-left: 1px solid whitesmoke;
+}
 </style>

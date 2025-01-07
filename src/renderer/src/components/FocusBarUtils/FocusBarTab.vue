@@ -1,5 +1,5 @@
 <template>
-  <div id="focus-bar-tab" @click="switchToTab">
+  <div id="focus-bar-tab" :style="cstyle" @click="switchToTab">
     {{ prop.name }}
 
     <span @click="closethisTab"><img :src="closeBtn" /></span>
@@ -7,6 +7,7 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
 import closeBtn from "../../assets/icons/close.png";
 import { useWinBasicStore } from "../../stores/basicInfo";
 
@@ -23,20 +24,30 @@ const prop = defineProps({
 
 const WinBasic = useWinBasicStore()
 
+const cstyle = computed(()=>{
+  const isThis = WinBasic.CodeEditorTab[WinBasic.ActiveCodeEditorTab].path === prop.path
+  return isThis ? "background-color: #53556e;" : "background-color: #272a29;"
+})
+
 const switchToTab = ()=>{
+  if (WinBasic.CurrentScreenWindow !== 0){
+    WinBasic.ChangeCurrentScreenWindow(0)
+  }
   WinBasic.switchToCodeTab(prop)
 
 }
 
 const closethisTab=()=>{
-  WinBasic.closeCodeTab(prop)
+  
+    WinBasic.closeCodeTab(prop)
+  
 }
 
 </script>
 
 <style>
 #focus-bar-tab > span > img {
-  height: 12px;
+  height: 13px;
   margin-top: 6px;
   margin-left: 8px;
   margin-right: 2px;

@@ -1,6 +1,7 @@
 <script setup>
 import WebViewControls from "./WebViewControls.vue";
 import { useWinBasicStore } from "../stores/basicInfo";
+import { compile, computed } from "vue";
 const WinTitle = useWinBasicStore();
 
 
@@ -14,6 +15,9 @@ function AppMax(){
 function AppMin(){
     window.electron.ipcRenderer.send("app-min")  
 }
+
+
+
 
 </script>
 
@@ -38,6 +42,7 @@ function AppMin(){
   justify-content: left;
   
   padding: 0px 20px; */
+  
   z-index: 30;
   background-color: #0a0d18;
   position: fixed;

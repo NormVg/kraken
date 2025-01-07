@@ -24,11 +24,11 @@ const isImage = computed(() => {
 const DirList = ref([]);
 
 window.electron.ipcRenderer.on("path-list-reply-" + prop.data.path, (e, r) => {
-  console.log(JSON.parse(r));
+ 
   DirList.value = JSON.parse(r);
 
   DirList.value.forEach((element) => {
-    console.log(element.name);
+ 
   });
 });
 
@@ -57,14 +57,14 @@ const openFile = () => {
 
     
   } else {
-    // const index = winTab.findIndex(item => item.name === prop.data.name && item.path === prop.data.path)
-
-    // WinBasic.ChangeActiveCodeEditorTab(index)
-    console.log("file allredy exist", isTab);
+    
+    console.log("file allredy exist");
   }
 
   WinBasic.ChangeCodeEditorTab(winTab);
-  
+  if (WinBasic.CurrentScreenWindow !== 0){
+    WinBasic.ChangeCurrentScreenWindow(0)
+  }
   WinBasic.switchToCodeTab(prop.data)
 };
 </script>
@@ -153,7 +153,7 @@ const openFile = () => {
 
 #file-comp {
   height: 20px;
-  min-width:100%;
+  min-width:90%;
   font-weight: 100;
   display: flex;
   justify-content: flex-start;

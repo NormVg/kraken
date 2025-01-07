@@ -20,16 +20,16 @@ const getFolder = () => {
 };
 window.electron.ipcRenderer.on("open-folder-selecter-reply", (e, r) => {
   const reply = updateRecentFolderDB(r, recentFolderList.value);
-  console.log(reply);
+  
   if (reply !== recentFolderList.value) {
-    console.log("asd");
+  
     const que = {
       name: "recentfolder",
       resp: reply,
     };
     window.electron.ipcRenderer.send("write-db", JSON.stringify(que));
 
-    console.log("asd 1");
+  
   }
   SetEditor(r);
 });

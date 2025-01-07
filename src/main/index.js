@@ -128,13 +128,12 @@ function createWindow() {
 
   ipcMain.on("write-db", (e, r) => {
     const data = JSON.parse(r);
-    console.log("asdas", data);
+    
     WriteWebAppDb(data.name, data.resp);
     e.reply("write-db-" + data.name, data.resp);
   });
 
   ipcMain.on("path-list", (e, r) => {
-    // console.log(r,"path-list" + r, JSON.stringify(listDirectory(r)));
     e.reply("path-list-reply-" + r, JSON.stringify(listDirectory(r)));
   });
 

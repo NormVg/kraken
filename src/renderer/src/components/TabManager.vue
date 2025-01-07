@@ -16,7 +16,7 @@ const TabNow = computed(()=>{
 const TabList = ref([])
 
 watch(TabList,()=>{
-    updateTabsList(TabList)
+    prop.updateTabsList(TabList)
 })
 
 const removeTab =(tab)=>{

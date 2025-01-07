@@ -1,6 +1,8 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 import { ScrollShiftCalc } from "../utils/ScrollShiftCal";
+import { moveStringByValue } from "../utils/moveStringByValue";
+
 
 export const useWinBasicStore = defineStore("win-title-store", () => {
   const TitleVal = ref("Kraken");
@@ -8,7 +10,7 @@ export const useWinBasicStore = defineStore("win-title-store", () => {
   const onEditor = ref(false);
   const CodeEditorTab = ref([]);
   const ActiveCodeEditorTab = ref(0);
-  const isMiddleBar = ref(true);
+  const isMiddleBar = ref(false);
   const isSidebar = ref(false);
   const isFileXSideBar = ref(true);
   const CurrentScreenWindow = ref(0);
@@ -27,15 +29,22 @@ export const useWinBasicStore = defineStore("win-title-store", () => {
       CurrentScreenWindow.value = val;
       ChangeScroolShiftPos();
     }
+     else if (val <= ScreenWindowTabs.value.length + 1) {
+      CurrentScreenWindow.value = val;
+      ChangeScroolShiftPos();
+    }
   };
 
   const NextCurrentScreenWindow = () => {
-    console.log(ScreenWindowTabs.value, "<----asd--->");
-
     if (CurrentScreenWindow.value !== ScreenWindowTabs.value.length - 1) {
       CurrentScreenWindow.value = CurrentScreenWindow.value + 1;
       ChangeScroolShiftPos();
     }
+  };
+
+  const GetIndexCurrentScreenWindow = (val) => {
+    const index = ScreenWindowTabs.value.findIndex((item) => item === val);
+    return index;
   };
 
   const PrevCurrentScreenWindow = () => {
@@ -46,8 +55,15 @@ export const useWinBasicStore = defineStore("win-title-store", () => {
   };
 
   const ChangeScreenWindowTabs = (val) => {
-    ScreenWindowTabs.value = val;
-    console.log(ScreenWindowTabs.value, "<----asd--->");
+    var list = val
+    if (list[0] !== "code-editor-one"){
+      list = moveStringByValue(list,"code-editor-one",0)
+    }
+
+    ScreenWindowTabs.value = list;
+    
+
+    ChangeScroolShiftPos();
   };
 
   const closeCodeTab = (prop) => {
@@ -65,7 +81,7 @@ export const useWinBasicStore = defineStore("win-title-store", () => {
     const index = CodeEditorTab.value.findIndex(
       (item) => item.name === prop.name && item.path === prop.path
     );
-
+    ChangeTitle(prop.name)
     ChangeActiveCodeEditorTab(index);
   };
 
@@ -125,5 +141,6 @@ export const useWinBasicStore = defineStore("win-title-store", () => {
     ScreenWindowTabs,
     ChangeScreenWindowTabs,
     ScroolShiftPos,
+    GetIndexCurrentScreenWindow,
   };
 });

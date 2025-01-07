@@ -11,12 +11,9 @@ window.electron.ipcRenderer.send("path-list", WinBasic.FolderPath);
 window.electron.ipcRenderer.on(
   "path-list-reply-" + WinBasic.FolderPath,
   (e, r) => {
-    console.log(JSON.parse(r));
     DirList.value = JSON.parse(r);
 
-    DirList.value.forEach((element) => {
-      console.log(element.name);
-    });
+    DirList.value.forEach((element) => {});
   }
 );
 

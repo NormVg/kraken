@@ -22,7 +22,7 @@ const removeTab = (tab) => {
 };
 
 const registerTab = (tab) => {
-  console.log(tab)
+  
   if (!TabList.value.includes(tab)) {
     TabList.value.push(tab);
     if (props.updateTabsList) {

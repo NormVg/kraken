@@ -13,12 +13,12 @@ const { TabNow, TabList, registerTab, removeTab } = inject("tab-manager");
 
 onMounted(() => {
   registerTab(prop.WinID);
-  console.log("added", prop.WinID);
+  
 });
 
 onUnmounted(() => {
   removeTab(prop.WinID);
-  console.log("removed", prop.WinID);
+  
 });
 
 const isActive = computed(() => {
