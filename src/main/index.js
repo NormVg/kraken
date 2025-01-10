@@ -3,7 +3,20 @@ import { join, extname } from "path";
 import { electronApp, optimizer, is } from "@electron-toolkit/utils";
 import icon from "../../resources/icon.png?asset";
 
+import os from "os";
+import pty from "node-pty";
 import fs from "fs";
+
+const getCurrentShell = () => {
+  const shell = process.env.SHELL || process.env.COMSPEC; // COMSPEC is used on Windows
+  if (!shell) {
+    return "bash";
+  }
+
+  const shellName = shell.split("/").pop().toLowerCase(); // Extracts the shell name
+  console.log(shellName);
+  return shellName;
+};
 
 function isImageFile(filePath) {
   const imageExtensions = [
@@ -136,6 +149,97 @@ function createWindow() {
   ipcMain.on("path-list", (e, r) => {
     e.reply("path-list-reply-" + r, JSON.stringify(listDirectory(r)));
   });
+
+
+  const useBinary = os.platform() !== "win32";
+  console.log(useBinary);
+  var myshell = os.platform() === "win32" ? "powershell.exe" : getCurrentShell();
+  var ptyProcess = pty.spawn(myshell, [], {
+    name: "xterm-256color",
+    // cols: 10800,
+    // rows: 44,
+    cwd: process.env.HOME,
+    env: process.env,
+    encoding: "utf-8",
+  });
+    
+
+  
+  
+
+  const resizePty = (cols, rows) => {
+    if (ptyProcess) {
+      console.log(cols, rows);
+      ptyProcess.resize(cols, rows);
+    }
+  };
+
+  ptyProcess.on("data", (data) => {
+    mainWindow?.webContents.send("terminal-incData", data);
+  });
+
+  ipcMain.on("terminal-into", (event, data) => {
+    ptyProcess.write(data);
+  });
+
+
+
+  ipcMain.on("terminal-resize", (event, data) => {
+    resizePty(data.col, data.row);
+  });
+
+  ptyProcess.on("exit", (code, signal) => {
+    console.log(`Terminal exited with code ${code} and signal ${signal}`);
+    mainWindow?.webContents.send("terminal-incData-exit", "TERMINAL_EXIT"); // Send exit signal to the frontend
+    ptyProcess.kill();
+    // mainWindow.close()
+
+  });
+
+
+
+  // var myshell2 = os.platform() === "win32" ? "powershell.exe" : 'bash';
+  var ptyProcessSide = pty.spawn("bash", [], {
+    name: "xterm-256color",
+    // cols: 10800,
+    // rows: 44,
+    cwd: process.env.HOME,
+    env: process.env,
+    encoding: "utf-8",
+  });
+
+
+
+
+
+  ptyProcessSide.on("data", (data) => {
+    mainWindow?.webContents.send("side-terminal-incData", data);
+  });
+
+  ipcMain.on("side-terminal-into", (event, data) => {
+    ptyProcessSide.write(data);
+  });
+
+
+
+  ipcMain.on("side-terminal-resize", (event, data) => {
+     
+    if (ptyProcessSide) {
+      console.log(data.col, data.row);
+      ptyProcessSide.resize(data.col, data.row);
+    }
+    
+  });
+
+  ptyProcess.on("exit", (code, signal) => {
+    console.log(`Terminal exited with code ${code} and signal ${signal}`);
+    mainWindow?.webContents.send("side-terminal-incData-exit", "TERMINAL_EXIT"); // Send exit signal to the frontend
+    ptyProcessSide.kill();
+    // mainWindow.close()
+
+  });
+
+
 
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.

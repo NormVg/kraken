@@ -14,7 +14,7 @@ const TabsAll = ref([]);
 
 const updateTabsAll = (val) => {
   TabsAll.value = val;
-  console.log(WinBasic.CodeEditorTab)
+  // console.log(WinBasic.CodeEditorTab)
 };
 
 

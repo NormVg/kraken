@@ -1,6 +1,10 @@
 <template>
   <div id="editor-side-bar" :style="SideBarStyle">
-    <FileExplorerBar />
+
+
+    <FileExplorerBar v-show="WinBasic.isFileXSideBar" />
+    <ToolCar v-show="!WinBasic.isFileXSideBar" />
+    
     <div id="footer-toggle-bar" @mousewheel="onWheelSideBarTabToggle">
       <div
         id="footer-bar-fe"
@@ -20,7 +24,7 @@
 import { computed } from "vue";
 import { useWinBasicStore } from "../stores/basicInfo";
 import FileExplorerBar from "./FileExplorerBar.vue";
-
+import ToolCar from "./ToolCar.vue";
 const WinBasic = useWinBasicStore();
 
 const SideBarStyle = computed(() => {

@@ -4,13 +4,7 @@ import { defineStore } from 'pinia'
 export const useWebAppStore = defineStore('web-app-info', () => {
     const WebAppList = ref([])
     const activeWebAppTabs  = ref([])
-    const AppUrlList = ref([])
-
-
-
-    const ChangeAppUrlList = (val) =>{
-        AppUrlList.value = val
-    }
+    
 
     const ChangeActiveWebAppTabs=(val)=>{
         activeWebAppTabs.value = val
@@ -22,6 +16,7 @@ export const useWebAppStore = defineStore('web-app-info', () => {
     }
     
     const AddToActiveWebAppList = (val)=>{
+        
         activeWebAppTabs.value.push(val)
     }
 
@@ -35,7 +30,9 @@ export const useWebAppStore = defineStore('web-app-info', () => {
           if (index >= 0 && index < list.length) {
             list.splice(index, 1); // Remove 1 element at the specified index
           }
+
           ChangeActiveWebAppTabs(list);
+
     }
 
     const IndexOfActiveWebAppList = (name)=>{
@@ -48,7 +45,8 @@ export const useWebAppStore = defineStore('web-app-info', () => {
     return {
         WebAppList,ChnageWebAppList,
         activeWebAppTabs,ChangeActiveWebAppTabs,RemoveActiveFromWebAppList,AddToActiveWebAppList,
-        AppUrlList,ChangeAppUrlList,
-        IndexOfActiveWebAppList
+        
+        IndexOfActiveWebAppList,
+
     }
 })

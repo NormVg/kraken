@@ -56,8 +56,15 @@ export const useWinBasicStore = defineStore("win-title-store", () => {
 
   const ChangeScreenWindowTabs = (val) => {
     var list = val
-    if (list[0] !== "code-editor-one"){
+    // console.log(list,val)
+    if (list[0] !== "code-editor-one" && list[0] === undefined){
+      // console.log(list,val)
       list = moveStringByValue(list,"code-editor-one",0)
+    }
+    
+    if (list[1] !== "kraken-terminal-one" && list[1] !== undefined ){
+      // console.log(list,val,list[1])
+      list = moveStringByValue(list,"kraken-terminal-one",1)
     }
 
     ScreenWindowTabs.value = list;

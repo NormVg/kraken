@@ -17,13 +17,13 @@ window.electron.ipcRenderer.on(
   }
 );
 
-const isFxBarStyle = computed(() => {
-  return WinBasic.isFileXSideBar ? "display:block;" : "display:none;";
-});
+// const isFxBarStyle = computed(() => {
+//   return WinBasic.isFileXSideBar ? "display:block;" : "display:none;";
+// });
 </script>
 
 <template>
-  <div id="fileX-box" :style="isFxBarStyle">
+  <div id="fileX-box" >
     <FolderFileComp v-for="item in DirList" :key="item" :data="item" />
   </div>
 </template>

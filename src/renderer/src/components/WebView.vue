@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from "vue";
+import {  onMounted, ref, watch } from "vue";
 import { useWebAppStore } from "../stores/WebAppsStores";
 import { useWinBasicStore } from "../stores/basicInfo";
 
@@ -45,7 +45,12 @@ watch(srcURL, () => {
 
 });
 
+
+
 onMounted(() => {
+
+  console.log(WebAppStore.activeWebAppTabs)
+
   const webview = document.getElementById(webviewID);
 
   webview.addEventListener("did-navigate", (event) => {
@@ -58,6 +63,9 @@ onMounted(() => {
     console.log("New URL (did-navigate-in-page):", event.url); // Triggered on in-page navigation (e.g., hash changes)
   });
 });
+
+
+
 </script>
 
 <style scoped>

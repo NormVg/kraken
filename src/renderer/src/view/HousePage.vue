@@ -9,6 +9,8 @@ import { useWinBasicStore } from "../stores/basicInfo";
 
 import { computed, onMounted, onUnmounted, useCssVars } from "vue";
 import { useWebAppStore } from "../stores/WebAppsStores";
+import KrakenTerminal from "../components/KrakenTerminal.vue";
+
 
 const WinBasic = useWinBasicStore();
 const WebAppStore = useWebAppStore()
@@ -37,6 +39,10 @@ onUnmounted(()=>{
     >
       <ScreenTab WinID="code-editor-one">
         <CodeEditorManager />
+      </ScreenTab>
+
+      <ScreenTab WinID="kraken-terminal-one">
+        <KrakenTerminal />
       </ScreenTab>
 
       <ScreenTab :WinID="`WebView-${item.name}`" v-for="item in WebAppStore.activeWebAppTabs" :key="item" >

@@ -16,11 +16,11 @@ const currentTab = computed(() => {
   const index = WinBasic.CurrentScreenWindow;
   const name = WinBasic.ScreenWindowTabs[index];
 
-  return name;
+  return name ? name : "<>";
 });
 
 const barURL = computed(()=>{
-
+  // console.log(currentTab.value)
   if (currentTab.value.includes("WebView")){
     var call = currentTab.value.replace("WebView-","")
 
@@ -38,16 +38,21 @@ const barURL = computed(()=>{
 })
 
 const CloseWebTab = () => {
+  
   if (currentTab.value.includes("WebView")) {
     const list = WinBasic.ScreenWindowTabs;
     const index = WinBasic.CurrentScreenWindow;
 
     if (index >= 0 && index < list.length) {
-      list.splice(index, 1);
+      var cName = currentTab.value.replace("WebView-","")
+      WebAppStore.RemoveActiveFromWebAppList({"name":cName})
+      console.log(WinBasic.ScreenWindowTabs,"+++++<>++++++",cName,WebAppStore.activeWebAppTabs)
 
+      list.splice(index, 1);
       WinBasic.ChangeScreenWindowTabs(list);
 
       WinBasic.ChangeCurrentScreenWindow(index - 1);
+      // console.log(WinBasic.ScreenWindowTabs,"+++++<>++++++")
     }
   }
 };
@@ -103,7 +108,7 @@ if (currentTab.value.includes("WebView")) {
     <button><img :src="Rleft" @click="goBack"/></button>
     <button><img :src="Rreload"  @click="goReload" /></button>
     <button><img :src="Rright" @click="goForward"/></button>
-    <input type="text" :value="barURL" />
+    <input type="text" :value="barURL" disabled/>
     <button @click="CloseWebTab"><img :src="Rclose" /></button>
   </div>
 </template>

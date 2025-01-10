@@ -1,19 +1,22 @@
 <template>
-    <div id="focus-bar-tools" @click="switchBar()">
-      <img :src="sidebar" />
+    <div id="focus-bar-tools" @click="switchToTab()">
+      <img :src="terminalIcon" />
     </div>
   </template>
   
   <script setup>
-  import sidebar from "../../assets/icons/terminal.png";
+  import terminalIcon from "../../assets/icons/terminal.png";
   import { useWinBasicStore } from "../../stores/basicInfo";
   
   const WinBasic = useWinBasicStore()
-  
-  const switchBar = ()=>{
-      
-      WinBasic.ChangeIsSideBar(!WinBasic.isSidebar)
+
+  const switchToTab = ()=>{
+  if (WinBasic.CurrentScreenWindow !== 1){
+    WinBasic.ChangeCurrentScreenWindow(1)
   }
+  
+
+}
   
   </script>
   

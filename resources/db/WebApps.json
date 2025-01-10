@@ -3,23 +3,23 @@
       "name": "ChatGPT",
       "src": "https://chat.openai.com",
       "iconType": "internal",
-      "iconSrc": "/webapp-icon/chatgpt.png",
+      "iconSrc": "chatgpt.png",
       "urlNow":""
 
     },
     {
-      "name": "Spotify",
-      "src": "https://spotify.com",
+      "name": "YouTube Music",
+      "src": "https://music.youtube.com/",
       "iconType": "internal",
-      "iconSrc": "/webapp-icon/spotify.png",
-      "urlNow":""
+      "iconSrc": "yt-music.png",
+      "urlNow":"https://music.youtube.com/"
 
     },
     {
       "name": "Figma",
       "src": "https://figma.com",
       "iconType": "internal",
-      "iconSrc": "/webapp-icon/figma.png",
+      "iconSrc": "figma.png",
       "urlNow":""
 
     },
@@ -27,7 +27,7 @@
       "name": "GitHub",
       "src": "https://github.com",
       "iconType": "internal",
-      "iconSrc": "/webapp-icon/github.png",
+      "iconSrc": "github.png",
       "urlNow":""
 
     },
@@ -36,7 +36,7 @@
       "name": "YouTube",
       "src": "https://youtube.com",
       "iconType": "internal",
-      "iconSrc": "/webapp-icon/youtube.png",
+      "iconSrc": "youtube.png",
       "urlNow":""
 
     },
@@ -44,7 +44,7 @@
       "name": "Google",
       "src": "https://google.com",
       "iconType": "internal",
-      "iconSrc": "/webapp-icon/google.png",
+      "iconSrc": "google.png",
       "urlNow":""
 
     }

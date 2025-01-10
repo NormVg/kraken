@@ -1,13 +1,14 @@
 <template>
   <button class="glass-btn" :style="cstyle" @click="onAppClick">
-    <img :src="prop.data.iconSrc" />
+    <img :src="iconImg" />
   </button>
 </template>
 
 <script setup>
-import { computed, ref ,watch} from "vue";
+import { computed, onUnmounted, ref, watch } from "vue";
 import { useWebAppStore } from "../../stores/WebAppsStores";
 import { useWinBasicStore } from "../../stores/basicInfo";
+
 
 const prop = defineProps({
   data: Object,
@@ -15,26 +16,60 @@ const prop = defineProps({
 const WinBasic = useWinBasicStore();
 const WebAppStore = useWebAppStore();
 
-const isActive = ref(false);
+import chatgpt from "../../assets/webapp-icon/chatgpt.png"
+import figma from "../../assets/webapp-icon/figma.png"
+import github from "../../assets/webapp-icon/github.png"
+import google from "../../assets/webapp-icon/google.png"
+import YTMusic from "../../assets/webapp-icon/yt-music.png"
+import youtube from "../../assets/webapp-icon/youtube.png"
+const iconImg = ref()
 
-watch(WinBasic.ScreenWindowTabs,()=>{
-  
-  const ifExistTab = WinBasic.ScreenWindowTabs.includes("WebView-" + prop.data.name)
-  if (isActive && !ifExistTab){
-    WebAppStore.RemoveActiveFromWebAppList({"name":"WebView-" + prop.data.name})
-    
-    isActive.value = false
-  }
+ if (prop.data.iconType  === "internal"){
+  // iconImg.value = require(`../../assets/webapp-icon${prop.data.iconSrc}`)
+  switch (prop.data.name) {
+    case "ChatGPT":
+      iconImg.value = chatgpt;
+      break;
+    case "YouTube Music":
+      iconImg.value = YTMusic;
+      break;
+    case "Figma":
+      iconImg.value = figma;
+      break;
+    case "GitHub":
+      iconImg.value = github;
+      break;
+    case "YouTube":
+      iconImg.value = youtube;
+      break;
+    case "Google":
+      iconImg.value = google;
+      break;
+    default:
+      iconImg.value = null; 
+      }
+
+ }
+
+const isActive = computed(()=>{
+  const ifExistTab = WinBasic.ScreenWindowTabs.includes(
+    "WebView-" + prop.data.name
+  );
+ return ifExistTab
 
 })
 
+
+
+
 const onAppClick = () => {
   if (!isActive.value) {
-    WebAppStore.AddToActiveWebAppList(prop.data);
     
-    isActive.value = true;
+    WebAppStore.AddToActiveWebAppList(prop.data);
 
+    
     WinBasic.ChangeCurrentScreenWindow(WinBasic.ScreenWindowTabs.length);
+
   } else {
     const index = WinBasic.GetIndexCurrentScreenWindow(
       "WebView-" + prop.data.name
