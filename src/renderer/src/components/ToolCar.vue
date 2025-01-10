@@ -1,29 +1,29 @@
 <template>
-    <div id="side-car-box">
-        <SideTerminal/>
-        <SideBarWeb/>
-    </div>
-
+  <div id="side-car-box">
+    <SideBarWeb />
+    <SideTerminal />
+  </div>
 </template>
 
 <script setup>
-import SideTerminal from './SideBarTools/SideTerminal.vue';
-import SideBarWeb from './SideBarTools/SideBarWeb.vue';
+import SideTerminal from "./SideBarTools/SideTerminal.vue";
+import SideBarWeb from "./SideBarTools/SideBarWeb.vue";
 </script>
 
 <style scoped>
-#side-car-box{
+#side-car-box {
+  height: 88vh;
+  width: 100%;
 
-height: 88vh;
-width: 100%;
-/* overflow: auto; */
-overflow-y: scroll;
-padding-top: 10px;
+  overflow-y: scroll;
+  padding-top: 10px;
 
-display: flex;
-justify-content: start;
-align-items: center;
-flex-direction:column;
-gap: 20px;
+  display: inline-grid;
+
+  gap: 20px;
+}
+
+#side-car-box::-webkit-scrollbar {
+  width: 10px;
 }
 </style>

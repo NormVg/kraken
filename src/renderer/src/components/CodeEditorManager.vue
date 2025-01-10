@@ -1,10 +1,12 @@
 <script setup>
-import { ref } from "vue";
+import {watch, ref } from "vue";
 import CodeEditor from "./CodeEditor.vue";
 import Tab from "./Tab.vue";
 import TabManager from "./TabManager.vue";
 
 import { useWinBasicStore } from "../stores/basicInfo";
+
+
 
 
 const WinBasic =  useWinBasicStore()
@@ -14,8 +16,9 @@ const TabsAll = ref([]);
 
 const updateTabsAll = (val) => {
   TabsAll.value = val;
-  // console.log(WinBasic.CodeEditorTab)
+  console.log(TabsAll.value)
 };
+
 
 
 </script>

@@ -181,6 +181,8 @@
       /* width: calc(100% - 50px) ; */
       width: 90%;
       background-color: #1c1c2a;
+      margin-left: auto;
+  margin-right: auto;
       /* margin-right: 25px; 
        margin-left: 25px; */
        /* overflow-x: hidden;

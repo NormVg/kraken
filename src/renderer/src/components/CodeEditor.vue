@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { Codemirror } from "vue-codemirror";
+import { basicSetup } from "codemirror";
 import { ctpMocha } from "../utils/krakenTheme";
 import { javascript } from "@codemirror/lang-javascript";
 import { css } from "@codemirror/lang-css";
@@ -50,6 +51,12 @@ switch (ext) {
   case "html":
     language.value = html();
     break;
+  
+}
+
+function removeUndefinedValues(arr) {
+  // Filter out undefined values from the array
+  return arr.filter(value => value !== undefined);
 }
 
 function readFileSync(filePath) {
@@ -66,7 +73,7 @@ code.value = readFileSync(prop.path);
 
 <template>
   <Codemirror
-    :extensions="[ctpMocha, language]"
+    :extensions=" removeUndefinedValues([ctpMocha,language]) "
     v-model="code"
     :style="{ height: '100%' }"
     :autofocus="true"

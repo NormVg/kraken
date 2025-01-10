@@ -94,6 +94,9 @@ function listDirectory(dirPath) {
 
 function createWindow() {
   // Create the browser window.
+  var iconPath = app.isPackaged
+  ? join(process.resourcesPath, `./app/resources/icon.png`)
+  : `./resources/icon.png`;
   const mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
@@ -103,12 +106,13 @@ function createWindow() {
     titleBarStyle: "hidden",
     transparent: true,
     frame: false,
-
+    icon:iconPath,
     webPreferences: {
       preload: join(__dirname, "../preload/index.js"),
       sandbox: false,
       nodeIntegration: true,
       webviewTag: true,
+      contextIsolation:false
     },
   });
 

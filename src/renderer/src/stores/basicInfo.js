@@ -97,6 +97,7 @@ export const useWinBasicStore = defineStore("win-title-store", () => {
   };
 
   const ChangeCodeEditorTab = (val) => {
+
     CodeEditorTab.value = val;
   };
 
