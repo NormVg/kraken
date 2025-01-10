@@ -28,8 +28,8 @@ function AppMin(){
       <WebViewControls/>
     </div>
     <div id="win-controls">
-      <div id="win-max" class="win-cb" @click="AppMax()"></div>
       <div id="win-min" class="win-cb" @click="AppMin()"></div>
+      <div id="win-max" class="win-cb" @click="AppMax()"></div>
       <div id="win-close" class="win-cb" @click="AppClose()"></div>
     </div>
   </div>
@@ -52,10 +52,10 @@ function AppMin(){
   left: 50%;
   transform: translate(-50%, -50%);
   height: 30px;
-
+  border-top: 1px solid whitesmoke;
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
-
+  
   display: flex;
   align-items: center;
   justify-content: left;
@@ -72,6 +72,9 @@ function AppMin(){
   height: 30px;
   border-bottom-right-radius: 20px;
   border-top-left-radius: 10px;
+  
+  border-left: 1px solid whitesmoke;
+  border-top: 1px solid whitesmoke;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,6 +95,9 @@ function AppMin(){
   min-width: 120px;
   border-bottom-left-radius: 20px;
   border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
+  border-right: 1px solid whitesmoke;
+  border-top: 1px solid whitesmoke;
   display: flex;
   align-items: center;
   justify-content: center;

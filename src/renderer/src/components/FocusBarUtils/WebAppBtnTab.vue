@@ -80,7 +80,7 @@ const onAppClick = () => {
 
 const cstyle = computed(() => {
   return isActive.value
-    ? "background: rgba(210, 15, 57,.2);"
+    ? "background: rgba(210, 15, 57,.4);"
     : "background: rgba(255, 255, 255, 0.1);";
 });
 </script>

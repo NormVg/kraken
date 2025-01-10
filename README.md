@@ -9,7 +9,7 @@
 ---
 
 > [!WARNING]  
-> Kraken is not optimized, and the Window border's are not made, so dont fear , its in active dev
+> Kraken is not optimized and it *just works*, so dont fear , its in active dev
 
 # Kraken Editor 
 

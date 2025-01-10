@@ -17,7 +17,7 @@ const prop = defineProps({
 
 <style scoped>
 #past-box{
-    width:95% ;
+    width:93% ;
     background-color: #0A0D18;
     transition: all 200ms ease-in-out;
     border: 1px solid #71738E;
@@ -35,7 +35,8 @@ const prop = defineProps({
     font-size: 12px;
     margin-top: 5px;
     /* width: 97%; */
-    overflow: hidden;
+    /* overflow: hidden; */
+    white-space: nowrap;
     
 }
 </style>

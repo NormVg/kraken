@@ -25,9 +25,22 @@ body {
   justify-content: center;
   background-color: var(--bg-color);
   user-select: none;
+  border-radius: 10px;
+  height: calc(100vh - 2px) ;
+  /* overflow: hidden; */
+  border: 1px solid whitesmoke;
 
 
 }
+
+#app{
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  /* border: 1px solid whitesmoke; */
+  border-radius: 10px;
+}
+
 .with-banner{
   background-image: url("../assets/banner.png");
   background-repeat: no-repeat;

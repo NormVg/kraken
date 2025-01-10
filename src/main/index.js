@@ -7,6 +7,27 @@ import os from "os";
 import pty from "node-pty";
 import fs from "fs";
 
+const checkDir  = (fullPath) =>{
+  // const isDirectory = fs.lstatSync(fullPath).isDirectory();
+
+  try {
+
+    if (fs.lstatSync(fullPath).isDirectory()) {
+      return true
+    } else {
+      return false
+    }
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      console.log('Directory does not exist');
+      return false
+    } else {
+      return false
+    }
+  }
+  
+}
+
 const getCurrentShell = () => {
   const shell = process.env.SHELL || process.env.COMSPEC; // COMSPEC is used on Windows
   if (!shell) {
@@ -113,6 +134,12 @@ function createWindow() {
   ipcMain.on("app-close", () => {
     console.log("closeing");
     mainWindow?.close();
+  });
+
+
+  ipcMain.on("check-dir", (e,r) => {
+    var a = checkDir(r)
+    e.reply("check-dir-reply",a)
   });
 
   ipcMain.on("app-max", () => {

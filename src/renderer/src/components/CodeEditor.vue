@@ -1,32 +1,72 @@
 <script setup>
 import { ref } from "vue";
 import { Codemirror } from "vue-codemirror";
-import { ctpMocha} from "../utils/krakenTheme"
+import { ctpMocha } from "../utils/krakenTheme";
 import { javascript } from "@codemirror/lang-javascript";
+import { css } from "@codemirror/lang-css";
+import { python } from "@codemirror/lang-python";
+import { go } from "@codemirror/lang-go";
+import { json } from "@codemirror/lang-json";
+import { xml } from "@codemirror/lang-xml";
+import { html } from "@codemirror/lang-html";
+import { markdown } from "@codemirror/lang-markdown";
+import { rust } from "@codemirror/lang-rust";
 
 const prop = defineProps({
-  path:{
-    typeof:String
-  }
-})
+  path: {
+    typeof: String,
+  },
+});
+
 const code = ref("");
+const language = ref();
+
+const ext = prop.path.split(".").pop().toLowerCase();
+switch (ext) {
+  case "js":
+    language.value = javascript();
+    break;
+  case "py":
+    language.value = python();
+    break;
+  case "json":
+    language.value = json();
+    break;
+  case "css":
+    language.value = css();
+    break;
+  case "xml":
+    language.value = xml();
+    break;
+  case "rs":
+    language.value = rust();
+    break;
+  case go:
+    language.value = go();
+    break;
+  case "md":
+    language.value = markdown();
+    break;
+  case "html":
+    language.value = html();
+    break;
+}
 
 function readFileSync(filePath) {
-    try {
-        const data = window.fs.readFileSync(filePath, 'utf8'); // Read the file synchronously
-        return data;
-    } catch (error) {
-        console.error('Error reading file:', error.message);
-        return null;
-    }
+  try {
+    const data = window.fs.readFileSync(filePath, "utf8"); // Read the file synchronously
+    return data;
+  } catch (error) {
+    console.error("Error reading file:", error.message);
+    return null;
+  }
 }
-code.value = readFileSync(prop.path)
-
+code.value = readFileSync(prop.path);
 </script>
 
 <template>
   <Codemirror
-    :extensions="[ctpMocha,javascript()]"
+    :extensions="[ctpMocha, language]"
     v-model="code"
     :style="{ height: '100%' }"
     :autofocus="true"

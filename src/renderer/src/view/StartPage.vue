@@ -10,9 +10,23 @@ import { updateRecentFolderDB } from "../utils/WinBasicUtils";
 const Win = useWinBasicStore();
 const recentFolderList = ref([]);
 
+
+
 const SetEditor = (val) => {
-  Win.ChangeFolder(val);
-  Win.ChangeOnEditor(true);
+
+  window.electron.ipcRenderer.send("check-dir",val)
+  window.electron.ipcRenderer.on("check-dir-reply", (e, r) => {
+
+    if (r=== true){
+      Win.ChangeFolder(val);
+      Win.ChangeOnEditor(true);    
+    }else{
+      alert(val + " Directory does not exist")
+    }
+
+  })
+  // Win.ChangeFolder(val);
+  // Win.ChangeOnEditor(true);
 };
 
 const getFolder = () => {
@@ -75,7 +89,8 @@ window.electron.ipcRenderer.on("read-db-reply-recentfolder", (e, r) => {
   justify-content: start;
   flex-direction: column;
   align-items: flex-start;
-  /* overflow-y: hidden; */
+  /* border: 1px solid whitesmoke; */
+  overflow-y: auto;
   /* overflow-x:hidden ; */
 }
 #open-folder-btn {
