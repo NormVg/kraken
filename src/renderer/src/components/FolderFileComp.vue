@@ -5,6 +5,10 @@ import FxOpenFolder from "../assets/icons/fx-openfolder.png";
 import FxFile from "../assets/icons/fx-file.png";
 import FxImage from "../assets/icons/fx-image.png";
 import { useWinBasicStore } from "../stores/basicInfo";
+
+import {getFolderCode, getIconCode} from "../utils/getFileFolderIcon"
+
+
 const prop = defineProps({
   data: {},
 });
@@ -13,13 +17,24 @@ const WinBasic = useWinBasicStore();
 
 const isFolderActive = ref(false);
 
+
+const FileIcon = computed(()=>{
+   return "/mocha_icon/"+ getIconCode(prop.data.name) + ".svg"
+})
+
+const FolderIconClose =  computed(()=>{
+   return "/mocha_icon/"+ getFolderCode(prop.data.name) + ".svg"
+})
+
+const FolderIconOpen =  computed(()=>{
+   return "/mocha_icon/"+ getFolderCode(prop.data.name) + "_open.svg"
+})
+
 const isFolder = computed(() => {
   return prop.data.type === "directory" ? true : false;
 });
 
-const isImage = computed(() => {
-  return prop.data.type === "image" ? true : false;
-});
+
 
 const DirList = ref([]);
 
@@ -73,8 +88,8 @@ const openFile = () => {
   <div v-if="isFolder" id="folder-comp">
     <span @click="switchActiveFolder()" id="folder-comp-name">
       <span>
-        <img v-if="!isFolderActive" :src="FxFolder" />
-        <img v-if="isFolderActive" :src="FxOpenFolder" />
+        <img v-if="!isFolderActive" :src="FolderIconClose" />
+        <img v-if="isFolderActive" :src="FolderIconOpen" />
       </span>
       {{ prop.data.name }}</span
     >
@@ -84,16 +99,12 @@ const openFile = () => {
     </div>
   </div>
 
-  <div v-else-if="isImage" id="file-comp">
-    <span>
-      <img v-if="isImage" :src="FxImage" />
-    </span>
-    {{ prop.data.name }}
-  </div>
+
 
   <div v-else id="file-comp" @click="openFile">
     <span>
-      <img :src="FxFile" />
+      <!-- <img :src="FxFile" /> -->
+      <img :src="FileIcon" />
     </span>
     {{ prop.data.name }}
   </div>

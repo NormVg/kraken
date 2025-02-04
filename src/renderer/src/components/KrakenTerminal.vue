@@ -1,5 +1,5 @@
 <template>
-  <div  class="terminal-container" ref="terminalRef"></div>
+  <div class="terminal-container" ref="terminalRef"></div>
 </template>
 
 <script setup>
@@ -12,6 +12,10 @@ import { WebglAddon } from "@xterm/addon-webgl";
 // import { ImageAddon } from "@xterm/addon-image";
 import { WebLinksAddon } from "@xterm/addon-web-links";
 import { SerializeAddon } from "@xterm/addon-serialize";
+import { useWinBasicStore } from "../stores/basicInfo";
+
+
+const WinBasic = useWinBasicStore()
 
 const customSettings = {
   enableSizeReports: true, // whether to enable CSI t reports (see below)
@@ -85,8 +89,8 @@ const initializeTerminal = () => {
     buildNumber: 22621,
 
     fontFamily: "CaskaydiaCove Nerd Font Mono",
-    fontWeight:"normal",
-    fontSize:"14"
+    fontWeight: "normal",
+    fontSize: "14",
   });
 
   const WebGLaddon = new WebglAddon();
@@ -104,7 +108,6 @@ const initializeTerminal = () => {
   });
   terminal.loadAddon(clipboardAddon);
   terminal.loadAddon(new WebLinksAddon());
-
 
   const serializeAddon = new SerializeAddon();
   terminal.loadAddon(serializeAddon);
@@ -140,22 +143,36 @@ const initializeTerminal = () => {
     handleTerminalExit();
   });
 
-  terminal.attachCustomKeyEventHandler((event) => {
-    if (event.ctrlKey && event.shiftKey && event.code === "KeyC") {
-      console.log("Copying selected text...");
-      const selection = terminal.getSelection();
-      navigator.clipboard.writeText(selection);
-      return false; // Prevent default behavior
+  terminal.attachCustomKeyEventHandler((e) => {
+    if (e.ctrlKey && e.shiftKey && e.code === "ArrowRight") {
+      WinBasic.NextCurrentScreenWindow()
+      return false;
     }
 
-    if (event.ctrlKey && event.shiftKey && event.code === "KeyV") {
-      console.log("Pasting clipboard content...");
-      navigator.clipboard.readText().then((text) => terminal.write(text));
-      return false; // Prevent default behavior
+    if (e.ctrlKey && e.shiftKey && e.code === "ArrowLeft") {
+      WinBasic.PrevCurrentScreenWindow()
+      return false;
     }
 
-    return true; // Allow other keys to propagate
+    return true
   });
+
+  // terminal.attachCustomKeyEventHandler((event) => {
+  //   if (event.ctrlKey && event.shiftKey && event.code === "KeyC") {
+  //     console.log("Copying selected text...");
+  //     const selection = terminal.getSelection();
+  //     navigator.clipboard.writeText(selection);
+  //     return false; // Prevent default behavior
+  //   }
+
+  //   if (event.ctrlKey && event.shiftKey && event.code === "KeyV") {
+  //     console.log("Pasting clipboard content...");
+  //     navigator.clipboard.readText().then((text) => terminal.write(text));
+  //     return false; // Prevent default behavior
+  //   }
+
+  //   return true; // Allow other keys to propagate
+  // });
 };
 
 const handleTerminalExit = () => {
@@ -171,19 +188,18 @@ onBeforeUnmount(() => {
 });
 </script>
 
-<style scoped >
-.terminal-container{
-    height: 80vh;
-    margin-top: 10px;
-    padding: 10px 5px;
-    border-radius: 10px;
-    width: calc(100% - 30px) ;
-    
-    background-color: #0A0D18;
-    margin-right: 15px; 
-     margin-left: 15px;
-     overflow-x: hidden;
-     /* border: 1px solid red; */
-}
+<style scoped>
+.terminal-container {
+  height: 80vh;
+  margin-top: 10px;
+  padding: 10px 5px;
+  border-radius: 10px;
+  width: calc(100% - 30px);
 
+  background-color: #0a0d18;
+  margin-right: 15px;
+  margin-left: 15px;
+  overflow-x: hidden;
+  /* border: 1px solid red; */
+}
 </style>

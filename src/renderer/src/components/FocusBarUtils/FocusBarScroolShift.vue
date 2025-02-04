@@ -11,7 +11,28 @@
 import { computed } from "vue";
 import { useWinBasicStore } from "../../stores/basicInfo";
 
+
+
+
 const WinBasic = useWinBasicStore();
+
+
+import useHotkey from 'vue3-hotkey'
+import { ref } from 'vue'
+const hotkeys = ref([
+
+])
+const stopArr = useHotkey(hotkeys.value)
+
+// 取消监听快捷键
+const removeHotKeys = (hk) => {
+  stopArr.foreach((item) => item())
+}
+
+
+
+
+
 
 const BallStyle = computed(() => {
   return `margin-left: ${WinBasic.ScroolShiftPos}px;`;

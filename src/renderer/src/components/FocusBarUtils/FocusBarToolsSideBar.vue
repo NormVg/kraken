@@ -15,6 +15,16 @@ const switchBar = ()=>{
     WinBasic.ChangeIsSideBar(!WinBasic.isSidebar)
 }
 
+
+
+
+
+
+
+
+
+
+
 </script>
 
 <style>

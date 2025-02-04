@@ -12,6 +12,11 @@ import { xml } from "@codemirror/lang-xml";
 import { html } from "@codemirror/lang-html";
 import { markdown } from "@codemirror/lang-markdown";
 import { rust } from "@codemirror/lang-rust";
+import { vue } from "@codemirror/lang-vue";
+
+import { vim } from "@replit/codemirror-vim";
+
+
 
 const prop = defineProps({
   path: {
@@ -25,6 +30,9 @@ const language = ref();
 const ext = prop.path.split(".").pop().toLowerCase();
 switch (ext) {
   case "js":
+    language.value = javascript();
+    break;
+  case "ts":
     language.value = javascript();
     break;
   case "py":
@@ -42,17 +50,21 @@ switch (ext) {
   case "rs":
     language.value = rust();
     break;
-  case go:
+  case "go":
     language.value = go();
     break;
   case "md":
     language.value = markdown();
+    break;
+  case "vue":
+    language.value = vue();
     break;
   case "html":
     language.value = html();
     break;
   
 }
+
 
 function removeUndefinedValues(arr) {
   // Filter out undefined values from the array
@@ -73,11 +85,12 @@ code.value = readFileSync(prop.path);
 
 <template>
   <Codemirror
-    :extensions=" removeUndefinedValues([ctpMocha,language]) "
+    :extensions=" removeUndefinedValues([ctpMocha,vim(),language]) "
     v-model="code"
     :style="{ height: '100%' }"
     :autofocus="true"
     :indent-with-tab="true"
+    
   />
 </template>
 

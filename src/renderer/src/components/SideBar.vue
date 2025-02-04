@@ -62,7 +62,29 @@ const ToolStyle = computed(() => {
 </script>
 
 <style scoped>
+#editor-side-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 1px; /* Match border-radius */
+  right: 10px; /* Match border-radius */
+  height: 1px; /* Border thickness */
+  background: white;
+}
+
+#editor-side-bar::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 1px; /* Match border-radius */
+  right: 10px; /* Match border-radius */
+  height: 1px; /* Border thickness */
+  background: white;
+}
 #editor-side-bar {
+
+  
+
   background-color: #0a0d18;
 
   height: 100%;

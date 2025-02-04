@@ -2,6 +2,7 @@
   <div className="app-view-box ">
     <div>
       <webview
+      
         :id="webviewID"
         :src="prop.data.src"
         allowpopups="true"

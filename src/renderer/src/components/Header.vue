@@ -24,9 +24,12 @@ function AppMin(){
 <template>
   <div id="win-head">
     <div id="win-title">{{ WinTitle.TitleVal }}</div>
-    <div id="win-center-pannel" v-if="WinTitle.isMiddleBar">
-      <WebViewControls/>
-    </div>
+    <Transition>
+
+      <div id="win-center-pannel" v-if="WinTitle.isMiddleBar">
+        <WebViewControls/>
+      </div>
+    </Transition>
     <div id="win-controls">
       <div id="win-min" class="win-cb" @click="AppMin()"></div>
       <div id="win-max" class="win-cb" @click="AppMax()"></div>
@@ -52,7 +55,7 @@ function AppMin(){
   left: 50%;
   transform: translate(-50%, -50%);
   height: 30px;
-  border-top: 1px solid whitesmoke;
+  border-top: 2px solid white;
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
   
@@ -61,6 +64,8 @@ function AppMin(){
   justify-content: left;
   
   padding: 0px 20px;
+
+  
 }
 #win-title {
   background-color: #0a0d18;
@@ -128,5 +133,16 @@ function AppMin(){
     background-color: #FED31D;
     border-radius: 5px;
     width: 25px;
+}
+
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>

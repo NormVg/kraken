@@ -150,5 +150,6 @@ export const useWinBasicStore = defineStore("win-title-store", () => {
     ChangeScreenWindowTabs,
     ScroolShiftPos,
     GetIndexCurrentScreenWindow,
+
   };
 });

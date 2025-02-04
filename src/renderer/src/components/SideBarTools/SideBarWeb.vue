@@ -12,6 +12,7 @@
     <div className="side-app-view-box ">
       <div>
         <webview
+        useragent="Mozilla/5.0 (Linux; Android 12; Pixel 6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Mobile Safari/537.36"
           id="side-web-tab"
           src="https://google.com"
           allowpopups="true"
