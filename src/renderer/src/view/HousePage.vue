@@ -10,10 +10,12 @@ import { useWinBasicStore } from "../stores/basicInfo";
 import { computed, onMounted, onUnmounted, useCssVars } from "vue";
 import { useWebAppStore } from "../stores/WebAppsStores";
 import KrakenTerminal from "../components/KrakenTerminal.vue";
-
-
+import CommandPallet from "../components/CommandPallet.vue";
+import {useCommandPalletStore} from "../stores/CommandPalletStore"
 const WinBasic = useWinBasicStore();
 const WebAppStore = useWebAppStore()
+const CommandPalletStore =  useCommandPalletStore()
+
 
 const ScreenSideBarStyle = computed(() => {
   return WinBasic.isSidebar
@@ -32,6 +34,7 @@ onUnmounted(()=>{
 </script>
 
 <template>
+  <CommandPallet v-if="CommandPalletStore.isCommandPallet"/>
   <div id="screen" :style="ScreenSideBarStyle">
     <ScreenTabManager
       :currentTab="WinBasic.CurrentScreenWindow"

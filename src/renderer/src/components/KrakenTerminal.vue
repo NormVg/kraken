@@ -154,6 +154,11 @@ const initializeTerminal = () => {
       return false;
     }
 
+    if (e.ctrlKey && e.shiftKey && e.code === "s") {
+      WinBasic.ChangeIsSideBar(!WinBasic.isSidebar)
+      return false;
+    }
+
     return true
   });
 

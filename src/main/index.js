@@ -7,8 +7,13 @@ import os from "os";
 import pty from "node-pty";
 import fs from "fs";
 
+
+const AppResoursePath = app.isPackaged ? join(os.homedir(), `KrakenCode`) : `./resources/`;
+
+
+
 const checkDir  = (fullPath) =>{
-  // const isDirectory = fs.lstatSync(fullPath).isDirectory();
+  
 
   try {
 
@@ -56,9 +61,15 @@ function isImageFile(filePath) {
 }
 
 function ReadWebAppDb(name) {
-  var dbpath = app.isPackaged
-    ? join(process.resourcesPath, `./app/resources/db/${name}.json`)
-    : `./resources/db/${name}.json`;
+  // var dbpath = app.isPackaged
+  //   ? join(process.resourcesPath, `./app/resources/db/${name}.json`)
+  //   : `./resources/db/${name}.json`;
+
+  console.log(AppResoursePath)
+
+  const dbpath = join(AppResoursePath,`db/${name}.json`)
+
+
   var data = fs.readFileSync(dbpath, "utf8");
   var output = JSON.parse(data);
   console.log(output);
@@ -66,9 +77,12 @@ function ReadWebAppDb(name) {
 }
 
 function WriteWebAppDb(name, output) {
-  var dbpath = app.isPackaged
-    ? join(process.resourcesPath, `./app/resources/db/${name}.json`)
-    : `./resources/db/${name}.json`;
+  // var dbpath = app.isPackaged
+  //   ? join(process.resourcesPath, `./app/resources/db/${name}.json`)
+  //   : `./resources/db/${name}.json`;
+
+  const dbpath = join(AppResoursePath,`db/${name}.json`)
+
   let data = JSON.stringify(output, null, 2);
   fs.writeFileSync(dbpath, data);
 }
@@ -92,11 +106,37 @@ function listDirectory(dirPath) {
   }
 }
 
+function setupAppFolder(){
+
+  var iconPath = app.isPackaged
+  ? join(process.resourcesPath, `./app/resources/`)
+  : `./resources/`;
+
+
+  const home_dir = os.homedir()
+  
+  if (!fs.existsSync(join(home_dir, "KrakenCode"))){
+    fs.mkdirSync(join(home_dir, "KrakenCode"))
+    fs.cpSync(iconPath,join(home_dir, "KrakenCode"),{recursive:true})
+    console.log("<--- SETUP KRAKEN FOLDER --->")
+  }
+
+
+
+}
+
+
 function createWindow() {
   // Create the browser window.
-  var iconPath = app.isPackaged
-  ? join(process.resourcesPath, `./app/resources/icon.png`)
-  : `./resources/icon.png`;
+
+  setupAppFolder()
+
+  // var iconPath = app.isPackaged
+  // ? join(process.resourcesPath, `./app/resources/icon.png`)
+  // : `./resources/icon.png`;
+
+  const iconPath = join(AppResoursePath,"icon.png")
+
   const mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
@@ -136,7 +176,7 @@ function createWindow() {
       });
   });
 
-
+  
 
 
   ipcMain.on("app-close", () => {
