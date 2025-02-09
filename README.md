@@ -83,9 +83,39 @@ The final design of Kraken is the result of extensive research, experimentation,
 - [x] Tools
 - [x] Intigrated Web Apps
 - [ ] Settings
-- [ ] Command pallet
+- [x] Command pallet
 - [ ] Seamless AI intigration with ollama
 
+
+## 🎮 Keyboard Shortcuts  
+
+Kraken comes with powerful keyboard shortcuts to enhance your workflow. Below is a list of available shortcuts:  
+
+### 🖥️ **Window & Navigation Controls**  
+
+| **Action**                      | **Shortcut**                  |
+|---------------------------------|------------------------------|
+| **Toggle Sidebar**              | `Ctrl + Shift + B`           |
+| **Open File Explorer Sidebar**  | `Ctrl + Shift + F`           |
+| **Open Toolbar Sidebar**        | `Ctrl + Shift + T`           |
+| **Switch to Previous Screen**   | `Ctrl + Shift + Alt + Tab`   |
+| **Switch to Next Screen**       | `Ctrl + Alt + Tab`           |
+| **Jump to Screen Window 1**     | `Shift + Alt + T`            |
+| **Jump to Screen Window 2**     | `Shift + Alt + E`            |
+
+### 🛠️ **Command Palette & Utility**  
+| **Action**                      | **Shortcut**                  |
+|---------------------------------|------------------------------|
+| **Toggle Command Palette**      | `Ctrl + Shift + P`           |
+| **Open Specific Tab (1-9)**     | `Ctrl + (1-9)`               |
+
+### 🔥 **Easter Egg**  
+| **Action**                      | **Shortcut**                  |
+|---------------------------------|------------------------------|
+| **Reveal Kraken's Awesomeness** | `k r a k e n i s a w s m`   |
+
+<!-- 
+🚀 **Tip**: You can modify these shortcuts based on your needs inside the settings panel! Let Kraken supercharge your workflow! ⚡ -->
 
 ## Made-with
 

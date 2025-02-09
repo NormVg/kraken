@@ -1,7 +1,8 @@
 import { contextBridge } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 import fs from "fs";
-
+import os from "os"
+import path from "path"
 // Custom APIs for renderer
 const api = {}
 
@@ -13,6 +14,9 @@ if (process.contextIsolated) {
     contextBridge.exposeInMainWorld('electron', electronAPI)
     contextBridge.exposeInMainWorld('api', api)
     contextBridge.exposeInMainWorld('fs', fs)
+    contextBridge.exposeInMainWorld('os', os)
+    contextBridge.exposeInMainWorld('os', path)
+
   } catch (error) {
     console.error(error)
   }
@@ -20,4 +24,7 @@ if (process.contextIsolated) {
   window.electron = electronAPI
   window.api = api
   window.fs = fs
+  window.os = os
+  window.path = path
+
 }

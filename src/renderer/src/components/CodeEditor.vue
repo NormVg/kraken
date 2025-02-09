@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { Codemirror } from "vue-codemirror";
 import { basicSetup } from "codemirror";
 import { ctpMocha } from "../utils/krakenTheme";
@@ -14,14 +14,16 @@ import { markdown } from "@codemirror/lang-markdown";
 import { rust } from "@codemirror/lang-rust";
 import { vue } from "@codemirror/lang-vue";
 
-import { vim } from "@replit/codemirror-vim";
+import { Vim ,vim } from "@replit/codemirror-vim";
+import { saveFilePath } from "../utils/SysManage";
 
+import { useWinBasicStore } from "../stores/basicInfo";
 
+const WinBasic = useWinBasicStore()
 
 const prop = defineProps({
-  path: {
-    typeof: String,
-  },
+  path: String,
+  name:String
 });
 
 const code = ref("");
@@ -66,6 +68,7 @@ switch (ext) {
 }
 
 
+
 function removeUndefinedValues(arr) {
   // Filter out undefined values from the array
   return arr.filter(value => value !== undefined);
@@ -80,18 +83,49 @@ function readFileSync(filePath) {
     return null;
   }
 }
+
+
 code.value = readFileSync(prop.path);
+
+
+Vim.defineEx('write', 'w', function() {
+    // save the file
+    console.log("save file")
+    saveFilePath(code.value,prop.path)
+});
+
+
+Vim.defineEx('wq-writequit', 'wq', function() {
+    // save the file
+    console.log("save and exit")
+    saveFilePath(code.value,prop.path)
+    WinBasic.closeCodeTab(prop)
+
+});
+
+
+Vim.defineEx('quit', 'q', function() {
+    // save the file
+    console.log("exit",prop)
+    WinBasic.closeCodeTab(prop)
+});
+
 </script>
 
 <template>
   <Codemirror
     :extensions=" removeUndefinedValues([ctpMocha,vim(),language]) "
     v-model="code"
-    :style="{ height: '100%' }"
+    :style="{ height: '100%', marginLeft:'1px' }"
     :autofocus="true"
     :indent-with-tab="true"
     
   />
 </template>
 
-<style scoped></style>
+<style >
+.cm-vim-panel input{
+  color: #a6e3a1 !important;
+}
+
+</style>

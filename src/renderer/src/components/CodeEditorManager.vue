@@ -28,7 +28,7 @@ const updateTabsAll = (val) => {
   <TabManager :currentTab="WinBasic.ActiveCodeEditorTab" :updateTabsList="updateTabsAll">
 
     <Tab :WinID="win.name+'-id-'+win.path" v-for="win in WinBasic.CodeEditorTab" :key="win" cstyle="height: 100%;width:100%;">
-      <CodeEditor :path="win.path" />
+      <CodeEditor :path="win.path" :name="win.name" />
     </Tab>
 
 

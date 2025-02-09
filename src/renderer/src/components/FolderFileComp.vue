@@ -1,13 +1,14 @@
 <script setup>
 import { computed, ref } from "vue";
-import FxFolder from "../assets/icons/fx-folder.png";
-import FxOpenFolder from "../assets/icons/fx-openfolder.png";
-import FxFile from "../assets/icons/fx-file.png";
-import FxImage from "../assets/icons/fx-image.png";
+
 import { useWinBasicStore } from "../stores/basicInfo";
 
 import {getFolderCode, getIconCode} from "../utils/getFileFolderIcon"
+import { listDirectory } from "../utils/SysManage";
+import NewFileFolder from "./NewFileFolder.vue";
 
+import AddFile from "../assets/icons/add-file.svg"
+import AddFolder from "../assets/icons/add-folder.svg"
 
 const prop = defineProps({
   data: {},
@@ -19,15 +20,26 @@ const isFolderActive = ref(false);
 
 
 const FileIcon = computed(()=>{
-   return "/mocha_icon/"+ getIconCode(prop.data.name) + ".svg"
+
+  const Lpath  = WinBasic.isAppPackaged ?  window.os.homedir()+ `/KrakenCode` + "/mocha_icon/" + getIconCode(prop.data.name) + ".svg" : "/mocha_icon/"+ getIconCode(prop.data.name) + ".svg"
+  // console.log(Lpath)
+  return Lpath
+
 })
 
 const FolderIconClose =  computed(()=>{
-   return "/mocha_icon/"+ getFolderCode(prop.data.name) + ".svg"
+   
+  const Lpath  = WinBasic.isAppPackaged ?  window.os.homedir()+ `/KrakenCode` + "/mocha_icon/" + getFolderCode(prop.data.name) + ".svg" : "/mocha_icon/"+ getFolderCode(prop.data.name) + ".svg"
+  // console.log(Lpath)
+  return Lpath
 })
 
 const FolderIconOpen =  computed(()=>{
-   return "/mocha_icon/"+ getFolderCode(prop.data.name) + "_open.svg"
+  //  return "/mocha_icon/"+ getFolderCode(prop.data.name) + "_open.svg"
+
+   const Lpath  = WinBasic.isAppPackaged ?  window.os.homedir()+ `/KrakenCode` + "/mocha_icon/" + getFolderCode(prop.data.name) + "_open.svg" : "/mocha_icon/"+ getFolderCode(prop.data.name) + "_open.svg"
+  // console.log(Lpath)
+  return Lpath
 })
 
 const isFolder = computed(() => {
@@ -38,21 +50,20 @@ const isFolder = computed(() => {
 
 const DirList = ref([]);
 
-window.electron.ipcRenderer.on("path-list-reply-" + prop.data.path, (e, r) => {
- 
-  DirList.value = JSON.parse(r);
 
-  DirList.value.forEach((element) => {
- 
-  });
-});
 
-const switchActiveFolder = () => {
+const  loadDir  = async ()=>{
+  DirList.value = await listDirectory(prop.data.path) 
+}
+
+// loadDir()
+
+const switchActiveFolder = async () => {
   if (isFolderActive.value) {
     isFolderActive.value = false;
   } else {
-    window.electron.ipcRenderer.send("path-list", prop.data.path);
-
+    // window.electron.ipcRenderer.send("path-list", prop.data.path);
+    await loadDir()
     isFolderActive.value = true;
   }
 };
@@ -82,6 +93,33 @@ const openFile = () => {
   }
   WinBasic.switchToCodeTab(prop.data)
 };
+
+
+
+
+const newActiveFF = ref(false)
+const newActiveFolder = ref(false)
+
+
+const createNewFile = () => {
+  newActiveFF.value = true;
+  newActiveFolder.value = false
+  // isFolderActive.value = false;
+};
+
+const createNewFolder = () => {
+  newActiveFF.value = true;
+  newActiveFolder.value = true
+  // isFolderActive.value = false;
+  
+};
+
+const handleBlur = () => {
+  newActiveFF.value = false;
+};
+
+
+
 </script>
 
 <template>
@@ -91,10 +129,13 @@ const openFile = () => {
         <img v-if="!isFolderActive" :src="FolderIconClose" />
         <img v-if="isFolderActive" :src="FolderIconOpen" />
       </span>
-      {{ prop.data.name }}</span
-    >
+      {{ prop.data.name }}
 
-    <div id="inner-folder-box" v-if="isFolderActive">
+      <div class="filex-tool-btn" @click="createNewFile" ><img :src="AddFile" alt=""></div>
+      <div class="filex-tool-btn" @click="createNewFolder"><img :src="AddFolder" alt=""></div>
+    </span> 
+      <div id="inner-folder-box" v-if="isFolderActive">
+      <NewFileFolder v-if="newActiveFF" :onBlurCall="handleBlur" :path="prop.data.path" :isFolder="newActiveFolder" :reloadDirCall="loadDir" />
       <FolderFileComp v-for="item in DirList" :key="item" :data="item" />
     </div>
   </div>
@@ -111,6 +152,33 @@ const openFile = () => {
 </template>
 
 <style scoped>
+#folder-comp:hover .filex-tool-btn{
+  opacity: 1;
+}
+
+.filex-tool-btn:hover {
+  background-color: #1f2337;
+}
+
+.filex-tool-btn:active {
+  background-color: #1b1f30;
+}
+.filex-tool-btn {
+  opacity: 0;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+  transition: all ease-in-out 200ms;
+  
+}
+.filex-tool-btn:first-of-type{
+  margin-left: auto;
+  margin-right: 0px;
+}
+
 #inner-folder-box {
   border-left: 1px solid #71738e;
 }

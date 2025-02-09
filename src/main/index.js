@@ -68,7 +68,7 @@ function ReadWebAppDb(name) {
   console.log(AppResoursePath)
 
   const dbpath = join(AppResoursePath,`db/${name}.json`)
-
+  
 
   var data = fs.readFileSync(dbpath, "utf8");
   var output = JSON.parse(data);
@@ -157,7 +157,7 @@ function createWindow() {
     },
   });
 
-  mainWindow.webContents.openDevTools();
+  app.isPackaged? console.log('<--- DEV MODE --->') : mainWindow.webContents.openDevTools();
   mainWindow.on("ready-to-show", () => {
     mainWindow.show();
   });
@@ -176,6 +176,12 @@ function createWindow() {
       });
   });
 
+  
+  ipcMain.on("app-prod", (e,r) => {
+    
+    e.reply("app-prod-reply",app.isPackaged)
+
+  });
   
 
 

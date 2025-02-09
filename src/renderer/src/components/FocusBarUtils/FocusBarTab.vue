@@ -38,7 +38,7 @@ const switchToTab = ()=>{
 }
 
 const closethisTab=()=>{
-  
+    // console.log(prop.name)
     WinBasic.closeCodeTab(prop)
   
 }

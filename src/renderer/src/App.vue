@@ -9,6 +9,13 @@ const WinBasic =  useWinBasicStore()
 const CommandPalletStore = useCommandPalletStore()
 
 
+window.electron.ipcRenderer.send("app-prod","")
+  window.electron.ipcRenderer.on("app-prod-reply", (e, r) => {
+    WinBasic.ChangeIsAppPackaged(r)
+    
+
+  })
+
 import { tinykeys } from "tinykeys" // Or `window.tinykeys` using the CDN version
 import { onMounted } from 'vue';
 import { useCommandPalletStore } from './stores/CommandPalletStore';
@@ -17,43 +24,57 @@ onMounted(()=>{
 
 
   tinykeys(window, {
-  "Control+Shift+s": (event) => {
+  "Control+Shift+b": (event) => {
     event.preventDefault()
     WinBasic.ChangeIsSideBar(!WinBasic.isSidebar)
   },
-  "Control+e": (event) => {
+  "Control+Shift+f": (event) => {
     event.preventDefault()
     WinBasic.ChangeIsSideBar(true)
     WinBasic.ChangeIsFileXSideBar(true)
   },
-  "Control+t": (event) => {
+  "Control+Shift+t": (event) => {
     event.preventDefault()
     WinBasic.ChangeIsSideBar(true)
     WinBasic.ChangeIsFileXSideBar(false)
   },
 
-  "Control+Arrowleft":(event)=>{
+  "Control+Shift+Alt+Tab":(event)=>{
     event.preventDefault()
     WinBasic.PrevCurrentScreenWindow()
   },
 
-  "Control+ArrowRight":(event)=>{
+  "Control+Alt+Tab":(event)=>{
     event.preventDefault()
     WinBasic.NextCurrentScreenWindow()
   },
 
-  "Control+p":(event)=>{
+  "Control+Shift+p":(event)=>{
     event.preventDefault()
     CommandPalletStore.ChangeIsCommandPallet(!CommandPalletStore.isCommandPallet)
   },
 
+  "Shift+Alt+t":(event)=>{
+    event.preventDefault()
+    WinBasic.ChangeCurrentScreenWindow(1)
+  },
+"Shift+Alt+e":(event)=>{
+    event.preventDefault()
+    WinBasic.ChangeCurrentScreenWindow(1)
+  },
   "k r a k e n i s a w s m": () => {
     alert("Kraken is awsm")
   },
   "$mod+([0-9])": event => {
     event.preventDefault()
-    alert(`Either 'Control+${event.key}' or 'Meta+${event.key}' were pressed`)
-  },
+    console.log(WinBasic.ScreenWindowTabs.length,Number(event.key))
+    if (WinBasic.ScreenWindowTabs.length >= Number(event.key) ){
+
+      WinBasic.ChangeCurrentScreenWindow(Number(event.key-1))
+    }
+
+    // alert(`Either 'Control+${event.key}' or 'Meta+${event.key}' were pressed`)
+  }
 })
 
 })

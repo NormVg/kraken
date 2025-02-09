@@ -84,7 +84,7 @@ const ToolStyle = computed(() => {
 #editor-side-bar {
 
   
-
+  margin-right: 1px;
   background-color: #0a0d18;
 
   height: 100%;

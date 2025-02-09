@@ -16,6 +16,11 @@ export const useWinBasicStore = defineStore("win-title-store", () => {
   const CurrentScreenWindow = ref(0);
   const ScreenWindowTabs = ref([]);
   const ScroolShiftPos = ref();
+  const isAppPackaged = ref(false)
+
+  const ChangeIsAppPackaged = (val)=>{
+    isAppPackaged.value = val
+  }
 
   const ChangeScroolShiftPos = () => {
     ScroolShiftPos.value = ScrollShiftCalc(
@@ -150,6 +155,7 @@ export const useWinBasicStore = defineStore("win-title-store", () => {
     ChangeScreenWindowTabs,
     ScroolShiftPos,
     GetIndexCurrentScreenWindow,
-
+    isAppPackaged,
+    ChangeIsAppPackaged
   };
 });
