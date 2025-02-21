@@ -72,6 +72,11 @@ export const useWinBasicStore = defineStore("win-title-store", () => {
       list = moveStringByValue(list,"kraken-terminal-one",1)
     }
 
+    if (list[2] !== "mind-one" && list[2] !== undefined ){
+      // console.log(list,val,list[1])
+      list = moveStringByValue(list,"mind-one",2)
+    }
+
     ScreenWindowTabs.value = list;
     
 

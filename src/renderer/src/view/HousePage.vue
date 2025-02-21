@@ -12,6 +12,7 @@ import { useWebAppStore } from "../stores/WebAppsStores";
 import KrakenTerminal from "../components/KrakenTerminal.vue";
 import CommandPallet from "../components/CommandPallet.vue";
 import {useCommandPalletStore} from "../stores/CommandPalletStore"
+import MindChat from "../components/MindChat.vue";
 const WinBasic = useWinBasicStore();
 const WebAppStore = useWebAppStore()
 const CommandPalletStore =  useCommandPalletStore()
@@ -48,9 +49,15 @@ onUnmounted(()=>{
         <KrakenTerminal />
       </ScreenTab>
 
+
+      <ScreenTab WinID="mind-one" >
+        <MindChat/>
+      </ScreenTab>
+
       <ScreenTab :WinID="`WebView-${item.name}`" v-for="item in WebAppStore.activeWebAppTabs" :key="item" >
         <WebView :data="item" />
       </ScreenTab>
+
 
 
     </ScreenTabManager>
