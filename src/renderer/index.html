@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>Kraken</title>
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta
+    <!-- <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:"
     />
@@ -14,7 +14,16 @@
     <meta
   http-equiv="Content-Security-Policy"
   content="worker-src 'self' blob:; script-src 'self';"
-/>
+/> -->
+
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  connect-src 'self' https://generativelanguage.googleapis.com *;
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' *;
+  style-src 'self' 'unsafe-inline' *;
+  img-src 'self' data: https:;
+  worker-src 'self' blob:;
+">
   </head>
 
   <body>

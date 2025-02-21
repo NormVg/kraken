@@ -19,6 +19,8 @@ import { saveFilePath } from "../utils/SysManage";
 
 import { useWinBasicStore } from "../stores/basicInfo";
 
+import { Copilet } from "../utils/Copilet";
+
 const WinBasic = useWinBasicStore()
 
 const prop = defineProps({
@@ -110,11 +112,15 @@ Vim.defineEx('quit', 'q', function() {
     WinBasic.closeCodeTab(prop)
 });
 
+import { inlineCopilot } from "@mightymeld/codemirror-copilot";
+
+const AiCopilet = inlineCopilot(async (prefix, suffix) => Copilet(prefix,suffix,language),3000)
+
 </script>
 
 <template>
   <Codemirror
-    :extensions=" removeUndefinedValues([ctpMocha,vim(),language]) "
+    :extensions=" removeUndefinedValues([ctpMocha,vim(),language,AiCopilet]) "
     v-model="code"
     :style="{ height: '100%', marginLeft:'1px' }"
     :autofocus="true"

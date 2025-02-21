@@ -17,6 +17,7 @@ if (process.contextIsolated) {
     contextBridge.exposeInMainWorld('os', os)
     contextBridge.exposeInMainWorld('os', path)
 
+
   } catch (error) {
     console.error(error)
   }
@@ -26,5 +27,6 @@ if (process.contextIsolated) {
   window.fs = fs
   window.os = os
   window.path = path
+
 
 }
