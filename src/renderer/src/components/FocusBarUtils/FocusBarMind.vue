@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import terminalIcon from "../../assets/icons/mind.png";
+import terminalIcon from "../../assets/icons/mind.svg";
 import { useWinBasicStore } from "../../stores/basicInfo";
 
 const WinBasic = useWinBasicStore()

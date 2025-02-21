@@ -210,7 +210,7 @@ const handleBlur = () => {
 #folder-comp {
   min-height: 20px;
   max-width: 90%;
-  font-weight: 100;
+  font-weight: 300;
   display: flex;
   justify-content: flex-start;
   align-items: left;
@@ -233,7 +233,7 @@ const handleBlur = () => {
 #file-comp {
   height: 20px;
   min-width:90%;
-  font-weight: 100;
+  font-weight: 300;
   display: flex;
   justify-content: flex-start;
   align-items: center;

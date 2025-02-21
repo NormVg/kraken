@@ -58,7 +58,7 @@ const closethisTab=()=>{
   border-radius: 3px;
 }
 #focus-bar-tab {
-  font-weight: 150;
+  font-weight: 300;
   height: 22px;
   background-color: #272a29;
   border-radius: 5px;
