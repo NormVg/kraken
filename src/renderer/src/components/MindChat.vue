@@ -1,126 +1,234 @@
 <script setup>
-import { onMounted, ref, watch } from "vue";
-import { useWebAppStore } from "../stores/WebAppsStores";
-import { useWinBasicStore } from "../stores/basicInfo";
+import { computed, onMounted, ref, watch } from "vue";
 
-import VueMarkdown from "vue-markdown-render";
 import "../assets/markdown.css";
 import { useTextareaAutosize } from "@vueuse/core";
+import MindDropDown from "./MindComponent/MindDropDown.vue";
+import EntrBtn from "../assets/icons/enter.png";
+import MindHistory from "./MindComponent/MindHistory.vue";
+import MindChatComp from "./MindComponent/MindChatComp.vue";
 
-const skippedFirstScroll = ref(false);
+
+import { streamText } from 'ai';
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
+import { useAiChatStore } from "../stores/AiChatStore";
+import MindNewChat from "./MindComponent/MindNewChat.vue";
+
 
 const { textarea, input } = useTextareaAutosize();
 
-onMounted(() => {});
 
-const ChatList = ref([
-  {
-    text: "Hello! How can I assist you today?",
-    type: "bot",
-  },
-  {
-    text: "I need some help with my order.",
-    type: "user",
-  },
-  {
-    text: "Sure! Can you provide your order ID?",
-    type: "bot",
-  },
-  {
-    text: "It’s #123456.",
-    type: "user",
-  },
-  {
-    text: "Thanks! Your order is on the way and should arrive by tomorrow.",
-    type: "bot",
-  },
-  {
-    text: "Great! Can I change the delivery address?",
-    type: "user",
-  },
-  {
-    text: "Unfortunately, the order has already been dispatched, so the address cannot be changed.",
-    type: "bot",
-  },
-]);
+import { appendMessage, CreateNewChat, setChatName, getChatName } from "../utils/AiChatManager.js"
+
 
 const scrollToBottom = () => {
-  setTimeout(() => {
-    if (skippedFirstScroll.value) {
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
-        behavior: "smooth",
-      });
-    } else {
-      skippedFirstScroll.value = true;
-    }
-  }, 100);
-};
 
-watch(ChatList, scrollToBottom);
+  const div = document.getElementById("chat-box-area");
+  div.scrollTop = div.scrollHeight;
+
+}
+const GOOGLE_GENERATIVE_AI_API_KEY = ref("")
+
+window.electron.ipcRenderer.send("read-db", "apiKey");
+window.electron.ipcRenderer.on("read-db-reply-apiKey", (e, r) => {
+  console.log(r[0].key);
+
+  // GOOGLE_GENERATIVE_AI_API_KEY = r[0].key;
+  GOOGLE_GENERATIVE_AI_API_KEY.value = r[0].key;
+});
+
+
+const google = computed(() => {
+ return  createGoogleGenerativeAI({
+    apiKey: GOOGLE_GENERATIVE_AI_API_KEY.value,
+  })
+});
+
+
+
+
+const AIChatStore = useAiChatStore()
+
+const GetAIresp = async () => {
+
+
+  if (AIChatStore.CurrentChatID === undefined) {
+
+
+    const data = await CreateNewChat()
+    AIChatStore.setCurrentChatID(data.id)
+    AIChatStore.updateChatHistory()
+  }
+
+
+
+
+
+
+
+  if (!AIChatStore.isAIWorking) {
+
+
+    const userText = input.value;
+    AIChatStore.setLoadingModel(true)
+    AIChatStore.appendToCurrentChatMessages({ role: 'user', content: userText });
+
+
+
+    input.value = '';
+    console.log(AIChatStore.currentModel)
+
+    const result = streamText({
+      model: google.value(AIChatStore.currentModel),
+      messages: AIChatStore.CurrentChatMessages,
+    });
+
+    scrollToBottom()
+    await processStreaming(result);
+
+    const chatidC = AIChatStore.CurrentChatID
+    console.log(chatidC)
+
+    const nameis = await getChatName(chatidC)
+    if (nameis === "Kraken Chat") {
+
+      await setChatName(chatidC, userText)
+      AIChatStore.updateChatHistory()
+
+    }
+
+    await appendMessage(chatidC, userText, "user")
+
+
+
+  }
+
+}
+
+
+onMounted(() => {
+  AIChatStore.updateChatHistory()
+});
+
+
+
+
+async function processStreaming(result) {
+  let botResponse = "";
+
+  AIChatStore.setIsAIWorking(true)
+  AIChatStore.setLoadingModel(false)
+
+  AIChatStore.appendToCurrentChatMessages({ role: "assistant", content: "" })
+  for await (const delta of result.textStream) {
+    scrollToBottom()
+
+    botResponse += delta;
+    var message = AIChatStore.CurrentChatMessages
+    message[message.length - 1].content = botResponse;
+    AIChatStore.setCurrentChatMessages(message)
+
+    console.log(message);
+  }
+  appendMessage(AIChatStore.CurrentChatID, botResponse, "assistant").then(() => {
+    console.log("Message appended successfully!");
+  })
+  AIChatStore.setIsAIWorking(false)
+}
+
+
 </script>
 
 <template>
   <div className="mind-view-box ">
     <div id="mind-box">
       <div id="mind-chat">
-
         <div id="chat-box">
-
+          <MindChatComp />
         </div>
 
         <div id="chat-inp">
+          <textarea ref="textarea" v-model="input" class="resize-none" placeholder="What's on your mind?" rows="1" />
 
-            <textarea
-            ref="textarea"
-            v-model="input"
-            class="resize-none"
-            placeholder="What's on your mind?"
-            />I
+          <button @click="GetAIresp" id="send">
+            <img v-if="!AIChatStore.isAIWorking" :src="EntrBtn" alt="" />
+            <div v-else class="loader"></div>
+          </button>
         </div>
       </div>
-      <div id="mind-bar"></div>
+      <div id="mind-bar">
+        <MindNewChat />
+        <MindDropDown />
+        <MindHistory />
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-
-
-#chat-box{
-    border: 1px solid red;
-
+.resize-none {
+  resize: none;
+  /* border: 1px solid red; */
+  min-height: 30px;
 }
 
-#chat-inp{
-border: 1px solid red;
-transition: all 1s ease-in-out;
-  
+#chat-box {
+  width: 100%;
+}
+
+button img {
+  height: 40px;
+  width: 40px;
+}
+
+button {
+  border: none;
+  background: none;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+button:active {
+  background: rgba(245, 245, 245, 0.244);
+}
+
+#chat-inp {
+  /* border: 1px solid red; */
+  transition: all 1s ease-in-out;
+
   width: 60%;
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-direction: row;
   border-radius: 10px;
-  background-color: #161c2e;
+  background-color: #0a0d18;
   /* margin: 0% auto; */
   /* bottom: 20px; */
   animation: MoveBar 1s ease-out forwards;
-  padding-left: 3px;
+  /* padding-left: 10px;
+  padding-right: 10px; */
+  padding: 5px 10px;
+
+  position: absolute;
+  bottom: 12%;
+  left: 25%;
+  transform: translateX(-25%);
 }
 
-#mind-chat{
-    display: flex;
-    justify-items: center;
-    align-items: center;
-    
+#mind-chat {
+  display: flex;
+  justify-items: center;
+  align-items: center;
 }
 
 textarea {
   -ms-overflow-style: none;
   scrollbar-width: none;
-
-
 
   max-height: 200px;
   overflow-y: scroll;
@@ -133,11 +241,10 @@ textarea {
   border: none;
   color: #d7c2be;
   padding: 5px 10px;
-  font-family: 'Alef', sans-serif;
+  font-family: "Alef", sans-serif;
   font-weight: 400;
   font-style: normal;
   transition: width ease-in-out 400ms;
-
 }
 
 textarea:focus {
@@ -154,17 +261,26 @@ textarea::-webkit-scrollbar {
   display: flex;
   justify-items: center;
   align-items: center;
+  background: #ff5f5f10;
 }
+
 #mind-bar {
-  background-color: red;
-  width: 20%;
+  background-color: #0a0d18;
+  /* width: 25%; */
+  width: max(25%, 300px);
   height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  /* border: 1px solid red; */
+  padding-top: 50px;
 }
 
 #mind-chat {
   width: 100%;
   height: 100%;
-  background-color: #c499db;
+  /* background-color: #1C1C2A; */
 }
 
 .mind-view-box {
@@ -178,12 +294,12 @@ textarea::-webkit-scrollbar {
   overflow: hidden;
   margin-right: 15px;
   margin-left: 15px;
-  /* 
+  /*
     background-repeat: no-repeat;
     background-position: center; */
   background-color: #0a0d1877;
   /* background-size: 250px; */
-  /*   
+  /*
     -webkit-box-shadow: inset 0px 0px 30px -7px rgba(145, 210, 217, 1);
     -moz-box-shadow: inset 0px 0px 30px -7px rgba(145, 210, 217, 1);
     box-shadow: inset 0px 0px 30px -7px rgba(145, 210, 217, 1); */

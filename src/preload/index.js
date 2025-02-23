@@ -3,6 +3,8 @@ import { electronAPI } from '@electron-toolkit/preload'
 import fs from "fs";
 import os from "os"
 import path from "path"
+import { v4 as uuidv4 } from "uuid";
+
 // Custom APIs for renderer
 const api = {}
 
@@ -16,7 +18,7 @@ if (process.contextIsolated) {
     contextBridge.exposeInMainWorld('fs', fs)
     contextBridge.exposeInMainWorld('os', os)
     contextBridge.exposeInMainWorld('os', path)
-
+    contextBridge.exposeInMainWorld('uuidv4', uuidv4)
 
   } catch (error) {
     console.error(error)
@@ -27,6 +29,6 @@ if (process.contextIsolated) {
   window.fs = fs
   window.os = os
   window.path = path
-
+  window.uuidv4 = uuidv4
 
 }

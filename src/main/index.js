@@ -13,7 +13,7 @@ const AppResoursePath = app.isPackaged ? join(os.homedir(), `KrakenCode`) : `./r
 
 
 const checkDir  = (fullPath) =>{
-  
+
 
   try {
 
@@ -30,7 +30,7 @@ const checkDir  = (fullPath) =>{
       return false
     }
   }
-  
+
 }
 
 const getCurrentShell = () => {
@@ -68,7 +68,7 @@ function ReadWebAppDb(name) {
   console.log(AppResoursePath)
 
   const dbpath = join(AppResoursePath,`db/${name}.json`)
-  
+
 
   var data = fs.readFileSync(dbpath, "utf8");
   var output = JSON.parse(data);
@@ -114,7 +114,7 @@ function setupAppFolder(){
 
 
   const home_dir = os.homedir()
-  
+
   if (!fs.existsSync(join(home_dir, "KrakenCode"))){
     fs.mkdirSync(join(home_dir, "KrakenCode"))
     fs.cpSync(iconPath,join(home_dir, "KrakenCode"),{recursive:true})
@@ -176,13 +176,13 @@ function createWindow() {
       });
   });
 
-  
+
   ipcMain.on("app-prod", (e,r) => {
-    
+
     e.reply("app-prod-reply",app.isPackaged)
 
   });
-  
+
 
 
   ipcMain.on("app-close", () => {
@@ -222,7 +222,7 @@ function createWindow() {
 
   ipcMain.on("write-db", (e, r) => {
     const data = JSON.parse(r);
-    
+
     WriteWebAppDb(data.name, data.resp);
     e.reply("write-db-" + data.name, data.resp);
   });
@@ -243,10 +243,10 @@ function createWindow() {
     env: process.env,
     encoding: "utf-8",
   });
-    
 
-  
-  
+
+
+
 
   const resizePty = (cols, rows) => {
     if (ptyProcess) {
@@ -304,12 +304,12 @@ function createWindow() {
 
 
   ipcMain.on("side-terminal-resize", (event, data) => {
-     
+
     if (ptyProcessSide) {
       console.log(data.col, data.row);
       ptyProcessSide.resize(data.col, data.row);
     }
-    
+
   });
 
   ptyProcess.on("exit", (code, signal) => {

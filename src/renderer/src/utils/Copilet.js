@@ -1,6 +1,6 @@
 
 import { generateText } from 'ai';
-import { createGoogleGenerativeAI } from '@ai-sdk/google';
+import { createGoogleGenerativeAI} from '@ai-sdk/google';
 
 
 

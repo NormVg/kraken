@@ -1,0 +1,48 @@
+Create a ChatGPT-style chat interface with the following specifications:
+
+dark bg- #0A0D18
+a bit lighter dark bg = #1C1C2A
+a more lighter shade = #222A40
+
+Core Chat Interface:
+
+Implement a responsive chat area with message bubbles
+Dark theme with black background and monochrome color scheme
+User messages aligned right
+AI responses aligned left
+Smooth message animations and loading indicators
+Input field at bottom with send button and clear functionality
+
+Right Sidebar Requirements:
+
+Collapsible sidebar with smooth transition
+Resizable width (min: 250px, max: 400px)
+Chat history categorized into:
+    Today (with timestamp)
+    Yesterday (with timestamp)
+    Older (grouped by date)
+Clickable chat sessions that load previous conversations
+Search functionality for past chats
+Clear visual hierarchy with proper spacing
+
+
+
+
+Technical Specifications:
+
+Implement storage for json in the frontend only with dictnory
+Add proper state management for chat history
+Ensure responsive design for desktop only
+Include keyboard shortcuts (Ctrl+/ to focus search, Esc to collapse sidebar)
+Add proper error handling and loading states
+Implement smooth scrolling and lazy loading for chat history
+
+Please provide a fully functional implementation with clean, maintainable code and proper documentation.
+
+make it with vue , normal css and js not ts
+
+
+
+
+ i want sidebar it in right and font inside the chatlog is text aline to right and also add a optin for new chat , and make the component have the full space on screen or parent div perfectly alinement
+ and resizeable input textbox max height of 350px so if i put large text i can still see it and auto scrollabe on new text + if the ai processing msg you cant send new text and you can cancle the current text 

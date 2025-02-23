@@ -14,13 +14,13 @@ const recentFolderList = ref([]);
 
 const SetEditor = (val) => {
 
-  window.electron.ipcRenderer.send("check-dir",val)
+  window.electron.ipcRenderer.send("check-dir", val)
   window.electron.ipcRenderer.on("check-dir-reply", (e, r) => {
 
-    if (r=== true){
+    if (r === true) {
       Win.ChangeFolder(val);
-      Win.ChangeOnEditor(true);    
-    }else{
+      Win.ChangeOnEditor(true);
+    } else {
       alert(val + " Directory does not exist")
     }
 
@@ -34,16 +34,16 @@ const getFolder = () => {
 };
 window.electron.ipcRenderer.on("open-folder-selecter-reply", (e, r) => {
   const reply = updateRecentFolderDB(r, recentFolderList.value);
-  
+
   if (reply !== recentFolderList.value) {
-  
+
     const que = {
       name: "recentfolder",
       resp: reply,
     };
     window.electron.ipcRenderer.send("write-db", JSON.stringify(que));
 
-  
+
   }
   SetEditor(r);
 });
@@ -63,18 +63,13 @@ window.electron.ipcRenderer.on("read-db-reply-recentfolder", (e, r) => {
       </div>
       <div id="line-ele"></div>
       <div id="past-list-box">
-        <RecentFolder
-          v-for="item in recentFolderList"
-          :key="item"
-          :title="item.name"
-          :path="item.path"
-          @click="SetEditor(item.path)"
-        />
+        <RecentFolder v-for="item in recentFolderList" :key="item" :title="item.name" :path="item.path"
+          @click="SetEditor(item.path)" />
       </div>
     </div>
     <div id="banner-box">
       <img :src="banner" alt="kraken banner" /><br />
-      <div>:K:raken</div>
+      <!-- <div>:K:raken</div> -->
     </div>
   </div>
 </template>
@@ -93,6 +88,7 @@ window.electron.ipcRenderer.on("read-db-reply-recentfolder", (e, r) => {
   overflow-y: auto;
   /* overflow-x:hidden ; */
 }
+
 #open-folder-btn {
   background-color: #0a0d18;
   width: 80%;
@@ -110,16 +106,19 @@ window.electron.ipcRenderer.on("read-db-reply-recentfolder", (e, r) => {
 #open-folder-btn:hover {
   background-color: #121522;
 }
+
 #open-folder-btn img {
   height: 20px;
   margin-bottom: -4px;
   margin-right: 5px;
 }
+
 #line-ele {
   width: 80%;
   height: 2px;
   border-bottom: 1px solid #71738e;
 }
+
 #recent-box {
   border-right: 1px solid #71738e;
   display: flex;
@@ -127,10 +126,12 @@ window.electron.ipcRenderer.on("read-db-reply-recentfolder", (e, r) => {
   align-items: center;
   flex-direction: column;
 }
+
 #banner-box div {
   margin-top: -45px;
   opacity: 0.5;
 }
+
 #banner-box {
   width: 100%;
 
@@ -140,9 +141,11 @@ window.electron.ipcRenderer.on("read-db-reply-recentfolder", (e, r) => {
   flex-direction: column;
   font-size: 30px;
 }
+
 #banner-box img {
   width: 70%;
 }
+
 #start-page-box {
   width: 99vw;
   height: calc(99.7vh - 1px);

@@ -1,26 +1,6 @@
 [
   {
-    "name": "asciiArt-video-gen",
-    "path": "/home/vishnu/room/dev/asciiArt-video-gen"
-  },
-  {
-    "name": "vue-project",
-    "path": "/home/vishnu/room/dev/vue-project"
-  },
-  {
-    "name": "Kraken",
-    "path": "/home/vishnu/room/dev/scrap_code/Kraken"
-  },
-  {
-    "name": "Moni",
-    "path": "/home/vishnu/room/dev/Moni"
-  },
-  {
-    "name": "kraken-vue",
-    "path": "/home/vishnu/room/dev/kraken-vue"
-  },
-  {
-    "name": "linkworm",
-    "path": "/home/vishnu/room/dev/linkworm"
+    "name": "jam",
+    "path": "/home/vishnu/room/jam"
   }
 ]
