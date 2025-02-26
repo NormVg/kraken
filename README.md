@@ -165,6 +165,28 @@ Kraken AI is not just an assistant—it’s a fully integrated **AI-driven devel
 Kraken AI redefines **AI-assisted coding** by offering **real-time, deep integration** with your development workflow—making it smarter, faster, and more powerful than traditional AI code editors. 🚀  
 
 
+## 🌐 Why a Browser Inside a Code Editor?  
+
+Kraken Browser is **not your normal browser**—it’s designed **exclusively for coding** and **deeply integrated with AI** to enhance development, debugging, and automation. While it’s not meant for daily browsing, it **unlocks powerful new capabilities** within your coding environment.  
+
+### 🛠️ Direct Web App Integration  
+- **Test & Debug Instantly** → No need to switch between a browser and your editor.  
+- **Live AI Debugging** → AI extracts code, logs, and errors from running web apps.  
+- **Seamless Code Injection** → Modify any web app inside Kraken in real time.  
+
+### 🚀 Build & Preview Web Apps in One Place  
+- **No More Context Switching** → Code, test, and modify web apps without leaving Kraken.  
+- **Persistent Scripts & Customization** → Automate UI tweaks, inject scripts, and enhance web experiences.  
+- **Web & Code in Sync** → Changes reflect instantly, making frontend and backend development seamless.  
+
+### 🔗 AI-Powered Web Automation  
+- **AI Debugging for Websites** → Kraken AI can analyze any loaded web page.  
+- **Automate & Extend Web Apps** → Use AI or scripts to modify websites dynamically.  
+- **Web App Extensions** → Create custom Kraken extensions that interact directly with web content.  
+
+Kraken Browser is built **for developers, not for general web use**—leveraging AI to make **coding, debugging, and automation faster and more intuitive than ever before**. 🚀  
+
+
 ## How-to-use
 
 Detailed instructions on how to install and set up the project.
