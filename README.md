@@ -127,6 +127,44 @@ Kraken comes with powerful keyboard shortcuts to enhance your workflow. Below is
  - node-pty
  - Customized Catppuccin color pallet
 
+
+## 🚀 Kraken AI – Intelligent Coding & Automation  
+
+Kraken AI is not just an assistant—it’s a fully integrated **AI-driven development companion** that enhances coding, debugging, and automation.  
+
+### 🖥️ AI-Powered Code Assistance  
+- **Smart Code Completion** → Context-aware suggestions to boost productivity.  
+- **AI Refactoring** → Automatically improves code structure and efficiency.  
+- **Multi-Model AI** → Supports Ollama, OpenAI, Anthropic, Google, and custom models.  
+
+### 🌐 AI-Enhanced Web Development  
+- **Live Code Injection** → Modify running web apps inside Kraken.  
+- **Persistent Scripts** → Set code to auto-inject on specific websites or globally.  
+- **AI Debugging** → Extract errors and logs from web views instantly.  
+
+### 🔍 AI Watchdog – Smart Coding Assistant  
+- **Action-Based AI Suggestions** → AI monitors your workflow and suggests improvements.  
+- **Push-to-Apply Fixes** → One-click implementation of AI-recommended changes.  
+- **Automated Code Review** → AI scans for issues and optimizes code.  
+
+### ⚡ AI-Powered Project Management  
+- **Full File System Access** → AI can create, edit, and manage project files.  
+- **AI-Integrated Terminal** → Execute commands, manage dependencies, and automate workflows.  
+- **API & Database Assistance** → Fetch, analyze, and structure API responses effortlessly.  
+
+### 🛠️ Custom AI Agents & Extensions  
+- **Build AI Agents** → Create task-specific AI assistants for coding and automation.  
+- **Develop Custom Extensions** → Enhance Kraken with personalized plugins.  
+- **Expand AI Context** → Connect external data sources to improve AI capabilities.  
+
+### 🎯 Productivity & Workflow Enhancements  
+- **Command Palette Extensions** → Add quick actions like controlling music without switching apps.  
+- **AI Task Automation** → Automate repetitive tasks and streamline workflows.  
+- **Seamless Context Management** → Code, test, and debug without leaving Kraken.  
+
+Kraken AI redefines **AI-assisted coding** by offering **real-time, deep integration** with your development workflow—making it smarter, faster, and more powerful than traditional AI code editors. 🚀  
+
+
 ## How-to-use
 
 Detailed instructions on how to install and set up the project.
