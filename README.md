@@ -17,17 +17,21 @@
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Why we Made it](#why-kraken)
-- [Degine Theory](#design-theory)
-- [Features](#features)
-- [Made with](#made-with)
-- [How to use](#how-to-use)
-- [How to build](#how-to-build)
-- [Contact](#contact)
-- [Contributors](#contributors)
-- [License](#license)
-- [Refference Video](https://github.com/NormVg/kraken/blob/master/github/refvideo.mp4)
+1. [Introduction](#introduction)  
+2. [Why Kraken?](#why-kraken)  
+3. [Design Theory](#design-theory)  
+4. [Features](#features)  
+5. [Keyboard Shortcuts](#keyboard-shortcuts)  
+6. [Kraken AI – Intelligent Coding & Automation](#kraken-ai-intelligent-coding-automation)  
+7. [Why a Browser Inside a Code Editor?](#why-a-browser-inside-a-code-editor)  
+8. [How to Use](#how-to-use)  
+9. [How to Build](#how-to-build)  
+10. [Made With](#made-with)  
+11. [Contributors](#contributors)  
+12. [Contact](#contact)  
+13. [License](#license)  
+14. [Reference Video](https://github.com/NormVg/kraken/blob/master/github/refvideo.mp4)  
+
 
 
 ## Introduction
