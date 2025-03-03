@@ -17,18 +17,6 @@ import { useWinBasicStore } from "../stores/basicInfo";
 
 const WinBasic = useWinBasicStore()
 
-const customSettings = {
-  enableSizeReports: true, // whether to enable CSI t reports (see below)
-  pixelLimit: 16777216, // max. pixel size of a single image
-  sixelSupport: true, // enable sixel support
-  sixelScrolling: true, // whether to scroll on image output
-  sixelPaletteLimit: 256, // initial sixel palette size
-  sixelSizeLimit: 25000000, // size limit of a single sixel sequence
-  storageLimit: 128, // FIFO storage limit in MB
-  showPlaceholder: true, // whether to show a placeholder for evicted images
-  iipSupport: true, // enable iTerm IIP support
-  iipSizeLimit: 20000000, // size limit of a single IIP sequence
-};
 
 const KrakenTheme = {
   foreground: "#CDD6F4",
@@ -88,7 +76,7 @@ const initializeTerminal = () => {
     backend: "conpty",
     buildNumber: 22621,
 
-    fontFamily: "CaskaydiaCove Nerd Font Mono",
+    // fontFamily: "CaskaydiaCove Nerd Font Mono",
     fontWeight: "normal",
     fontSize: "14",
   });

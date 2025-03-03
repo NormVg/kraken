@@ -52,6 +52,12 @@ const AIChatStore = useAiChatStore()
 const GetAIresp = async () => {
 
 
+    if (input.value === "") {
+      return;
+
+    }
+
+
   if (AIChatStore.CurrentChatID === undefined) {
 
 
@@ -108,7 +114,14 @@ const GetAIresp = async () => {
 
 onMounted(() => {
   AIChatStore.updateChatHistory()
-});
+
+  document.getElementsByClassName("resize-none")[0].addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && e.ctrlKey) {
+      e.preventDefault();
+      GetAIresp();
+    }
+    });
+  });
 
 
 
@@ -148,7 +161,7 @@ async function processStreaming(result) {
         </div>
 
         <div id="chat-inp">
-          <textarea ref="textarea" v-model="input" class="resize-none" placeholder="What's on your mind?" rows="1" />
+          <textarea ref="textarea" v-model="input" class="resize-none" placeholder="What's on your mind?" rows="1"  />
 
           <button @click="GetAIresp" id="send">
             <img v-if="!AIChatStore.isAIWorking" :src="EntrBtn" alt="" />

@@ -1,0 +1,15 @@
+{
+  "id": "acdc20ef-5da9-48ad-b79e-4413bcd301e4",
+  "name": "hello\n",
+  "date": "2025-02-28T11:27:22.926Z",
+  "history": [
+    {
+      "content": "Hello! How can I help you today?\n",
+      "role": "assistant"
+    },
+    {
+      "content": "hello\n",
+      "role": "user"
+    }
+  ]
+}

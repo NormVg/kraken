@@ -1,26 +1,26 @@
 <script setup>
-
-import { ref, watch } from 'vue'
-
-
-
-
+import MarkdownItAnchor from 'markdown-it-anchor';
 import VueMarkdown from 'vue-markdown-render'
 import '../../assets/markdown.css'
 import { useAiChatStore } from '../../stores/AiChatStore'
+import CoptBtnIcon from '../../assets/icons/copy_btn.png'
 
 const AIChatStore = useAiChatStore()
+const plugins = [MarkdownItAnchor];
 
 
-const skippedFirstScroll = ref(false)
 
-const scrollToBottom = () => {
 
-  const div = document.getElementById("chat-box-area");
-  div.scrollTop = div.scrollHeight;
 
-}
 
+
+const copyText = (text) => {
+  navigator.clipboard.writeText(text).then(() => {
+    console.log('Text copied to clipboard');
+  }).catch(err => {
+    console.error('Could not copy text: ', err);
+  });
+};
 
 
 </script>
@@ -35,19 +35,27 @@ const scrollToBottom = () => {
       <span v-if="chatText.role === 'assistant'" class="markdown-content">
 
 
-        <VueMarkdown :source="chatText.content" />
+        <VueMarkdown :source="chatText.content" :plugins="plugins" />
 
         <!-- {{ chatText.content }} -->
 
 
       </span>
 
-      <span v-else>
-        <VueMarkdown :source="chatText.content" />
+      <span v-else class="markdown-content">
+        <VueMarkdown :source="chatText.content" :plugins="plugins" />
         <!-- {{ chatText.content }} -->
 
 
       </span>
+
+
+
+      <div v-if="chatText.role === 'assistant'" id="copy-btn">
+        <span @click="copyText(chatText.content)">
+          <img :src="CoptBtnIcon" alt="">
+        </span>
+      </div>
     </div>
     <div v-if="AIChatStore.loadingModel" class="text-by-ai">
       <div class="loader"></div>
@@ -58,6 +66,29 @@ const scrollToBottom = () => {
 
 
 <style scoped>
+
+#copy-btn{
+  display: flex;
+  justify-content: flex-start;
+  margin: 10px;
+  transition: all ease-in-out 200ms;
+}
+
+#copy-btn img:hover {
+  opacity: 0.5;
+  scale: 1.1;
+}
+
+#copy-btn:active {
+  opacity: 0.5;
+
+}
+#copy-btn img{
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
 .markdown-content {
   font-family: 'Alef', sans-serif;
   font-weight: 400;
@@ -77,7 +108,7 @@ const scrollToBottom = () => {
   border-radius: 10px;
   background-color: #37405e7d;
   align-self: flex-start;
-  max-width: 90%;
+  max-width: 65vw;
   animation: slideInFromLeft 1s forwards;
   color: #d7c2be;
   font-family: 'Alef', sans-serif;
@@ -92,8 +123,8 @@ const scrollToBottom = () => {
   font-weight: 400;
   font-style: normal;
   color: whitesmoke;
-  max-width: 75%;
-  padding: 0px 10px;
+  max-width: 65vw;
+  padding: 10px;
 
   margin: 5px;
   transition: all 1s ease-in-out;
@@ -102,6 +133,7 @@ const scrollToBottom = () => {
   background-color: #37405E;
   align-self: flex-end;
   animation: slideOutToRight 1s forwards;
+  user-select: text;
 }
 
 #chat-box-area {

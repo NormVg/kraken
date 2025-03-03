@@ -1,0 +1,15 @@
+{
+  "id": "91d7867c-43b3-4ecb-a634-4a32f81d20c1",
+  "name": "hello\n",
+  "date": "2025-02-28T10:26:13.719Z",
+  "history": [
+    {
+      "content": "Hello! How can I help you today?\n",
+      "role": "assistant"
+    },
+    {
+      "content": "hello\n",
+      "role": "user"
+    }
+  ]
+}

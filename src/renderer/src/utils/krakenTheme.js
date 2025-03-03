@@ -19,7 +19,7 @@ const bg0 = "#1e1e2e",
   selection =  "#585b70",
   atom = "#b4befe",
   cursor = "#7f849c",
-  keyword = "#D31F6B",
+  keyword = "#9374BE",
   operator = "#89dceb",
   number = "#fab387",
   definition = "#89b4fa",
@@ -39,7 +39,7 @@ export const ctpMochaTheme = EditorView.theme({
   ".cm-cursor, .cm-dropCursor": {
     borderLeftColor: cursor
   },
-  
+
   "&.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground, .cm-selectionBackground, .cm-content ::selection": {
     backgroundColor: selection
   },

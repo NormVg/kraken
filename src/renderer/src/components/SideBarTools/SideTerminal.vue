@@ -1,7 +1,7 @@
 <template>
     <div  class="side-terminal-container" ref="terminalRef"></div>
   </template>
-  
+
   <script setup>
   import { Terminal } from "xterm";
   import "xterm/css/xterm.css";
@@ -12,7 +12,7 @@
   // import { ImageAddon } from "@xterm/addon-image";
   import { WebLinksAddon } from "@xterm/addon-web-links";
   import { SerializeAddon } from "@xterm/addon-serialize";
-  
+
   const customSettings = {
     enableSizeReports: true, // whether to enable CSI t reports (see below)
     pixelLimit: 16777216, // max. pixel size of a single image
@@ -25,7 +25,7 @@
     iipSupport: true, // enable iTerm IIP support
     iipSizeLimit: 20000000, // size limit of a single IIP sequence
   };
-  
+
   const KrakenTheme = {
     foreground: "#CDD6F4",
     background: "#1c1c2a",
@@ -48,7 +48,7 @@
     white: "#BAC2DE",
     brightWhite: "#A6ADC8",
   };
-  
+
   const vercel_theme = {
     foreground: "#DCE3EA",
     background: "#000000",
@@ -71,11 +71,11 @@
     white: "#DCE3EA",
     brightWhite: "#DCE3EA",
   };
-  
+
   const terminalRef = ref(null);
   let terminal;
   let fitAddon;
-  
+
   const initializeTerminal = () => {
     terminal = new Terminal({
       theme: KrakenTheme,
@@ -83,12 +83,12 @@
       allowProposedApi: true,
       backend: "conpty",
       buildNumber: 22621,
-  
-      fontFamily: "CaskaydiaCove Nerd Font Mono",
+
+      // fontFamily: "CaskaydiaCove Nerd Font Mono",
       fontWeight:"normal",
       fontSize:"12"
     });
-  
+
     // const WebGLaddon = new WebglAddon();
     // WebGLaddon.onContextLoss((e) => {
     //   WebGLaddon.dispose();
@@ -97,18 +97,18 @@
     terminal.open(terminalRef.value);
     fitAddon = new FitAddon();
     terminal.loadAddon(fitAddon);
-  
+
     const clipboardAddon = new ClipboardAddon({
       copy: (text) => navigator.clipboard.writeText(text),
       paste: () => navigator.clipboard.readText(),
     });
     terminal.loadAddon(clipboardAddon);
     terminal.loadAddon(new WebLinksAddon());
-  
-  
+
+
     const serializeAddon = new SerializeAddon();
     terminal.loadAddon(serializeAddon);
-  
+
     const adjustSize = () => {
       fitAddon.fit(); // Adjust terminal to the container
       const { cols, rows } = terminal; // Get new dimensions
@@ -119,27 +119,27 @@
       });
       // Resize the pty process
     };
-  
+
     adjustSize();
     // this.addEventListener('resize',adjustSize)
     window.addEventListener("resize", adjustSize);
-  
+
     terminal.onKey((e) => {
       console.log(e.key);
       window.electron.ipcRenderer.send("side-terminal-into", e.key);
       fitAddon.fit();
     });
-  
+
     window.electron.ipcRenderer.on("side-terminal-incData", (event, data) => {
       terminal.write(data);
-  
+
       fitAddon.fit();
     });
-  
+
     window.electron.ipcRenderer.on("side-terminal-incData-exit", (event, data) => {
       handleTerminalExit();
     });
-  
+
     terminal.attachCustomKeyEventHandler((event) => {
       if (event.ctrlKey && event.shiftKey && event.code === "KeyC") {
         console.log("Copying selected text...");
@@ -147,30 +147,30 @@
         navigator.clipboard.writeText(selection);
         return false; // Prevent default behavior
       }
-  
+
       if (event.ctrlKey && event.shiftKey && event.code === "KeyV") {
         console.log("Pasting clipboard content...");
         navigator.clipboard.readText().then((text) => terminal.write(text));
         return false; // Prevent default behavior
       }
-  
+
       return true; // Allow other keys to propagate
     });
   };
-  
+
   const handleTerminalExit = () => {
     alert("The terminal process has exited!"); // Example action
   };
-  
+
   onMounted(() => {
     initializeTerminal();
   });
-  
+
   onBeforeUnmount(() => {
     terminal?.dispose();
   });
   </script>
-  
+
   <style scoped >
   .side-terminal-container{
       height: 80vh;
@@ -183,12 +183,12 @@
       background-color: #1c1c2a;
       margin-left: auto;
   margin-right: auto;
-      /* margin-right: 25px; 
+      /* margin-right: 25px;
        margin-left: 25px; */
        /* overflow-x: hidden;
         */
         overflow: hidden;
-       
+
   }
-  
+
   </style>

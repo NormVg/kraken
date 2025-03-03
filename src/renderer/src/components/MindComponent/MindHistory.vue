@@ -20,36 +20,21 @@
 <script setup>
 import { ref, computed, onMounted, watch } from "vue";
 import {  formatISO } from "date-fns";
-
-import {ListAllChat,readChat}  from "../../utils/AiChatManager.js"
 import { useAiChatStore } from "../../stores/AiChatStore.js";
+
+
 
 const AIChatStore = useAiChatStore()
 
 const messages = ref([])
-
-
-// ListAllChat().then((data) => {
-
-//   data.forEach((element) => {
-
-//     console.log(element,"asd")
-//     readChat(element).then((ddata) => {
-//       console.log(ddata)
-
-//       messages.value.push({ text: ddata.name, date: ddata.date })
-//     })
-//   });
-
-// })
-
+const messagesContainer = ref(null);
 
 
 const groupedMessages = computed(() => {
   const today = formatISO(new Date(), { representation: "date" });
   const grouped = { Today: [], Later: [] };
 
-  AIChatStore.ChatHistory.forEach((msg) => {
+  AIChatStore.ChatHistory.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach((msg) => {
     const msgDate = formatISO(new Date(msg.date), { representation: "date" });
 
     if (msgDate === today) {
@@ -62,7 +47,7 @@ const groupedMessages = computed(() => {
   return grouped;
 });
 
-const messagesContainer = ref(null);
+
 
 const scrollToTop = () => {
   if (messagesContainer.value) {
@@ -72,24 +57,10 @@ const scrollToTop = () => {
 
 onMounted((scrollToTop));
 
-// onMounted(() => {
-//   scrollToTop()
-//   console.log("Mounted",groupedMessages.value)
-//   if (groupedMessages.value.Today?.[0]?.id) {
-//     AIChatStore.setCurrentChatID(groupedMessages.value.Today[0].id)
-// } else if (groupedMessages.value?.Later?.[0]?.id) {
-//   console.log("ID does not exist or is undefined.");
-//   AIChatStore.setCurrentChatID(groupedMessages.value.Later[0].id)
-// }else{
-//   console.log("ID does not exist or is undefined.");
-//   // AIChatStore.setCurrentChatID(null)
-
-// }
-//   // AIChatStore.setCurrentChatID()
-
-// })
 
 watch(messages, scrollToTop, { deep: true });
+
+
 </script>
 
 <style scoped>

@@ -12,11 +12,11 @@ const CommandPalletStore = useCommandPalletStore()
 window.electron.ipcRenderer.send("app-prod","")
   window.electron.ipcRenderer.on("app-prod-reply", (e, r) => {
     WinBasic.ChangeIsAppPackaged(r)
-    
+
 
   })
 
-import { tinykeys } from "tinykeys" // Or `window.tinykeys` using the CDN version
+import { tinykeys } from "tinykeys"
 import { onMounted } from 'vue';
 import { useCommandPalletStore } from './stores/CommandPalletStore';
 
@@ -24,6 +24,11 @@ onMounted(()=>{
 
 
   tinykeys(window, {
+    "Control+Shift+o": (event) => {
+    event.preventDefault()
+    console.log("Control+Shift+o","Toggle File Opener")
+  },
+
   "Control+Shift+b": (event) => {
     event.preventDefault()
     WinBasic.ChangeIsSideBar(!WinBasic.isSidebar)
@@ -60,7 +65,7 @@ onMounted(()=>{
   },
 "Shift+Alt+e":(event)=>{
     event.preventDefault()
-    WinBasic.ChangeCurrentScreenWindow(1)
+    WinBasic.ChangeCurrentScreenWindow(0)
   },
   "k r a k e n i s a w s m": () => {
     alert("Kraken is awsm")
@@ -73,7 +78,7 @@ onMounted(()=>{
       WinBasic.ChangeCurrentScreenWindow(Number(event.key-1))
     }
 
-    // alert(`Either 'Control+${event.key}' or 'Meta+${event.key}' were pressed`)
+
   }
 })
 

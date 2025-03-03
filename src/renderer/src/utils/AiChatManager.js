@@ -34,7 +34,7 @@ export async function CreateNewChat() {
   const chatData = {
     id: chatId,
     name: "Kraken Chat",
-    date: formattedDate,
+    date: today,
     history: [],
   };
 

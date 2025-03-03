@@ -10,6 +10,9 @@ import fs from "fs";
 
 const AppResoursePath = app.isPackaged ? join(os.homedir(), `KrakenCode`) : `./resources/`;
 
+app.commandLine.appendSwitch("enable-features", "UseOzonePlatform");
+app.commandLine.appendSwitch("ozone-platform", "wayland");
+
 
 
 const checkDir  = (fullPath) =>{
