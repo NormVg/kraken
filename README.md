@@ -13,9 +13,10 @@
 
 # Kraken Editor 
 
-![kraken](https://github.com/NormVg/kraken/assets/87635928/e3d9852b-1294-4420-adc7-c8b4815ce199)
-
 [![Watch the video](https://img.youtube.com/vi/s6PZ1a75wm8/0.jpg)](https://www.youtube.com/watch?v=s6PZ1a75wm8)
+<p align="center">
+youtube video 
+</p>
 
 ## Table of Contents
 
