@@ -13,6 +13,7 @@
 
 # Kraken Editor 
 <p align="center">
+  
 [![Watch the video](https://img.youtube.com/vi/s6PZ1a75wm8/0.jpg)](https://www.youtube.com/watch?v=s6PZ1a75wm8)
 
 youtube video 
