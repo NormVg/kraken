@@ -12,9 +12,9 @@
 > Kraken is not optimized and it *just works*, so dont fear , its in active dev
 
 # Kraken Editor 
-
-[![Watch the video](https://img.youtube.com/vi/s6PZ1a75wm8/0.jpg)](https://www.youtube.com/watch?v=s6PZ1a75wm8)
 <p align="center">
+[![Watch the video](https://img.youtube.com/vi/s6PZ1a75wm8/0.jpg)](https://www.youtube.com/watch?v=s6PZ1a75wm8)
+
 youtube video 
 </p>
 
