@@ -34,7 +34,7 @@ youtube video
 11. [Contributors](#contributors)  
 12. [Contact](#contact)  
 13. [License](#license)  
-14. [Reference Video](https://github.com/NormVg/kraken/blob/master/github/refvideo.mp4)  
+14. [Youtube Video](https://www.youtube.com/watch?v=s6PZ1a75wm8)  
 
 
 
